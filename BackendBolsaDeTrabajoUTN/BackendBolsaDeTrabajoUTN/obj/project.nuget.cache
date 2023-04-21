@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "KRuSl+AEOOhxtvM5AWIkjLuw/Z97QO4X62LqV8YOmIva7+DQdY0w0AoCU1w+RTa/EvZ/73wNnSKbdnkGen5Oew==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Luciano\\Desktop\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Luciano\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\Luciano\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Luciano\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\Luciano\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\Luciano\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\Luciano\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
