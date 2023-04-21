@@ -1,10 +1,10 @@
-﻿using TPIntegradorProgIII.Data.Repository.Interfaces;
-using TPIntegradorProgIII.Entities;
-using TPIntegradorProgIII.Models;
-using TPIntegradorProgIII.DBContexts;
-using TPIntegradorProgIII.Data.Repository;
+﻿using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
+using BackendBolsaDeTrabajoUTN.Entities;
+using BackendBolsaDeTrabajoUTN.Models;
+using BackendBolsaDeTrabajoUTN.DBContexts;
+using BackendBolsaDeTrabajoUTN.Repository;
 
-namespace TPIntegradorProgIII.Data.Repository
+namespace BackendBolsaDeTrabajoUTN.Data.Repository
 {
     public class OfferRepository : IOfferRepository
     {

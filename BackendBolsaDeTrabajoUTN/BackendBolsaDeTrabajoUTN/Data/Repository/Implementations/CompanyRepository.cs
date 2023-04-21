@@ -1,9 +1,9 @@
 ﻿
-using TPIntegradorProgIII.Entities;
-using TPIntegradorProgIII.DBContexts;
+using BackendBolsaDeTrabajoUTN.Entities;
+using BackendBolsaDeTrabajoUTN.DBContexts;
 
 
-namespace TPIntegradorProgIII.Data.Repository
+namespace BackendBolsaDeTrabajoUTN.Data.Repository
 {
    public class CompanyRepository : ICompanyRepository
    {

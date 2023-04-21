@@ -1,4 +1,4 @@
-﻿namespace TPIntegradorProgIII.Models
+﻿namespace BackendBolsaDeTrabajoUTN.Models
 {
     public class StudentResponse
     {

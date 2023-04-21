@@ -1,6 +1,6 @@
-﻿using TPIntegradorProgIII.Entities;
+﻿using BackendBolsaDeTrabajoUTN.Entities;
 
-namespace TPIntegradorProgIII.Data.Repository.Interfaces
+namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
 {
     public interface IOfferRepository
     {

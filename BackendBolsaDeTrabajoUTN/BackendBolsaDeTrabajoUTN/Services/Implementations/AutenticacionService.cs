@@ -1,9 +1,9 @@
-﻿using TPIntegradorProgIII.Data.Repository.Interfaces;
-using TPIntegradorProgIII.Entities;
-using TPIntegradorProgIII.Models;
-using TPIntegradorProgIII.Services.Interfaces;
+﻿using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
+using BackendBolsaDeTrabajoUTN.Entities;
+using BackendBolsaDeTrabajoUTN.Models;
+using BackendBolsaDeTrabajoUTN.Services.Interfaces;
 
-namespace TPIntegradorProgIII.Services.Implementations
+namespace BackendBolsaDeTrabajoUTN.Services.Implementations
 {
     public class AutenticacionService : ICustomAuthenticationService
     {

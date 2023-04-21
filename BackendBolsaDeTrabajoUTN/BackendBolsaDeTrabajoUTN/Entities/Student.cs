@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web;
-using TPIntegradorProgIII.Helpers;
+using BackendBolsaDeTrabajoUTN.Helpers;
 
-namespace TPIntegradorProgIII.Entities
+namespace BackendBolsaDeTrabajoUTN.Entities
 {
     public class Student
     {

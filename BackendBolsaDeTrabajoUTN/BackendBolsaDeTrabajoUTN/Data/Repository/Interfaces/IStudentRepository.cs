@@ -1,7 +1,7 @@
-﻿using TPIntegradorProgIII.Entities;
-using TPIntegradorProgIII.Models;
+﻿using BackendBolsaDeTrabajoUTN.Entities;
+using BackendBolsaDeTrabajoUTN.Models;
 
-namespace TPIntegradorProgIII.Data.Repository.Interfaces
+namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
 {
     public interface IStudentRepository
     {

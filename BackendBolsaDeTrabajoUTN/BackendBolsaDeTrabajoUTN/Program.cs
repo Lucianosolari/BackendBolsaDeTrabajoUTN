@@ -1,13 +1,13 @@
 using Microsoft.IdentityModel.Tokens;
-using TPIntegradorProgIII.Services.Implementations;
-using TPIntegradorProgIII.Data.Repository.Interfaces;
-using TPIntegradorProgIII.DBContexts;
+using BackendBolsaDeTrabajoUTN.Services.Implementations;
+using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
+using BackendBolsaDeTrabajoUTN.DBContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Text;
-using TPIntegradorProgIII.Data.Repository.Implementations;
-using TPIntegradorProgIII.Services.Interfaces;
-using TPIntegradorProgIII.Data.Repository;
+using BackendBolsaDeTrabajoUTN.Data.Repository.Implementations;
+using BackendBolsaDeTrabajoUTN.Services.Interfaces;
+using BackendBolsaDeTrabajoUTN.Data.Repository;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);

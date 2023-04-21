@@ -1,8 +1,8 @@
-﻿using TPIntegradorProgIII.Entities;
+﻿using BackendBolsaDeTrabajoUTN.Entities;
 
 
 
-namespace TPIntegradorProgIII.Models
+namespace BackendBolsaDeTrabajoUTN.Models
 {
     public class AddCompanyRequest
     {

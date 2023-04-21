@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace TPIntegradorProgIII.Helpers
+namespace BackendBolsaDeTrabajoUTN.Helpers
 {
     public static class Security
     {

@@ -1,7 +1,7 @@
-﻿using TPIntegradorProgIII.Entities;
+﻿using BackendBolsaDeTrabajoUTN.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace TPIntegradorProgIII.DBContexts
+namespace BackendBolsaDeTrabajoUTN.DBContexts
 {
     public class TPContext : DbContext
     {

@@ -1,7 +1,7 @@
-﻿using TPIntegradorProgIII.Data.Repository.Interfaces;
-using TPIntegradorProgIII.DBContexts;
+﻿using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
+using BackendBolsaDeTrabajoUTN.DBContexts;
 
-namespace TPIntegradorProgIII.Data.Repository
+namespace BackendBolsaDeTrabajoUTN.Data.Repository
 {
     public class TPRepository : ITPRepository
     {

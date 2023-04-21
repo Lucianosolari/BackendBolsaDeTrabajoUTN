@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TPIntegradorProgIII.Models
+namespace BackendBolsaDeTrabajoUTN.Models
 {
 	public class AuthenticationRequestBody
 	{

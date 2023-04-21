@@ -1,10 +1,10 @@
-﻿using TPIntegradorProgIII.Data.Repository.Interfaces;
-using TPIntegradorProgIII.DBContexts;
-using TPIntegradorProgIII.Entities;
-using TPIntegradorProgIII.Helpers;
-using TPIntegradorProgIII.Models;
+﻿using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
+using BackendBolsaDeTrabajoUTN.DBContexts;
+using BackendBolsaDeTrabajoUTN.Entities;
+using BackendBolsaDeTrabajoUTN.Helpers;
+using BackendBolsaDeTrabajoUTN.Models;
 
-namespace TPIntegradorProgIII.Data.Repository.Implementations
+namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
 {
     public class StudentRepository : IStudentRepository
     {

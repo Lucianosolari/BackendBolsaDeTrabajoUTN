@@ -3,10 +3,10 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
-using TPIntegradorProgIII.Models;
-using TPIntegradorProgIII.Data.Repository.Interfaces;
+using BackendBolsaDeTrabajoUTN.Models;
+using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 
-namespace TPIntegradorProgIII.Controllers
+namespace BackendBolsaDeTrabajoUTN.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

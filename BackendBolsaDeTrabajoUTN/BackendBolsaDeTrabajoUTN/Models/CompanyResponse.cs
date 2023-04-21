@@ -1,6 +1,6 @@
 ﻿using TPIntegradorProgIII.Entities;
 
-namespace TPIntegradorProgIII.Models
+namespace BackendBolsaDeTrabajoUTN.Models
 {
     public class CompanyResponse
     {

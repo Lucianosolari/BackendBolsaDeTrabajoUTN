@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TPIntegradorProgIII.Entities
+namespace BackendBolsaDeTrabajoUTN.Entities
 {
     public class Company
     {

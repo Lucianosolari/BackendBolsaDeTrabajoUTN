@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace TPIntegradorProgIII.Migrations
+namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     public partial class migracion : Migration
     {

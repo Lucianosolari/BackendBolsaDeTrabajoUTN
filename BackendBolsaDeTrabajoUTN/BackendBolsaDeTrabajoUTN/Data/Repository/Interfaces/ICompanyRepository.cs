@@ -1,7 +1,7 @@
-﻿using TPIntegradorProgIII.Entities;
+﻿using BackendBolsaDeTrabajoUTN.Entities;
 
 
-namespace TPIntegradorProgIII.Data.Repository
+namespace BackendBolsaDeTrabajoUTN.Data.Repository
 {
    
     public interface ICompanyRepository

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TPIntegradorProgIII.Helpers;
+using BackendBolsaDeTrabajoUTN.Helpers;
 
-namespace TPIntegradorProgIII.Entities
+namespace BackendBolsaDeTrabajoUTNBackendBolsaDeTrabajoUTN.Entities
 {
     public class User
     {

@@ -1,7 +1,7 @@
-﻿using TPIntegradorProgIII.Entities;
-using TPIntegradorProgIII.Models;
+﻿using BackendBolsaDeTrabajoUTN.Entities;
+using BackendBolsaDeTrabajoUTN.Models;
 
-namespace TPIntegradorProgIII.Services.Interfaces
+namespace BackendBolsaDeTrabajoUTN.Services.Interfaces
 {
     public interface ICustomAuthenticationService
     {

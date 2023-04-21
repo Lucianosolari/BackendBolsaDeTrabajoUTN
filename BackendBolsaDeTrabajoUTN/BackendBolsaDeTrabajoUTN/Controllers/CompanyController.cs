@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TPIntegradorProgIII.Data.Repository;
-using TPIntegradorProgIII.Entities;
-using TPIntegradorProgIII.Models;
+using BackendBolsaDeTrabajoUTN.Data.Repository;
+using BackendBolsaDeTrabajoUTN.Entities;
+using BackendBolsaDeTrabajoUTN.Models;
 
-namespace TPIntegradorProgIII.Controllers
+namespace BackendBolsaDeTrabajoUTN.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

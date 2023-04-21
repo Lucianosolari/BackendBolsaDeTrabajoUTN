@@ -1,4 +1,4 @@
-﻿namespace TPIntegradorProgIII.Data.Repository.Interfaces
+﻿namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
 {
     public interface ITPRepository
     {
