@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TPIntegradorProgIII.DBContexts;
+using BackendBolsaDeTrabajoUTN.DBContexts;
 
 #nullable disable
 
-namespace TPIntegradorProgIII.Migrations
+namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     [DbContext(typeof(TPContext))]
     [Migration("20221125003338_migracion")]

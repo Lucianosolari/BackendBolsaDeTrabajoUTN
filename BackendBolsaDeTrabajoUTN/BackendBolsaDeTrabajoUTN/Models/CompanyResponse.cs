@@ -1,4 +1,4 @@
-﻿using TPIntegradorProgIII.Entities;
+﻿using BackendBolsaDeTrabajoUTN.Entities;
 
 namespace BackendBolsaDeTrabajoUTN.Models
 {

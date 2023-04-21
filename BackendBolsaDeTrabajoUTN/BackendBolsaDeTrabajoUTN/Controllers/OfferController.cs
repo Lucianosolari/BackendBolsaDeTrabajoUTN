@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using BackendBolsaDeTrabajoUTN.Repository;
-using BackendBolsaDeTrabajoUTN.Repository.Interfaces;
+using BackendBolsaDeTrabajoUTN.Data.Repository;
+using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 using BackendBolsaDeTrabajoUTN.Entities;
 using BackendBolsaDeTrabajoUTN.Models;
 
