@@ -12,11 +12,11 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
     public class CompanyController : ControllerBase
     {
 
-        private readonly ICompanyRepository _meetRepository;
+        private readonly ICompanyRepository _companyRepository;
 
-        public CompanyController(ICompanyRepository meetRepository)
+        public CompanyController(ICompanyRepository companyRepository)
         {
-            _meetRepository = meetRepository;
+            _companyRepository = companyRepository;
         }
 
         [HttpGet]
@@ -26,11 +26,11 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
             try
             {
-                List<CompanyResponse> meetsToReturn = new List<CompanyResponse>();
-                List<Company> meets = _meetRepository.GetMeets();
-                foreach (var meet in meets)
+                List<CompanyResponse> companiesToReturn = new List<CompanyResponse>();
+                List<Company> company = _companyRepository.GetMeets(); //!!
+                foreach (var company in companies)
                 {
-                    meet.Trials = _meetRepository.GetTrials(meet.Id);
+                    company.Companies = _companyRepository.GetTrials(meet.Id);
                     CompanyResponse response = new()
                     {
                         Id = meet.Id,
@@ -39,7 +39,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         MeetPlace = meet.MeetPlace,
                         Trials = meet.Trials,
                     };
-                    meetsToReturn.Add(response);
+                    companiesToReturn.Add(response);
                 }
                 return Ok(meetsToReturn);
             }

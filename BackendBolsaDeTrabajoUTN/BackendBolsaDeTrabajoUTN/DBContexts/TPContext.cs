@@ -5,9 +5,9 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
 {
     public class TPContext : DbContext
     {
-        public DbSet<Student> Swimmers { get; set; } //lo que hagamos con LINQ sobre estos DbSets lo va a transformar en consultas SQL
-        public DbSet<Company> Meets { get; set; } //Los warnings los podemos obviar porque DbContext se encarga de eso.
-        public DbSet<Offer> Trials { get; set; }
+        public DbSet<Student> Students { get; set; } //lo que hagamos con LINQ sobre estos DbSets lo va a transformar en consultas SQL
+        public DbSet<Company> Companies { get; set; } //Los warnings los podemos obviar porque DbContext se encarga de eso.
+        public DbSet<Offer> Offers { get; set; }
 
         public TPContext(DbContextOptions<TPContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
         {
@@ -16,7 +16,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Company meet1 = new Company()
+            Company company1 = new Company()
             {
                 Id = 1,
                 MeetDate = "20-12-2022",

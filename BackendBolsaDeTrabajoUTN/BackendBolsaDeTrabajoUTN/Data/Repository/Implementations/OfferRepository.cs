@@ -2,7 +2,7 @@
 using BackendBolsaDeTrabajoUTN.Entities;
 using BackendBolsaDeTrabajoUTN.Models;
 using BackendBolsaDeTrabajoUTN.DBContexts;
-using BackendBolsaDeTrabajoUTN.Repository;
+using BackendBolsaDeTrabajoUTN.Data.Repository;
 
 namespace BackendBolsaDeTrabajoUTN.Data.Repository
 {

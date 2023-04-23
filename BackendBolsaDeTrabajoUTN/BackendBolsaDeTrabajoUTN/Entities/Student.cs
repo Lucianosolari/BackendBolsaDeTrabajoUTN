@@ -2,15 +2,16 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web;
 using BackendBolsaDeTrabajoUTN.Helpers;
+using BackendBolsaDeTrabajoUTNBackendBolsaDeTrabajoUTN.Entities;
 
 namespace BackendBolsaDeTrabajoUTN.Entities
 {
-    public class Student
+    public class Student : User
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
-        public int Id { get; set; }
+        public int StudentId { get; set; }
 
         // inicio datos personales
         public int File { get; set; }
@@ -81,8 +82,8 @@ namespace BackendBolsaDeTrabajoUTN.Entities
 
 
 
-        [ForeignKey("TrialId")]
-        public Offer Trial { get; set; }
-        public int TrialId { get; set; }
+        [ForeignKey("UserId")]
+        public User User { get; set; }
+        public int UserId { get; set; }
     }
 }

@@ -12,17 +12,17 @@ namespace BackendBolsaDeTrabajoUTN.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int OfferId { get; set; }
         public int Distance { get; set; }
         public string Style { get; set; }
 
         public string MeetName { get; set; }
 
         // Cada trial va a pertenecer a un único meet
-        [ForeignKey("MeetId")]
-        public Company Meet { get; set; }
-        public int MeetId { get; set; }
+        [ForeignKey("CompanyId")]
+        public Company Company { get; set; }
+        public int CompanytId { get; set; }
 
-        public List<Student> RegisteredSwimmers { get; set; } = new List<Student>();
+       // public List<Student> RegisteredSwimmers { get; set; } = new List<Student>();
     }
 }
