@@ -7,18 +7,18 @@ namespace BackendBolsaDeTrabajoUTN.Services.Implementations
 {
     public class AutenticacionService : ICustomAuthenticationService
     {
-        private readonly IStudentRepository _swimmerRepository;
+        private readonly IStudentRepository _userRepository;
 
-        public AutenticacionService(IStudentRepository swimmerRepository)
+        public AutenticacionService(IStudentRepository userRepository)
         {
-            _swimmerRepository = swimmerRepository;
+            _userRepository = userRepository;
         }
         
         public Student? ValidateSwimmer(AuthenticationRequestBody authenticationRequest)
         {
             if (string.IsNullOrEmpty(authenticationRequest.UserName) || string.IsNullOrEmpty(authenticationRequest.Password))
                 return null;
-            return _swimmerRepository.ValidateSwimmer(authenticationRequest);
+            return _userRepository.ValidateUser(authenticationRequest);
         }
     }
 }

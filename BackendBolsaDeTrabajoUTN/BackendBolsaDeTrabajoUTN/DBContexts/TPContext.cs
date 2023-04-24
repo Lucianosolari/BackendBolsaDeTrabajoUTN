@@ -8,6 +8,9 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
         public DbSet<Student> Students { get; set; } //lo que hagamos con LINQ sobre estos DbSets lo va a transformar en consultas SQL
         public DbSet<Company> Companies { get; set; } //Los warnings los podemos obviar porque DbContext se encarga de eso.
         public DbSet<Offer> Offers { get; set; }
+        public DbSet<Career> Careers { get; set; }
+        public DbSet<Knowledge> Knowledges { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public TPContext(DbContextOptions<TPContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
         {
@@ -18,93 +21,122 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
         {
             Company company1 = new Company()
             {
-                Id = 1,
-                MeetDate = "20-12-2022",
-                MeetName = "Primer Meet",
-                MeetPlace = "Rosario",
+                UserId = 1,
+                //CompanyId = 1,
+                CompanyCUIT = "20447575",
+                CompanyName = "Primera empresa",
+                CompanyPhone = 341367898,
             };
 
-            Company meet2 = new Company()
+            Company company2 = new Company()
             {
-                Id = 2,
-                MeetDate = "25-12-2022",
-                MeetName = "Segundo Meet",
-                MeetPlace = "Buenos Aires",
+                UserId = 2,
+                //CompanyId = 2,
+                CompanyCUIT = "20447575",
+                CompanyName = "Segunda empresa",
+                CompanyPhone = 341367899,
             };
 
             modelBuilder.Entity<Company>().HasData(
-                meet1, meet2);
+                company1, company2);
 
-            Offer trial1 = new Offer()
+            Offer offer1 = new Offer()
             {
-                Id = 1,
-                Distance = 100,
-                Style = "Croll",
-                MeetId = meet1.Id,
-                MeetName = meet1.MeetName
+                OfferId = 1,
+                OfferTitle = "Primera oferta",
+                OfferDescription = "Primera descripción",
             };
 
-            Offer trial2 = new Offer()
+            Offer offer2 = new Offer()
             {
-                Id = 2,
-                Distance = 150,
-                Style = "Espalda",
-                MeetId = meet2.Id,
-                MeetName = meet2.MeetName
+                OfferId = 2,
+                OfferTitle = "Segunda oferta",
+                OfferDescription = "Segunda descripción",
             };
 
             modelBuilder.Entity<Offer>().HasData(
-                trial1, trial2);
+                offer1, offer2);
 
-            Student swimmer1 = new Student()
+            modelBuilder.Entity<User>().HasDiscriminator(u => u.UserType);
+
+            Student student1 = new Student()
             {
-                Id = 1,
+                UserId = 3,
+                //StudentId = 1,
                 Name = "Manuel",
                 Surname = "Ibarbia",
                 Email = "manuel@gmail.com",
                 Password = "string",
                 UserName = "string",
-                DNI = 44555666,
-                TrialId = trial1.Id,
-                AttendedTrial = trial1.Style + " " + trial1.Distance + " metros" + " (" + trial1.MeetName + ")"
+                DocumentNumber = 44555666,
             };
 
-            Student swimmer2 = new Student()
+            Student student2 = new Student()
             {
-                Id = 2,
+                UserId = 4,
+                //StudentId = 2,
                 Name = "Luciano",
                 Surname = "Solari",
                 Email = "luciano@gmail.com",
                 Password = "123456",
                 UserName = "lucianoS",
-                DNI = 33444555,
-                TrialId = trial1.Id,
-                AttendedTrial = trial1.Style + " " + trial1.Distance + " metros" + " (" + trial1.MeetName + ")"
+                DocumentNumber = 33444555,
             };
 
-            Student swimmer3 = new Student()
+            Student student3 = new Student()
             {
-                Id = 3,
+                UserId=5,
+                //StudentId = 3,
                 Name = "Santiago",
                 Surname = "Caso",
                 Email = "santiago@gmail.com",
                 Password = "123456",
                 UserName = "santiagoC",
-                DNI = 55666777,
-                TrialId = trial2.Id,
-                AttendedTrial = trial2.Style + " " + trial2.Distance + " metros" + " (" + trial2.MeetName + ")"
+                DocumentNumber = 55666777,
             };
 
             modelBuilder.Entity<Student>().HasData(
-                swimmer1, swimmer2, swimmer3);
+                student1, student2, student3);
 
             modelBuilder.Entity<Company>()
-                .HasMany<Offer>(m => m.Trials)
-                .WithOne(t => t.Meet);
+                .HasMany<Offer>(c => c.AnnouncedOffers)
+                .WithOne(o => o.Company);
 
-            modelBuilder.Entity<Offer>()
-                .HasMany<Student>(t => t.RegisteredSwimmers)
-                .WithOne(s => s.Trial);
+            modelBuilder.Entity<Student>() //ESTUDIANTE_CONOCIMIENTO
+                .HasMany(s => s.Knowledges)
+                .WithMany(k => k.Students)
+                .UsingEntity(e => e
+                .ToTable("StudentKnowledge")
+                .HasData(new[]
+                {
+                    new { KnowledgeId = 1, UserId = 1},
+                    new { KnowledgeId = 2, UserId = 2},
+                }
+                ));
+
+            modelBuilder.Entity<Student>() //ESTUDIANTE_CARRERA
+                .HasMany(s => s.Careers)
+                .WithMany(c => c.Students)
+                .UsingEntity(e => e
+                .ToTable("StudentCareer")
+                .HasData(new[]
+                {
+                    new { CareerId = 1, UserId = 4},
+                    new { CareerId = 2, UserId = 5},
+                }
+                ));
+
+            modelBuilder.Entity<Student>() //ESTUDIANTE_CARRERA
+                .HasMany(s => s.Offers)
+                .WithMany(o => o.Students)
+                .UsingEntity(e => e
+                .ToTable("StudentOffer")
+                .HasData(new[]
+                {
+                    new { OfferId = 1, UserId = 1},
+                    new { OfferId = 2, UserId = 3},
+                }
+                ));
 
             base.OnModelCreating(modelBuilder);
         }

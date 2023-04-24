@@ -1,4 +1,4 @@
-﻿using BackendBolsaDeTrabajoUTNBackendBolsaDeTrabajoUTN.Entities;
+﻿using BackendBolsaDeTrabajoUTN.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,33 +8,35 @@ namespace BackendBolsaDeTrabajoUTN.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CompanyId { get; set; }
+        //public int CompanyId { get; set; }
 
-        [Required]
-        public string CuitCompany { get; set; }
+        //[Required]
+        public string CompanyCUIT { get; set; }
 
-        [Required]
-        public string NameCompany { get; set; }
+        //[Required]
+        public string CompanyName { get; set; }
 
-        public string AddressCompany { get; set; }
+        public string CompanyAddress { get; set; }
 
-        public int PhoneCompany { get; set; }
+        public int CompanyPhone { get; set; }
 
-        public string EmailCompany { get; set; }
+        public string CompanyEmail { get; set; }
 
-        public string WebPageCompany { get; set; }
+        public string CompanyWebPage { get; set; }
 
-         public string ContactPersonCompany { get; set; }
+         public string CompanyContactPerson { get; set; }
 
-        public string TypeCompany { get; set; }
+        public string CompanyType { get; set; }
 
-        public string StateCompany { get; set; }
+        public string CompanyState { get; set; }
 
-        public string DocumentationCompany { get; set; }
+        public string CompanyDocumentation { get; set; }
 
-        [ForeignKey("UserId")]
-        public User User { get; set; }
-        public int UserId { get; set; }
+        //[ForeignKey("UserId")]
+        //public User User { get; set; }
+        //public int UserId { get; set; }
+
+        public List<Offer> AnnouncedOffers { get; set; } = new List<Offer>();
 
 
     }

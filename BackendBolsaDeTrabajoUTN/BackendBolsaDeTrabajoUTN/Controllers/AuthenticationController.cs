@@ -26,7 +26,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         public ActionResult<string> Autenticar(AuthenticationRequestBody authenticationRequestBody) //Enviamos como parámetro la clase que creamos arriba
         {
             //Paso 1: Validamos las credenciales
-            var user = _studentRepository.ValidateSwimmer(authenticationRequestBody); //Lo primero que hacemos es llamar a una función que valide los parámetros que enviamos.
+            var user = _studentRepository.ValidateUser(authenticationRequestBody); //Lo primero que hacemos es llamar a una función que valide los parámetros que enviamos.
 
             if (user is null) //Si el la función de arriba no devuelve nada es porque los datos son incorrectos, por lo que devolvemos un Unauthorized (un status code 401).
                 return Unauthorized();
