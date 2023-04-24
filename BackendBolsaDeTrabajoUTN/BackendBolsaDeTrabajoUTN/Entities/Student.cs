@@ -19,71 +19,71 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
-        public string AltEmail { get; set; }
-        public string DocumentType { get; set; } // Ver tabla aparte (se repite la palabra)
+        // public string AltEmail { get; set; }
+        //public string DocumentType { get; set; } // Ver tabla aparte (se repite la palabra)
 
         public int DocumentNumber { get; set; }
 
-        public int CUIL_CUIT { get; set; }
+        //public int CUIL_CUIT { get; set; }
 
-        public DateTime Birth { get; set; }
+        //public DateTime Birth { get; set; }
 
-        public string Sex { get; set; } //Ver tabla aparte (se repite la palabra)
-        public string CivilStatus { get; set; } // Ver tabla aparte (se repite la palabra)
+        //public string Sex { get; set; } //Ver tabla aparte (se repite la palabra)
+        //public string CivilStatus { get; set; } // Ver tabla aparte (se repite la palabra)
 
-        // Domicilio familiar
+        //// Domicilio familiar
 
-        public string Street { get; set; }
-        public int StreetNumber { get; set; }
+        //public string Street { get; set; }
+        //public int StreetNumber { get; set; }
 
-        public string StreetLetter { get; set; }
+        //public string StreetLetter { get; set; }
 
-        public int Floor { get; set; }
+        //public int Floor { get; set; }
 
-        public string Department { get; set; }
+        //public string Department { get; set; }
 
-        public string Country { get; set; }
+        //public string Country { get; set; }
 
-        public string Province { get; set; }
+        //public string Province { get; set; }
 
-        public string Location { get; set; }
+        //public string Location { get; set; }
 
-        public int PersonalPhone { get; set; }
+        //public int PersonalPhone { get; set; }
 
-        public int OtherPhone { get; set; }
+        //public int OtherPhone { get; set; }
 
-        //Domicilio Personal  ?
-
-
-        // Datos universitarios? Va aca?
-
-        public string Specialty { get; set; }
-        public int ApprovedSubjects { get; set; }
-
-        public int SpecialtyPlan { get; set; }
-        public int StudyYear{ get; set; }
-        public int Turn { get; set; }
-        public int AverageWithPostponement { get; set; }
-        public int AverageWithoutPostponement { get; set; }
-        public string CollegeDegree { get; set; }
+        ////Domicilio Personal  ?
 
 
-        // Otros datos
+        //// Datos universitarios? Va aca?
 
-        public string SecondaryDegree { get; set; }
+        //public string Specialty { get; set; }
+        //public int ApprovedSubjects { get; set; }
 
-        public string CVFile { get; set; } // public HttpPostedFileBase Archivo { get; set; }
+        //public int SpecialtyPlan { get; set; }
+        //public int StudyYear{ get; set; }
+        //public int Turn { get; set; }
+        //public int AverageWithPostponement { get; set; }
+        //public int AverageWithoutPostponement { get; set; }
+        //public string CollegeDegree { get; set; }
 
-        public string Observations { get; set; }
 
-        // Actualizar Contenido
+        //// Otros datos
 
-        public string Knowledge { get; set; }
-        public string Value { get; set; }
+        //public string SecondaryDegree { get; set; }
 
-        public ICollection<Knowledge> Knowledges { get; set; }
-        public ICollection<Career> Careers { get; set; }
-        public ICollection<Offer> Offers { get; set; }
+        //public string CVFile { get; set; } // public HttpPostedFileBase Archivo { get; set; }
+
+        //public string Observations { get; set; }
+
+        //// Actualizar Contenido
+
+        //public string Knowledge { get; set; }
+        //public string Value { get; set; }
+
+        public ICollection<Knowledge>? Knowledges { get; set; } = new List<Knowledge>();
+        public ICollection<Career>? Careers { get; set; } = new List<Career>();
+        public ICollection<Offer>? Offers { get; set; } = new List<Offer>();
 
 
         //[ForeignKey("UserId")]

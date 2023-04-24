@@ -5,7 +5,11 @@ namespace BackendBolsaDeTrabajoUTN.Models
     public class OfferResponse
     {
         public int Id { get; set; }
-        public int Distance { get; set; }
+
+
+        public string OfferDescription { get; set; }
+
+
         public string Style { get; set; }
         public string MeetName { get; set; }
         public int MeetId { get; set; }

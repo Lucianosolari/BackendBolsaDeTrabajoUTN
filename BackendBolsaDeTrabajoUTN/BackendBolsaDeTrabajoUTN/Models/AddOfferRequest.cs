@@ -2,8 +2,8 @@
 {
     public class AddOfferRequest
     {
-        public int Distance { get; set; }
-        public string Style { get; set; }
+        public string OfferDescription { get; set; }
+        public string? Style { get; set; }
         public int MeetId { get; set; }
     }
 }

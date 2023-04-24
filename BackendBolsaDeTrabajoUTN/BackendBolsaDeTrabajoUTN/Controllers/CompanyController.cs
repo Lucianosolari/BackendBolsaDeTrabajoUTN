@@ -73,32 +73,32 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         //    }
         //}
 
-        //[HttpPost]
-        //[Route("createMeet")]
-        //public IActionResult CreateMeet(AddCompanyRequest request)
-        //{
-        //    try
-        //    {
-        //        Company newMeet = new()
-        //        {
-        //            MeetPlace = request.MeetPlace,
-        //            MeetName = request.MeetName,
-        //            MeetDate = request.MeetDate,
-        //        };
-        //        CompanyResponse response = new()
-        //        {
-        //            MeetPlace = newMeet.MeetPlace,
-        //            MeetName = newMeet.MeetName,
-        //            MeetDate = newMeet.MeetDate,
-        //        };
-        //        _meetRepository.AddMeet(newMeet);
-        //        return Created("Meet creado", response);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Problem(ex.Message);
-        //    }
-        //}
+        [HttpPost]
+        [Route("createOffer")]
+        public IActionResult CreateOffer(AddOfferRequest request)
+        {
+            try
+            {
+                Offer newOffer = new()
+                {
+                   OfferDescription = request.OfferDescription,
+                    MeetName = request.MeetName,
+                    MeetDate = request.MeetDate,
+                };
+                OfferResponse response = new()
+                {
+                    OfferDescription = newOffer.OfferDescription,
+                    MeetName = newMeet.MeetName,
+                    MeetDate = newMeet.MeetDate,
+                };
+                _meetRepository.AddMeet(newMeet);
+                return Created("Meet creado", response);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
 
         //[HttpDelete]
         //[Route("deleteMeet/{id}")]

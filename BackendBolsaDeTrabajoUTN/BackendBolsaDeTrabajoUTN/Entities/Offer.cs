@@ -14,12 +14,12 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OfferId { get; set; }
         public string OfferTitle { get; set; }
-        public string OfferType { get; set; }
+       // public string OfferType { get; set; }
         public string OfferSpecialty { get; set; }
         public string OfferDescription { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public ICollection<Student>? Students { get; set; } = new List<Student>();
 
 
         [ForeignKey("CompanyId")]
