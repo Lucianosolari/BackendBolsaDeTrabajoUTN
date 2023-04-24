@@ -22,19 +22,38 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             Company company1 = new Company()
             {
                 UserId = 1,
+                UserName = "Company 1",
+                Password = "1234",
                 //CompanyId = 1,
                 CompanyCUIT = "20447575",
                 CompanyName = "Primera empresa",
                 CompanyPhone = 341367898,
+                CompanyAddress = "D 15",
+                CompanyContactPerson = "22",
+                CompanyEmail = "email",
+                CompanyDocumentation = "asdasd",
+                CompanyState = "ok",
+                CompanyType ="srl",
+                CompanyWebPage ="web",
+                
             };
 
             Company company2 = new Company()
             {
                 UserId = 2,
+                UserName = "Company 2",
+                CompanyAddress = "D 15",
+                CompanyContactPerson = "22",
+                CompanyEmail = "email",
+                CompanyDocumentation    = "asdasd",
+                CompanyState = "ok",
                 //CompanyId = 2,
+                Password = "12345",
                 CompanyCUIT = "20447575",
                 CompanyName = "Segunda empresa",
                 CompanyPhone = 341367899,
+                CompanyType = "srl",
+                CompanyWebPage = "web",
             };
 
             modelBuilder.Entity<Company>().HasData(
@@ -62,6 +81,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             Student student1 = new Student()
             {
                 UserId = 3,
+                
                 //StudentId = 1,
                 Name = "Manuel",
                 Surname = "Ibarbia",

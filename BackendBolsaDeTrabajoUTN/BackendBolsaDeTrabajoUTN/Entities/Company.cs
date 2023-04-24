@@ -6,8 +6,8 @@ namespace BackendBolsaDeTrabajoUTN.Entities
 {
     public class Company : User
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         //public int CompanyId { get; set; }
 
         //[Required]

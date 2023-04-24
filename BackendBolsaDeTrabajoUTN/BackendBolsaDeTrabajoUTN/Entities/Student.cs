@@ -7,8 +7,10 @@ namespace BackendBolsaDeTrabajoUTN.Entities
 {
     public class Student : User
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
+        // [Key]
+
+        // [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 
         //public int StudentId { get; set; }
 

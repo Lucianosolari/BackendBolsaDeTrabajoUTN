@@ -4,7 +4,7 @@ using BackendBolsaDeTrabajoUTN.Helpers;
 
 namespace BackendBolsaDeTrabajoUTN.Entities
 {
-    public class User
+    public abstract class User
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
