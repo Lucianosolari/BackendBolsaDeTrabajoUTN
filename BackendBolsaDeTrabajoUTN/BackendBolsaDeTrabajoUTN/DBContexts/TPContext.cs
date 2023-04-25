@@ -11,6 +11,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
         public DbSet<Career> Careers { get; set; }
         public DbSet<Knowledge> Knowledges { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<StudentKnowledge> StudentKnowledge { get; set; }
 
         public TPContext(DbContextOptions<TPContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
         {
@@ -67,7 +68,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 OfferId = 1,
                 OfferTitle = "Primera oferta",
                 OfferDescription = "Primera descripción",
-                OfferSpecialty = "hola"
+                OfferSpecialty = "hola",
+                CompanyId = 2,
             };
 
             Offer offer2 = new Offer()
@@ -75,7 +77,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 OfferId = 2,
                 OfferTitle = "Segunda oferta",
                 OfferDescription = "Segunda descripción",
-                OfferSpecialty = "hola"
+                OfferSpecialty = "hola",
+                CompanyId = 1,
             };
 
             modelBuilder.Entity<Offer>().HasData(
@@ -97,6 +100,26 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             modelBuilder.Entity<Career>().HasData(
                 career1, career2);
 
+            Knowledge knowledge1 = new Knowledge()
+            {
+                KnowledgeId = 1,
+                Type = "Programming",
+                Level = "Advanced"
+            };
+            Knowledge knowledge2 = new Knowledge()
+            {
+                KnowledgeId = 2,
+                Type = "Design",
+                Level = "Intermediate"
+            };
+            Knowledge knowledge3 = new Knowledge()
+            {
+                KnowledgeId = 3,
+                Type = "Marketing",
+                Level = "Beginner"
+            };
+            modelBuilder.Entity<Knowledge>().HasData(
+                knowledge1, knowledge2, knowledge3);
 
 
 
@@ -137,6 +160,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 DocumentNumber = 55666777,
             };
 
+
             modelBuilder.Entity<Student>().HasData(
                 student1, student2, student3);
 
@@ -144,41 +168,73 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 .HasMany<Offer>(c => c.AnnouncedOffers)
                 .WithOne(o => o.Company);
 
-            modelBuilder.Entity<Student>() //ESTUDIANTE_CONOCIMIENTO
-                .HasMany(s => s.Knowledges)
-                .WithMany(k => k.Students)
-                .UsingEntity(e => e
-                .ToTable("StudentKnowledge")
-                .HasData(new[]
+            modelBuilder.Entity<Student>()
+            .HasMany(s => s.Knowledges)
+            .WithMany(k => k.Students)
+            .UsingEntity<StudentKnowledge>(
+                j => j
+                    .HasOne(sk => sk.Knowledge)
+                    .WithMany(k => k.StudentKnowledges)
+                    .HasForeignKey(sk => sk.KnowledgeId),
+                j => j
+                    .HasOne(sk => sk.Student)
+                    .WithMany(s => s.StudentKnowledges)
+                    .HasForeignKey(sk => sk.UserId),
+                j =>
                 {
-                    new { KnowledgeId = 1, UserId = 4},
-                    new { KnowledgeId = 2, UserId = 3},
+                    j.HasKey(sk => new { sk.UserId, sk.KnowledgeId });
+                    j.ToTable("StudentKnowledge");
+                    j.HasData(
+                        new StudentKnowledge { UserId = 4, KnowledgeId = 1 },
+                        new StudentKnowledge { UserId = 3, KnowledgeId = 2 }
+                    );
                 }
-                ));
+            );
 
-            modelBuilder.Entity<Student>() //ESTUDIANTE_CARRERA
+
+            modelBuilder.Entity<Student>() // ESTUDIANTE_CARRERA
                 .HasMany(s => s.Careers)
                 .WithMany(c => c.Students)
-                .UsingEntity(e => e
-                .ToTable("StudentCareer")
-                .HasData(new[]
-                {
-                    new { CareerId = 1, UserId = 4},
-                    new { CareerId = 2, UserId = 5},
-                }
-                ));
+                .UsingEntity<StudentCareer>(
+                    j => j.HasOne(c => c.Career)
+                          .WithMany()
+                          .HasForeignKey(c => c.CareerId),
+                    j => j.HasOne(s => s.Student)
+                          .WithMany()
+                          .HasForeignKey(s => s.StudentId),
+                    j =>
+                    {
+                        j.ToTable("StudentCareer");
+                        j.HasKey(k => new { k.StudentId, k.CareerId });
+                        j.HasData(
+                            new StudentCareer { StudentId = 4, CareerId = 1 },
+                            new StudentCareer { StudentId = 5, CareerId = 2 }
+                        );
+                    }
+                );
 
-            modelBuilder.Entity<Student>() //ESTUDIANTE_CARRERA
-                .HasMany(s => s.Offers)
-                .WithMany(o => o.Students)
-                .UsingEntity(e => e
-                .ToTable("StudentOffer")
-                .HasData(new[]
-                {
-                    new { OfferId = 1, UserId = 4},
-                    new { OfferId = 2, UserId = 5},
-                }
-                ));
+
+                modelBuilder.Entity<Student>()
+          .HasMany(s => s.Offers)
+          .WithMany(o => o.Students)
+          .UsingEntity<StudentOffer>(
+              j => j
+                  .HasOne(so => so.Offer)
+                  .WithMany(o => o.StudentOffers)
+                  .HasForeignKey(so => so.OfferId),
+              j => j
+                  .HasOne(so => so.Student)
+                  .WithMany(s => s.StudentOffers)
+                  .HasForeignKey(so => so.StudentId),
+              j =>
+              {
+                  j.ToTable("StudentOffer");
+                  j.HasData(
+                      new { OfferId = 1, StudentId = 4 },
+                      new { OfferId = 2, StudentId = 5 }
+                  );
+              });
+
 
             base.OnModelCreating(modelBuilder);
         }

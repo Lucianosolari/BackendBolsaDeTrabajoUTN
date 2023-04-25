@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20230424202909_Prueba")]
+    [Migration("20230425131525_Prueba")]
     partial class Prueba
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,6 +57,26 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.HasKey("KnowledgeId");
 
                     b.ToTable("Knowledges");
+
+                    b.HasData(
+                        new
+                        {
+                            KnowledgeId = 1,
+                            Level = "Advanced",
+                            Type = "Programming"
+                        },
+                        new
+                        {
+                            KnowledgeId = 2,
+                            Level = "Intermediate",
+                            Type = "Design"
+                        },
+                        new
+                        {
+                            KnowledgeId = 3,
+                            Level = "Beginner",
+                            Type = "Marketing"
+                        });
                 });
 
             modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.Offer", b =>
@@ -93,7 +113,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         new
                         {
                             OfferId = 1,
-                            CompanyId = 0,
+                            CompanyId = 2,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OfferDescription = "Primera descripción",
                             OfferSpecialty = "hola",
@@ -102,11 +122,92 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         new
                         {
                             OfferId = 2,
-                            CompanyId = 0,
+                            CompanyId = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OfferDescription = "Segunda descripción",
                             OfferSpecialty = "hola",
                             OfferTitle = "Segunda oferta"
+                        });
+                });
+
+            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.StudentCareer", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("CareerId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("StudentId", "CareerId");
+
+                    b.HasIndex("CareerId");
+
+                    b.ToTable("StudentCareer", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            StudentId = 4,
+                            CareerId = 1
+                        },
+                        new
+                        {
+                            StudentId = 5,
+                            CareerId = 2
+                        });
+                });
+
+            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.StudentKnowledge", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("KnowledgeId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("UserId", "KnowledgeId");
+
+                    b.HasIndex("KnowledgeId");
+
+                    b.ToTable("StudentKnowledge", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 4,
+                            KnowledgeId = 1
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            KnowledgeId = 2
+                        });
+                });
+
+            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.StudentOffer", b =>
+                {
+                    b.Property<int>("OfferId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("OfferId", "StudentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentOffer", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            OfferId = 1,
+                            StudentId = 4
+                        },
+                        new
+                        {
+                            OfferId = 2,
+                            StudentId = 5
                         });
                 });
 
@@ -133,51 +234,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.ToTable("Users");
 
                     b.HasDiscriminator<string>("UserType").HasValue("User");
-                });
-
-            modelBuilder.Entity("CareerStudent", b =>
-                {
-                    b.Property<int>("CareersCareerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("StudentsUserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("CareersCareerId", "StudentsUserId");
-
-                    b.HasIndex("StudentsUserId");
-
-                    b.ToTable("CareerStudent");
-                });
-
-            modelBuilder.Entity("KnowledgeStudent", b =>
-                {
-                    b.Property<int>("KnowledgesKnowledgeId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("StudentsUserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("KnowledgesKnowledgeId", "StudentsUserId");
-
-                    b.HasIndex("StudentsUserId");
-
-                    b.ToTable("KnowledgeStudent");
-                });
-
-            modelBuilder.Entity("OfferStudent", b =>
-                {
-                    b.Property<int>("OffersOfferId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("StudentsUserId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("OffersOfferId", "StudentsUserId");
-
-                    b.HasIndex("StudentsUserId");
-
-                    b.ToTable("OfferStudent");
                 });
 
             modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.Company", b =>
@@ -331,54 +387,83 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("CareerStudent", b =>
+            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.StudentCareer", b =>
                 {
-                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Career", null)
+                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Career", "Career")
                         .WithMany()
-                        .HasForeignKey("CareersCareerId")
+                        .HasForeignKey("CareerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Student", null)
+                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Student", "Student")
                         .WithMany()
-                        .HasForeignKey("StudentsUserId")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Career");
+
+                    b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("KnowledgeStudent", b =>
+            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.StudentKnowledge", b =>
                 {
-                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Knowledge", null)
-                        .WithMany()
-                        .HasForeignKey("KnowledgesKnowledgeId")
+                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Knowledge", "Knowledge")
+                        .WithMany("StudentKnowledges")
+                        .HasForeignKey("KnowledgeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Student", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsUserId")
+                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Student", "Student")
+                        .WithMany("StudentKnowledges")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Knowledge");
+
+                    b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("OfferStudent", b =>
+            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.StudentOffer", b =>
                 {
-                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Offer", null)
-                        .WithMany()
-                        .HasForeignKey("OffersOfferId")
+                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Offer", "Offer")
+                        .WithMany("StudentOffers")
+                        .HasForeignKey("OfferId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Student", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsUserId")
+                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Student", "Student")
+                        .WithMany("StudentOffers")
+                        .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Offer");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.Knowledge", b =>
+                {
+                    b.Navigation("StudentKnowledges");
+                });
+
+            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.Offer", b =>
+                {
+                    b.Navigation("StudentOffers");
                 });
 
             modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.Company", b =>
                 {
                     b.Navigation("AnnouncedOffers");
+                });
+
+            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.Student", b =>
+                {
+                    b.Navigation("StudentKnowledges");
+
+                    b.Navigation("StudentOffers");
                 });
 #pragma warning restore 612, 618
         }
