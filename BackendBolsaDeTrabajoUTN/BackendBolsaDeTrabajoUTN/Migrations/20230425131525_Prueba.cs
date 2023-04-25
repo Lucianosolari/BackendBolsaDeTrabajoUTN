@@ -66,54 +66,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CareerStudent",
-                columns: table => new
-                {
-                    CareersCareerId = table.Column<int>(type: "INTEGER", nullable: false),
-                    StudentsUserId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CareerStudent", x => new { x.CareersCareerId, x.StudentsUserId });
-                    table.ForeignKey(
-                        name: "FK_CareerStudent_Careers_CareersCareerId",
-                        column: x => x.CareersCareerId,
-                        principalTable: "Careers",
-                        principalColumn: "CareerId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CareerStudent_Users_StudentsUserId",
-                        column: x => x.StudentsUserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "KnowledgeStudent",
-                columns: table => new
-                {
-                    KnowledgesKnowledgeId = table.Column<int>(type: "INTEGER", nullable: false),
-                    StudentsUserId = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_KnowledgeStudent", x => new { x.KnowledgesKnowledgeId, x.StudentsUserId });
-                    table.ForeignKey(
-                        name: "FK_KnowledgeStudent_Knowledges_KnowledgesKnowledgeId",
-                        column: x => x.KnowledgesKnowledgeId,
-                        principalTable: "Knowledges",
-                        principalColumn: "KnowledgeId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_KnowledgeStudent_Users_StudentsUserId",
-                        column: x => x.StudentsUserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Offers",
                 columns: table => new
                 {
@@ -137,24 +89,72 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OfferStudent",
+                name: "StudentCareer",
                 columns: table => new
                 {
-                    OffersOfferId = table.Column<int>(type: "INTEGER", nullable: false),
-                    StudentsUserId = table.Column<int>(type: "INTEGER", nullable: false)
+                    StudentId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CareerId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OfferStudent", x => new { x.OffersOfferId, x.StudentsUserId });
+                    table.PrimaryKey("PK_StudentCareer", x => new { x.StudentId, x.CareerId });
                     table.ForeignKey(
-                        name: "FK_OfferStudent_Offers_OffersOfferId",
-                        column: x => x.OffersOfferId,
+                        name: "FK_StudentCareer_Careers_CareerId",
+                        column: x => x.CareerId,
+                        principalTable: "Careers",
+                        principalColumn: "CareerId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StudentCareer_Users_StudentId",
+                        column: x => x.StudentId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentKnowledge",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    KnowledgeId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentKnowledge", x => new { x.UserId, x.KnowledgeId });
+                    table.ForeignKey(
+                        name: "FK_StudentKnowledge_Knowledges_KnowledgeId",
+                        column: x => x.KnowledgeId,
+                        principalTable: "Knowledges",
+                        principalColumn: "KnowledgeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StudentKnowledge_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StudentOffer",
+                columns: table => new
+                {
+                    StudentId = table.Column<int>(type: "INTEGER", nullable: false),
+                    OfferId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StudentOffer", x => new { x.OfferId, x.StudentId });
+                    table.ForeignKey(
+                        name: "FK_StudentOffer_Offers_OfferId",
+                        column: x => x.OfferId,
                         principalTable: "Offers",
                         principalColumn: "OfferId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_OfferStudent_Users_StudentsUserId",
-                        column: x => x.StudentsUserId,
+                        name: "FK_StudentOffer_Users_StudentId",
+                        column: x => x.StudentId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -171,14 +171,19 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 value: 2);
 
             migrationBuilder.InsertData(
-                table: "Offers",
-                columns: new[] { "OfferId", "CompanyId", "CreatedDate", "OfferDescription", "OfferSpecialty", "OfferTitle" },
-                values: new object[] { 1, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Primera descripción", "hola", "Primera oferta" });
+                table: "Knowledges",
+                columns: new[] { "KnowledgeId", "Level", "Type" },
+                values: new object[] { 1, "Advanced", "Programming" });
 
             migrationBuilder.InsertData(
-                table: "Offers",
-                columns: new[] { "OfferId", "CompanyId", "CreatedDate", "OfferDescription", "OfferSpecialty", "OfferTitle" },
-                values: new object[] { 2, 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Segunda descripción", "hola", "Segunda oferta" });
+                table: "Knowledges",
+                columns: new[] { "KnowledgeId", "Level", "Type" },
+                values: new object[] { 2, "Intermediate", "Design" });
+
+            migrationBuilder.InsertData(
+                table: "Knowledges",
+                columns: new[] { "KnowledgeId", "Level", "Type" },
+                values: new object[] { 3, "Beginner", "Marketing" });
 
             migrationBuilder.InsertData(
                 table: "Users",
@@ -205,15 +210,45 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: new[] { "UserId", "DocumentNumber", "Email", "File", "Name", "Password", "Surname", "UserName", "UserType" },
                 values: new object[] { 5, 55666777, "santiago@gmail.com", 0, "Santiago", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Caso", "santiagoC", "Student" });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_CareerStudent_StudentsUserId",
-                table: "CareerStudent",
-                column: "StudentsUserId");
+            migrationBuilder.InsertData(
+                table: "Offers",
+                columns: new[] { "OfferId", "CompanyId", "CreatedDate", "OfferDescription", "OfferSpecialty", "OfferTitle" },
+                values: new object[] { 1, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Primera descripción", "hola", "Primera oferta" });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_KnowledgeStudent_StudentsUserId",
-                table: "KnowledgeStudent",
-                column: "StudentsUserId");
+            migrationBuilder.InsertData(
+                table: "Offers",
+                columns: new[] { "OfferId", "CompanyId", "CreatedDate", "OfferDescription", "OfferSpecialty", "OfferTitle" },
+                values: new object[] { 2, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Segunda descripción", "hola", "Segunda oferta" });
+
+            migrationBuilder.InsertData(
+                table: "StudentCareer",
+                columns: new[] { "CareerId", "StudentId" },
+                values: new object[] { 1, 4 });
+
+            migrationBuilder.InsertData(
+                table: "StudentCareer",
+                columns: new[] { "CareerId", "StudentId" },
+                values: new object[] { 2, 5 });
+
+            migrationBuilder.InsertData(
+                table: "StudentKnowledge",
+                columns: new[] { "KnowledgeId", "UserId" },
+                values: new object[] { 2, 3 });
+
+            migrationBuilder.InsertData(
+                table: "StudentKnowledge",
+                columns: new[] { "KnowledgeId", "UserId" },
+                values: new object[] { 1, 4 });
+
+            migrationBuilder.InsertData(
+                table: "StudentOffer",
+                columns: new[] { "OfferId", "StudentId" },
+                values: new object[] { 1, 4 });
+
+            migrationBuilder.InsertData(
+                table: "StudentOffer",
+                columns: new[] { "OfferId", "StudentId" },
+                values: new object[] { 2, 5 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Offers_CompanyId",
@@ -221,21 +256,31 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_OfferStudent_StudentsUserId",
-                table: "OfferStudent",
-                column: "StudentsUserId");
+                name: "IX_StudentCareer_CareerId",
+                table: "StudentCareer",
+                column: "CareerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentKnowledge_KnowledgeId",
+                table: "StudentKnowledge",
+                column: "KnowledgeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StudentOffer_StudentId",
+                table: "StudentOffer",
+                column: "StudentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CareerStudent");
+                name: "StudentCareer");
 
             migrationBuilder.DropTable(
-                name: "KnowledgeStudent");
+                name: "StudentKnowledge");
 
             migrationBuilder.DropTable(
-                name: "OfferStudent");
+                name: "StudentOffer");
 
             migrationBuilder.DropTable(
                 name: "Careers");

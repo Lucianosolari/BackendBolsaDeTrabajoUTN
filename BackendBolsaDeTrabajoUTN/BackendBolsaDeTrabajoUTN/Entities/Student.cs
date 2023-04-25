@@ -85,6 +85,9 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public ICollection<Career>? Careers { get; set; } = new List<Career>();
         public ICollection<Offer>? Offers { get; set; } = new List<Offer>();
 
+        public ICollection<StudentKnowledge> StudentKnowledges { get; set; }
+        public ICollection<StudentOffer> StudentOffers { get; set; }
+
 
         //[ForeignKey("UserId")]
         //public User User { get; set; }

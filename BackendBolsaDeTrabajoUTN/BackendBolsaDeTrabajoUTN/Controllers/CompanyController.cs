@@ -82,16 +82,14 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 Offer newOffer = new()
                 {
                    OfferDescription = request.OfferDescription,
-                    MeetName = request.MeetName,
-                    MeetDate = request.MeetDate,
+                    
                 };
                 OfferResponse response = new()
                 {
                     OfferDescription = newOffer.OfferDescription,
-                    MeetName = newMeet.MeetName,
-                    MeetDate = newMeet.MeetDate,
+                    
                 };
-                _meetRepository.AddMeet(newMeet);
+                
                 return Created("Meet creado", response);
             }
             catch (Exception ex)

@@ -20,6 +20,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public DateTime CreatedDate { get; set; }
 
         public ICollection<Student>? Students { get; set; } = new List<Student>();
+        public ICollection<StudentOffer> StudentOffers { get; set; }
 
 
         [ForeignKey("CompanyId")]
