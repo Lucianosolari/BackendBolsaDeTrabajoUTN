@@ -32,18 +32,20 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
         //    }
         //}
 
-        //public void AddTrial(Offer trial)
-        //{
-        //    try
-        //    {
-        //        _context.Trials.Add(trial);
-        //        _context.SaveChanges();
-        //    }
-        //    catch
-        //    {
-        //        throw new Exception("Error al crear el trial");
-        //    }
-        //}
+        public void CreateOffer(Offer newOffer)
+        {
+            try
+            {
+                _context.Offers.Add(newOffer);
+                _context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+
+                
+                throw new Exception("el error es" + ex);
+            }
+        }
 
         //public void RemoveTrial(int id)
         //{

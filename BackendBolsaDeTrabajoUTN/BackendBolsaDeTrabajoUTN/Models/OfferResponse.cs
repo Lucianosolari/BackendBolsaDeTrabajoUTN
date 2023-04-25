@@ -1,19 +1,23 @@
 ﻿using BackendBolsaDeTrabajoUTN.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BackendBolsaDeTrabajoUTN.Models
 {
     public class OfferResponse
     {
-        public int Id { get; set; }
-
-
+        public int OfferId { get; set; }
+        public string OfferTitle { get; set; }
+      
+        public string OfferSpecialty { get; set; }
         public string OfferDescription { get; set; }
+        public DateTime CreatedDate { get; set; }
+
+        public ICollection<Student>? Students { get; set; } = new List<Student>();
+        public ICollection<StudentOffer> StudentOffers { get; set; }
 
 
-        public string Style { get; set; }
-        public string MeetName { get; set; }
-        public int MeetId { get; set; }
+        public int CompanyId { get; set; }
 
-        public List<Student> RegisteredSwimmers { get; set; } = new List<Student>();
+
     }
 }

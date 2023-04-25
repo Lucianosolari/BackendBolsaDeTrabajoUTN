@@ -14,11 +14,11 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
     [Authorize]
     public class OfferController : ControllerBase
     {
-        private readonly IOfferRepository _trialRepository;
+        private readonly IOfferRepository _offerRepository;
 
-        public OfferController(IOfferRepository trialRepository)
+        public OfferController(IOfferRepository offerRepository)
         {
-            _trialRepository = trialRepository;
+            _offerRepository = offerRepository;
         }
 
         //[HttpGet]
@@ -64,35 +64,38 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         //    return Ok(response);
         //}
 
-        //[HttpPost]
-        //[Route("createTrial")]
-        //public IActionResult CreateTrial (AddOfferRequest request)
-        //{
-        //    try
-        //    {
-        //        List<Company> meets = _trialRepository.GetExistingMeets();
-        //        ValidateMeetId(meets, request.MeetId);
-        //        Offer newTrial = new()
-        //        {
-        //            Distance = request.Distance,
-        //            Style = request.Style,
-        //            MeetId = request.MeetId
-        //        };
-        //        newTrial.MeetName = _trialRepository.GetTrialMeetName(newTrial.MeetId);
-        //        OfferResponse response = new()
-        //        {
-        //            Distance = newTrial.Distance,
-        //            Style = newTrial.Style,
-        //            MeetName = newTrial.MeetName
-        //        };
-        //        _trialRepository.AddTrial(newTrial);
-        //        return Created("Trial creado", response);
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        return Problem(ex.Message);
-        //    }
-        //}
+        [HttpPost]
+        [Route("createOffer")]
+        public IActionResult CreateOffer(AddOfferRequest request)
+        {
+            try
+            {
+                Offer newOffer = new()
+
+
+                {
+                    OfferTitle = request.OfferTitle,
+                    OfferSpecialty = request.OfferSpecialty,
+                    OfferDescription = request.OfferDescription,
+                    CreatedDate = request.CreatedDate,
+                    CompanyId = 2,
+                };
+                OfferResponse response = new()
+                {
+                    OfferTitle = newOffer.OfferTitle,
+                    OfferSpecialty = newOffer.OfferSpecialty,
+                    OfferDescription = newOffer.OfferDescription,
+                    CreatedDate = newOffer.CreatedDate,
+                    
+                };
+                _offerRepository.CreateOffer(newOffer);
+                return Created("Oferta creada", response);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
 
         //[HttpDelete]
         //[Route("deleteTrial/{id}")]

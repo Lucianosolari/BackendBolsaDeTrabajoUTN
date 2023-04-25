@@ -22,6 +22,29 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             _studentRepository = studentRepository;
         }
 
+        //[HttpGet]
+        //[Route("getAllUsers")]
+        //public ActionResult<ICollection<User>> GetAllUsers()
+        //{
+        //    try
+        //    {
+        //        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        //        if (userRole != "admin")
+        //            return Forbid();
+
+        //        return _userRepository.GetAll().ToList();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
+
+
+
+
+
+
         [HttpGet]
         [Route("getStudentOffers/{id}")]
         public ActionResult<ICollection<Offer>> GetAllOffers()
