@@ -9,6 +9,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CareerId { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public ICollection<Student>? Students { get; set; } = new List<Student>();
+        
     }
 }

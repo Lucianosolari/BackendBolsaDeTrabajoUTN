@@ -11,6 +11,6 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public string Type { get; set; }
         public string Level { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public ICollection<Student> Students { get; set; } = new List<Student>();
     }
 }

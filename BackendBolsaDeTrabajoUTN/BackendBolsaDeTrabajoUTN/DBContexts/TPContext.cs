@@ -18,6 +18,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
+
         {
             Company company1 = new Company()
             {
@@ -33,9 +34,9 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 CompanyEmail = "email",
                 CompanyDocumentation = "asdasd",
                 CompanyState = "ok",
-                CompanyType ="srl",
-                CompanyWebPage ="web",
-                
+                CompanyType = "srl",
+                CompanyWebPage = "web",
+
             };
 
             Company company2 = new Company()
@@ -45,7 +46,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 CompanyAddress = "D 15",
                 CompanyContactPerson = "22",
                 CompanyEmail = "email",
-                CompanyDocumentation    = "asdasd",
+                CompanyDocumentation = "asdasd",
                 CompanyState = "ok",
                 //CompanyId = 2,
                 Password = "12345",
@@ -59,11 +60,14 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             modelBuilder.Entity<Company>().HasData(
                 company1, company2);
 
+            modelBuilder.Entity<User>().HasDiscriminator(u => u.UserType);
+
             Offer offer1 = new Offer()
             {
                 OfferId = 1,
                 OfferTitle = "Primera oferta",
                 OfferDescription = "Primera descripción",
+                OfferSpecialty = "hola"
             };
 
             Offer offer2 = new Offer()
@@ -71,17 +75,35 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 OfferId = 2,
                 OfferTitle = "Segunda oferta",
                 OfferDescription = "Segunda descripción",
+                OfferSpecialty = "hola"
             };
 
             modelBuilder.Entity<Offer>().HasData(
                 offer1, offer2);
 
-            modelBuilder.Entity<User>().HasDiscriminator(u => u.UserType);
+           
+
+            Career career1 = new Career()
+            {
+                CareerId = 1,
+            };
+
+            Career career2 = new Career()
+            {
+                CareerId = 2,
+            };
+
+
+            modelBuilder.Entity<Career>().HasData(
+                career1, career2);
+
+
+
 
             Student student1 = new Student()
             {
                 UserId = 3,
-                
+
                 //StudentId = 1,
                 Name = "Manuel",
                 Surname = "Ibarbia",
@@ -105,7 +127,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
 
             Student student3 = new Student()
             {
-                UserId=5,
+                UserId = 5,
                 //StudentId = 3,
                 Name = "Santiago",
                 Surname = "Caso",
@@ -129,8 +151,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 .ToTable("StudentKnowledge")
                 .HasData(new[]
                 {
-                    new { KnowledgeId = 1, UserId = 1},
-                    new { KnowledgeId = 2, UserId = 2},
+                    new { KnowledgeId = 1, UserId = 4},
+                    new { KnowledgeId = 2, UserId = 3},
                 }
                 ));
 
@@ -153,8 +175,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 .ToTable("StudentOffer")
                 .HasData(new[]
                 {
-                    new { OfferId = 1, UserId = 1},
-                    new { OfferId = 2, UserId = 3},
+                    new { OfferId = 1, UserId = 4},
+                    new { OfferId = 2, UserId = 5},
                 }
                 ));
 
