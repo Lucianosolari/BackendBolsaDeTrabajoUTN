@@ -68,6 +68,7 @@ builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 #endregion
 
 #region Services
+builder.Services.AddCors();
 builder.Services.AddScoped<ICustomAuthenticationService, AutenticacionService>();
 #endregion
 
@@ -84,6 +85,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(options =>
+{
+    options.WithOrigins("http://127.0.0.1:5173");
+    options.AllowAnyMethod();
+    options.AllowAnyHeader();
+
+});
 
 app.UseHttpsRedirection();
 
