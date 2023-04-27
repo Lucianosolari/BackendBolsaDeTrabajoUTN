@@ -230,8 +230,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
               {
                   j.ToTable("StudentOffer");
                   j.HasData(
-                      new { OfferId = 1, StudentId = 4 },
-                      new { OfferId = 2, StudentId = 5 }
+                      new StudentOffer { OfferId = 1, StudentId = 4 },
+                      new StudentOffer { OfferId = 2, StudentId = 5 }
                   );
               });
 
