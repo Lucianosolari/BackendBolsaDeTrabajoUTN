@@ -5,7 +5,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
 {
     public interface IStudentRepository
     {
-        public Student? ValidateUser(AuthenticationRequestBody student);
+       
         public ICollection<Offer> GetOffers(int id);
         //public Student? GetSingleSwimmer(int id);
         //public void AddSwimmer(Student swimmer);

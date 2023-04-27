@@ -5,6 +5,6 @@ namespace BackendBolsaDeTrabajoUTN.Services.Interfaces
 {
     public interface ICustomAuthenticationService
     {
-        Student? ValidateSwimmer(AuthenticationRequestBody authenticationRequestBody);
+        User? ValidateUser(AuthenticationRequestBody authenticationRequestBody);
     }
 }

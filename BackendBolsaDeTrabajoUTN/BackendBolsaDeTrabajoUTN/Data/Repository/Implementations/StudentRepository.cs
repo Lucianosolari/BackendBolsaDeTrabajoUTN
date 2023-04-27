@@ -20,11 +20,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             return _context.Students.Include(a => a.Offers).Where(a => a.UserId == id).Select(a => a.Offers).FirstOrDefault() ?? new List<Offer>();
         }
 
-        public Student? ValidateUser(AuthenticationRequestBody dto)
-        {
-            var HashPassword = Security.CreateSHA512(dto.Password);
-            return _context.Students.SingleOrDefault(u => u.UserName == dto.UserName && u.Password == Security.CreateSHA512(dto.Password));
-        }
+       
 
         //public Student? GetSingleSwimmer(int id)
         //{
