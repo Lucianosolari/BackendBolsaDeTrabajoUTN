@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h2wl88zLXfYY++Enbn8i+XcGlItswPZEOhe8+JL35pn4m4hZK80Wx6Ni+jlWHOIJTAsHBc4qrtwiDqsHm82kVQ==",
+  "dgSpecHash": "23nfkBC/PydLke1VMWFY+lBAKKuT6iLFjq6N8RikfQUKERN70m0GRsO+nFBLvnJcvf2va/aW9UiOKnJ1MC7NtQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Luciano\\Desktop\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN.csproj",
+  "projectFilePath": "C:\\Users\\Luciano\\Desktop\\PRoyecto al 30-04\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Luciano\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Luciano\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.9\\microsoft.aspnetcore.authentication.jwtbearer.6.0.9.nupkg.sha512",

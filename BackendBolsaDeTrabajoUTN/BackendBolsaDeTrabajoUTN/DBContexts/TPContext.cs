@@ -121,7 +121,17 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             modelBuilder.Entity<Knowledge>().HasData(
                 knowledge1, knowledge2, knowledge3);
 
+            Admin admin1 = new Admin()
+            {
+                Password = "1234",
+                UserId = 6,
+                UserName = "admin",
+                NameAdmin = "AdminPepe"
 
+            };
+
+            modelBuilder.Entity<Admin>().HasData(
+                admin1);
 
             Student student1 = new Student()
             {

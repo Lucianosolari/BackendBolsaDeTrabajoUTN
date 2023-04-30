@@ -44,10 +44,17 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             {
                 claimsForToken.Add(new Claim("role", "Company"));
             }
+            else if (user.UserType == "Admin") // si el usuario es un Admin, agregar el claim de 'role' con el valor 'Admin'
+            {
+                claimsForToken.Add(new Claim("role", "Admin"));
+            }
             else
             {
                 claimsForToken.Add(new Claim("role", "Student"));
             }
+
+            claimsForToken.Add(new Claim("userType", user.UserType));
+
 
             var jwtSecurityToken = new JwtSecurityToken( //agregar using System.IdentityModel.Tokens.Jwt; Acá es donde se crea el token con toda la data que le pasamos antes.
               _config["Authentication:Issuer"],
@@ -60,7 +67,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             var tokenToReturn = new JwtSecurityTokenHandler() //Pasamos el token a string
                 .WriteToken(jwtSecurityToken);
 
-            return Ok(tokenToReturn);
+            return Ok(new { Token = tokenToReturn, UserType = user.UserType });
         }
     }
 }

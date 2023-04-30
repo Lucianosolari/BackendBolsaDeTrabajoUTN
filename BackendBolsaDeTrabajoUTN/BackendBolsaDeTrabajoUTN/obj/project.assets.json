@@ -2131,11 +2131,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Luciano\\Desktop\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN.csproj",
+      "projectUniqueName": "C:\\Users\\Luciano\\Desktop\\PRoyecto al 30-04\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN.csproj",
       "projectName": "BackendBolsaDeTrabajoUTN",
-      "projectPath": "C:\\Users\\Luciano\\Desktop\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN.csproj",
+      "projectPath": "C:\\Users\\Luciano\\Desktop\\PRoyecto al 30-04\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN.csproj",
       "packagesPath": "C:\\Users\\Luciano\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Luciano\\Desktop\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\obj\\",
+      "outputPath": "C:\\Users\\Luciano\\Desktop\\PRoyecto al 30-04\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\BackendBolsaDeTrabajoUTN\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Luciano\\AppData\\Roaming\\NuGet\\NuGet.Config",

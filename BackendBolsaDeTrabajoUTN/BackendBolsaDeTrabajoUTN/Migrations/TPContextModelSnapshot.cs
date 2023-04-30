@@ -234,6 +234,26 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.HasDiscriminator<string>("UserType").HasValue("User");
                 });
 
+            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.Admin", b =>
+                {
+                    b.HasBaseType("BackendBolsaDeTrabajoUTN.Entities.User");
+
+                    b.Property<string>("NameAdmin")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasDiscriminator().HasValue("Admin");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 6,
+                            Password = "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db",
+                            UserName = "admin",
+                            NameAdmin = "AdminPepe"
+                        });
+                });
+
             modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.Company", b =>
                 {
                     b.HasBaseType("BackendBolsaDeTrabajoUTN.Entities.User");

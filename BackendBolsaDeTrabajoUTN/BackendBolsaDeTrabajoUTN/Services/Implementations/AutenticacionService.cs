@@ -16,7 +16,7 @@ namespace BackendBolsaDeTrabajoUTN.Services.Implementations
         
         public User? ValidateUser(AuthenticationRequestBody authenticationRequest)
         {
-            if (string.IsNullOrEmpty(authenticationRequest.UserName) || string.IsNullOrEmpty(authenticationRequest.Password) || string.IsNullOrEmpty(authenticationRequest.UserType))
+            if (string.IsNullOrEmpty(authenticationRequest.UserName) || string.IsNullOrEmpty(authenticationRequest.Password) )
                 return null;
             return _userRepository.ValidateUser(authenticationRequest);
         }
