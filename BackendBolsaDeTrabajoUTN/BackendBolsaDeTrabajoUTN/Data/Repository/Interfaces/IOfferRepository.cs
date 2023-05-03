@@ -1,4 +1,5 @@
 ﻿using BackendBolsaDeTrabajoUTN.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
 {
@@ -17,5 +18,6 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
         //public List<Meet> GetSingleMeet(int id);
 
         public void CreateOffer(Offer newOffer);
+        public ActionResult<IEnumerable<Offer>> GetOffersByCompany(int companyId);
     }
 }
