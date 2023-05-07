@@ -67,7 +67,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             var tokenToReturn = new JwtSecurityTokenHandler() //Pasamos el token a string
                 .WriteToken(jwtSecurityToken);
 
-            return Ok(new { Token = tokenToReturn, UserType = user.UserType });
+            return Ok(new { Token = tokenToReturn, UserType = user.UserType, UserId = user.UserId });
         }
     }
 }

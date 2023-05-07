@@ -13,11 +13,14 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
     {
 
         private readonly ICompanyRepository _companyRepository;
+        
 
         public CompanyController(ICompanyRepository companyRepository)
         {
             _companyRepository = companyRepository;
         }
+
+       
 
         //[HttpGet]
         //[Route("getAllMeets")]

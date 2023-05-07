@@ -4,8 +4,7 @@ using BackendBolsaDeTrabajoUTN.Data.Repository;
 using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 using BackendBolsaDeTrabajoUTN.Entities;
 using BackendBolsaDeTrabajoUTN.Models;
-
-
+using System.Security.Claims;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -70,6 +69,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         {
             try
             {
+
                 Offer newOffer = new()
 
 
@@ -95,6 +95,19 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             {
                 return Problem(ex.Message);
             }
+        }
+
+        [HttpGet("ByCompany/{companyId}")]
+        public IActionResult GetOffersByCompany(int companyId)
+        {
+            var offers = _offerRepository.GetOffersByCompany(companyId);
+
+            if (offers == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(offers);
         }
 
         //[HttpDelete]
@@ -142,6 +155,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         //    }
         //}
 
+      
         //[NonAction]
         //public void ValidateMeetId(List<Company> meets, int meetId)
         //{

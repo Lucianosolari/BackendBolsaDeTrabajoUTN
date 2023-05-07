@@ -3,9 +3,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
-using BackendBolsaDeTrabajoUTN.Entities;
-using BackendBolsaDeTrabajoUTN.Models;
-using System.Security.Claims;
+
+
+
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -15,12 +15,32 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
     public class StudentController : ControllerBase
     {
 
-        private readonly IStudentRepository _studentRepository;
+        private readonly IStudentOfferRepository _studentOfferRepository;
 
-        public StudentController(IStudentRepository studentRepository)
+        public StudentController(IStudentOfferRepository studentOfferRepository)
         {
-            _studentRepository = studentRepository;
+          
+            _studentOfferRepository = studentOfferRepository;
         }
+
+
+        [HttpPost("{offerId}/Students/{studentId}")]
+        public ActionResult AddStudentToOffer(int offerId, int studentId)
+        {
+            try
+            {
+                _studentOfferRepository.AddStudentToOffer(offerId, studentId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
+
 
         //[HttpGet]
         //[Route("getAllUsers")]
@@ -45,33 +65,33 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
 
 
-        [HttpGet]
-        [Route("getStudentOffers/{id}")]
-        public ActionResult<ICollection<Offer>> GetAllOffers()
-        {
-            try
-            {
-                var user = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-                var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-                if (userRole != "estudiante")
-                    return Forbid();
+        //[HttpGet]
+        //[Route("getStudentOffers/{id}")]
+        //public ActionResult<ICollection<Offer>> GetAllOffers()
+        //{
+        //    try
+        //    {
+        //        var user = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+        //        var userRole = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+        //        if (userRole != "estudiante")
+        //            return Forbid();
 
-                return _studentRepository.GetOffers(int.Parse(user)).ToList();
-                //Student? student = _studentRepository.GetOffers(id);
-                //List<StudentResponse> offersToReturn = new();
-                //List<Offer> offers = _studentRepository.GetOffers();
-                //    student = _studentRepository.GetOffers(student.OfferId);
-                //    StudentResponse response = new()
-                //        {
-                //            OfferId = offer.OfferId,
-                //        };
-                //    offersToReturn.Add(response);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //        return _studentRepository.GetOffers(int.Parse(user)).ToList();
+        //        //Student? student = _studentRepository.GetOffers(id);
+        //        //List<StudentResponse> offersToReturn = new();
+        //        //List<Offer> offers = _studentRepository.GetOffers();
+        //        //    student = _studentRepository.GetOffers(student.OfferId);
+        //        //    StudentResponse response = new()
+        //        //        {
+        //        //            OfferId = offer.OfferId,
+        //        //        };
+        //        //    offersToReturn.Add(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
 
         //[HttpGet]
         //[Route("getSwimmerById/{id}")]
@@ -97,7 +117,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         //    {
         //        return NotFound(ex.Message);
         //    }
-            
+
         //}
 
         //[HttpPost]
