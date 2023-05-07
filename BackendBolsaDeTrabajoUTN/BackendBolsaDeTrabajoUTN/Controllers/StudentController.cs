@@ -38,6 +38,20 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
         }
 
+        [HttpGet("{studentId}/Offers")]
+        public ActionResult GetStudentToOffers(int studentId)
+        {
+            try
+            {
+                var offers = _studentOfferRepository.GetStudentToOffers(studentId);
+                return Ok(offers);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
 
 
