@@ -31,6 +31,17 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             offer.Students.Add(student);
             await _context.SaveChangesAsync();
         }
-      
+
+        public List<Offer> GetStudentToOffers(int studentId)
+        {
+            var offers = _context.StudentOffers
+                .Where(so => so.StudentId == studentId)
+                .Select(so => so.Offer)
+                .ToList();
+
+            return offers;
+        }
+
+
     }
 }
