@@ -12,6 +12,8 @@ namespace BackendBolsaDeTrabajoUTN.Models
         public string OfferDescription { get; set; }
         public DateTime CreatedDate { get; set; }
 
+        public int CompanyId { get; set; }
+
       
 
 
