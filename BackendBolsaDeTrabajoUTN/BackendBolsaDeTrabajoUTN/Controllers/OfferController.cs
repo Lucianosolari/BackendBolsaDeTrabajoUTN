@@ -78,7 +78,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                     OfferSpecialty = request.OfferSpecialty,
                     OfferDescription = request.OfferDescription,
                     CreatedDate = request.CreatedDate,
-                    CompanyId = 2,
+                    CompanyId = request.CompanyId,
                 };
                 OfferResponse response = new()
                 {
