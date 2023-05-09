@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20230430211748_Prueba")]
+    [Migration("20230509211951_Prueba")]
     partial class Prueba
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -340,8 +340,26 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 {
                     b.HasBaseType("BackendBolsaDeTrabajoUTN.Entities.User");
 
+                    b.Property<string>("AltEmail")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Birth")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CUIL_CUIT")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CivilStatus")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("DocumentNumber")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("DocumentType")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -351,6 +369,10 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Sex")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -366,10 +388,16 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserId = 3,
                             Password = "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87",
                             UserName = "string",
+                            AltEmail = "manuelAlt@gmail.com",
+                            Birth = new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CUIL_CUIT = 231332,
+                            CivilStatus = "Casado",
                             DocumentNumber = 44555666,
+                            DocumentType = "DNI",
                             Email = "manuel@gmail.com",
-                            File = 0,
+                            File = 12345,
                             Name = "Manuel",
+                            Sex = "Masculino",
                             Surname = "Ibarbia"
                         },
                         new
@@ -377,10 +405,16 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserId = 4,
                             Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
                             UserName = "lucianoS",
+                            AltEmail = "lucianoAlt@gmail.com",
+                            Birth = new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CUIL_CUIT = 2313321,
+                            CivilStatus = "Soltero",
                             DocumentNumber = 33444555,
+                            DocumentType = "DNI",
                             Email = "luciano@gmail.com",
-                            File = 0,
+                            File = 12346,
                             Name = "Luciano",
+                            Sex = "Masculino",
                             Surname = "Solari"
                         },
                         new
@@ -388,10 +422,16 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserId = 5,
                             Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
                             UserName = "santiagoC",
+                            AltEmail = "santiagoAlt@gmail.com",
+                            Birth = new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CUIL_CUIT = 2313321,
+                            CivilStatus = "Soltero",
                             DocumentNumber = 55666777,
+                            DocumentType = "DNI",
                             Email = "santiago@gmail.com",
-                            File = 0,
+                            File = 12347,
                             Name = "Santiago",
+                            Sex = "Masculino",
                             Surname = "Caso"
                         });
                 });
