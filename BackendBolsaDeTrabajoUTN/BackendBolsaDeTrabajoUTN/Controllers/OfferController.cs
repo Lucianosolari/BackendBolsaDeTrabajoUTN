@@ -5,6 +5,7 @@ using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 using BackendBolsaDeTrabajoUTN.Entities;
 using BackendBolsaDeTrabajoUTN.Models;
 using System.Security.Claims;
+using BackendBolsaDeTrabajoUTN.DBContexts;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -13,11 +14,15 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
     [Authorize]
     public class OfferController : ControllerBase
     {
+
+
+        private readonly TPContext _context;
         private readonly IOfferRepository _offerRepository;
 
-        public OfferController(IOfferRepository offerRepository)
+        public OfferController(IOfferRepository offerRepository, TPContext context)
         {
             _offerRepository = offerRepository;
+            _context = context;
         }
 
         //[HttpGet]
@@ -67,8 +72,11 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Route("createOffer")]
         public IActionResult CreateOffer(AddOfferRequest request)
         {
-            try
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Company")
             {
+                try
+                {
 
                 Offer newOffer = new()
 
@@ -90,12 +98,20 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 };
                 _offerRepository.CreateOffer(newOffer);
                 return Created("Oferta creada", response);
+                }
+                catch (Exception ex)
+                {
+                    return Problem(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                return Problem(ex.Message);
+                return BadRequest("El usuario no esta autorizado para crear ofertas");
             }
         }
+
+       
+
 
         [HttpGet("ByCompany/{companyId}")]
         public IActionResult GetOffersByCompany(int companyId)
@@ -155,7 +171,17 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         //    }
         //}
 
-      
+
+        //[NonAction]
+        //public void ValidateIdCompany(List<Company> companies, int companyId)
+        //{
+        //    var company = _context.Companies.FirstOrDefault(c => c.Id == request.CompanyId);
+        //    if (company == null)
+        //    {
+        //        return BadRequest("El ID de la empresa no es válido");
+        //    }
+        //}
+
         //[NonAction]
         //public void ValidateMeetId(List<Company> meets, int meetId)
         //{
