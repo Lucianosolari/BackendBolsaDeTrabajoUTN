@@ -15,21 +15,25 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         //public int StudentId { get; set; }
 
         // inicio datos personales
+        
         public int File { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
-        // public string AltEmail { get; set; }
-        //public string DocumentType { get; set; } // Ver tabla aparte (se repite la palabra)
+
+        public string AltEmail { get; set; }
+        public string DocumentType { get; set; } // Ver tabla aparte (se repite la palabra)
 
         public int DocumentNumber { get; set; }
 
-        //public int CUIL_CUIT { get; set; }
+        public int CUIL_CUIT { get; set; }
 
-        //public DateTime Birth { get; set; }
+        public DateTime Birth { get; set; }
 
-        //public string Sex { get; set; } //Ver tabla aparte (se repite la palabra)
-        //public string CivilStatus { get; set; } // Ver tabla aparte (se repite la palabra)
+        public string Sex { get; set; } //Ver tabla aparte (se repite la palabra)
+        public string CivilStatus { get; set; } // Ver tabla aparte (se repite la palabra)
+
+        //public int File { get; set; }
 
         //// Domicilio familiar
 

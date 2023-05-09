@@ -1,6 +1,7 @@
 ﻿using BackendBolsaDeTrabajoUTN.Entities;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace BackendBolsaDeTrabajoUTN.DBContexts
 {
     public class TPContext : DbContext
@@ -138,26 +139,43 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             Student student1 = new Student()
             {
                 UserId = 3,
-
-                //StudentId = 1,
                 Name = "Manuel",
                 Surname = "Ibarbia",
                 Email = "manuel@gmail.com",
+
                 Password = "string",
                 UserName = "string",
+                DocumentType = "DNI",
                 DocumentNumber = 44555666,
+
+                File = 12345,
+                AltEmail = "manuelAlt@gmail.com",
+                CUIL_CUIT = 231332,
+                Birth = new DateTime(1995, 5, 12),
+
+                Sex = "Masculino",
+                CivilStatus = "Casado",
             };
 
             Student student2 = new Student()
             {
                 UserId = 4,
-                //StudentId = 2,
                 Name = "Luciano",
                 Surname = "Solari",
                 Email = "luciano@gmail.com",
+
                 Password = "123456",
                 UserName = "lucianoS",
+                DocumentType = "DNI",
                 DocumentNumber = 33444555,
+
+                File = 12346,
+                AltEmail = "lucianoAlt@gmail.com",
+                CUIL_CUIT = 2313321,
+                Birth = new DateTime(1800, 5, 12),
+
+                Sex = "Masculino",
+                CivilStatus = "Soltero",
             };
 
             Student student3 = new Student()
@@ -170,6 +188,16 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 Password = "123456",
                 UserName = "santiagoC",
                 DocumentNumber = 55666777,
+                DocumentType = "DNI",
+                
+
+                File = 12347,
+                AltEmail = "santiagoAlt@gmail.com",
+                CUIL_CUIT = 2313321,
+                Birth = new DateTime(2005, 5, 12),
+
+                Sex = "Masculino",
+                CivilStatus = "Soltero",
             };
 
 
