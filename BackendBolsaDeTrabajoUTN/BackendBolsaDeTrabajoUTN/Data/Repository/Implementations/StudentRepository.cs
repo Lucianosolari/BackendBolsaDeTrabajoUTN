@@ -20,7 +20,27 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             return _context.Students.Include(a => a.Offers).Where(a => a.UserId == id).Select(a => a.Offers).FirstOrDefault() ?? new List<Offer>();
         }
 
-       
+
+        public void CreateStudent(Student newStudent)
+        {
+            try
+            {
+                _context.Students.Add(newStudent);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+
+                throw new Exception("el error es" + ex);
+            }
+        }
+
+        public List<Student> GetStudents()
+        {
+            return _context.Students.ToList();
+        }
+
 
         //public Student? GetSingleSwimmer(int id)
         //{

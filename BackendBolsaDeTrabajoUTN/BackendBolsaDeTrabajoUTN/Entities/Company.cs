@@ -32,10 +32,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
 
         public string CompanyDocumentation { get; set; }
 
-        //[ForeignKey("UserId")]
-        //public User User { get; set; }
-        //public int UserId { get; set; }
-
+       
         public List<Offer> AnnouncedOffers { get; set; } = new List<Offer>();
 
 

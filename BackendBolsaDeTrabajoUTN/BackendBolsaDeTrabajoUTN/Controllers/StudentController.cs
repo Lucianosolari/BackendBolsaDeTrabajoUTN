@@ -3,27 +3,78 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
-
-
-
+using BackendBolsaDeTrabajoUTN.Entities;
+using BackendBolsaDeTrabajoUTN.Models;
+using System.Security.AccessControl;
+using BackendBolsaDeTrabajoUTN.Migrations;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    
     public class StudentController : ControllerBase
     {
 
         private readonly IStudentOfferRepository _studentOfferRepository;
+        
+        private readonly IStudentRepository _studentRepository;
 
-        public StudentController(IStudentOfferRepository studentOfferRepository)
+        public StudentController(IStudentOfferRepository studentOfferRepository, IStudentRepository studentRepository)
         {
-          
+
             _studentOfferRepository = studentOfferRepository;
+            
+            _studentRepository = studentRepository;
+        }
+
+        [HttpPost]
+        [Route("createStudent")]
+        public IActionResult CreateStudent(AddStudentRequest request)
+        {
+
+                try
+                {
+                List<Student> students = _studentRepository.GetStudents();
+                ValidateDNI(students, request.DocumentNumber);
+                ValidateFile(students, request.File);
+
+                Student newStudent = new()
+                {
+                        UserName = request.UserName,
+                        Password = request.Password,                       
+                        File = request.File,
+                        Name = request.Name,
+                        Surname = request.Surname,
+                        Email = request.Email,
+                        AltEmail = request.AltEmail,
+                        DocumentType = request.DocumentType,
+                        DocumentNumber = request.DocumentNumber,
+                        CUIL_CUIT = request.CUIL_CUIT,
+                        Birth = request.Birth,
+                        Sex = request.Sex,
+                        CivilStatus = request.CivilStatus,
+                       
+                    };
+                    StudentResponse response = new()
+                    {
+                        File = newStudent.File,
+                        Name = newStudent.Name,
+                        Surname = newStudent.Surname,
+
+                    };
+                    _studentRepository.CreateStudent(newStudent);
+                    return Created("Estudiante creado", response);
+                }
+                catch (Exception ex)
+                {
+                    return Problem(ex.Message);
+                }
+           
         }
 
 
+        [Authorize]
         [HttpPost("{offerId}/Students/{studentId}")]
         public ActionResult AddStudentToOffer(int offerId, int studentId)
         {
@@ -38,6 +89,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("{studentId}/Offers")]
         public ActionResult GetStudentToOffers(int studentId)
         {
@@ -231,15 +283,24 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         //    }
         //}
 
-        //[NonAction]
-        //public void ValidateDNI(List<Student> swimmers, int DNI)
-        //{
-        //    var inUse = swimmers.FirstOrDefault(s => s.DNI == DNI);
-        //    if (inUse != null)
-        //    {
-        //        throw new Exception("DNI ya registrado");
-        //    }
-        //}
+        [NonAction]
+        public void ValidateDNI(List<Student> students, int DNI)
+        {
+            var inUse = students.FirstOrDefault(s => s.DocumentNumber == DNI);
+            if (inUse != null)
+            {
+                throw new Exception("DNI ya registrado");
+            }
+        }
+        [NonAction]
+        public void ValidateFile(List<Student> students, int file)
+        {
+            var inUse = students.FirstOrDefault(s => s.DocumentNumber == file);
+            if (inUse != null)
+            {
+                throw new Exception("Legajo ya registrado");
+            }
+        }
 
         //[NonAction]
         //public void ValidateTrialId(List<Offer> trials, int trialId)

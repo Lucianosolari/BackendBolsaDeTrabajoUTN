@@ -1,15 +1,27 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BackendBolsaDeTrabajoUTN.Helpers;
+using System.ComponentModel.DataAnnotations;
 
 namespace BackendBolsaDeTrabajoUTN.Models
 {
     public class AddStudentRequest
     {
+        public string UserName { get; set; }
+        public string Password { get; set; }  
+        public int File { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
         public string Email { get; set; }
-        public int DNI { get; set; }
-        public int TrialId { get; set; }
+
+        public string AltEmail { get; set; }
+        public string DocumentType { get; set; } // Ver tabla aparte (se repite la palabra)
+
+        public int DocumentNumber { get; set; }
+
+        public int CUIL_CUIT { get; set; }
+
+        public DateTime Birth { get; set; }
+
+        public string Sex { get; set; } //Ver tabla aparte (se repite la palabra)
+        public string CivilStatus { get; set; } // Ver tabla aparte (se repite la palabra)
     }
 }

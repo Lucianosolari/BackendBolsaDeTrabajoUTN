@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using BackendBolsaDeTrabajoUTN.Data.Repository;
 using BackendBolsaDeTrabajoUTN.Entities;
 using BackendBolsaDeTrabajoUTN.Models;
+using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    
     public class CompanyController : ControllerBase
     {
 
@@ -20,7 +21,52 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             _companyRepository = companyRepository;
         }
 
-       
+        [HttpPost]
+        [Route("createCompany")]
+        public IActionResult CreateCompany(AddCompanyRequest request)
+        {
+            //var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            //if (userType == "Admin")
+            //{
+                try
+                {
+                    Company newCompany = new()
+                    {
+                        UserName = request.UserName,
+                        Password = request.Password,
+                        CompanyCUIT = request.CompanyCUIT,
+                       CompanyName = request.CompanyName,
+                        CompanyAddress = request.CompanyAddress,
+                       CompanyPhone = request.CompanyPhone,
+                                CompanyEmail = request.CompanyEmail,
+                    CompanyWebPage = request.CompanyWebPage,
+                    CompanyContactPerson = request.CompanyContactPerson,
+                    CompanyType = request.CompanyType,
+                    CompanyState = request.CompanyState,
+                     CompanyDocumentation = request.CompanyDocumentation,
+
+
+    };
+                    CompanyResponse response = new()
+                    {
+                        CompanyName = newCompany.CompanyName,
+
+                    };
+                    _companyRepository.CreateCompany(newCompany);
+                    return Created("Empresa creada", response);
+                }
+                catch (Exception ex)
+                {
+                    return Problem(ex.Message);
+                }
+            //}
+            //else
+            //{
+            //    return BadRequest("El usuario no esta autorizado para crear ofertas");
+            //}
+        }
+
+
 
         //[HttpGet]
         //[Route("getAllMeets")]
@@ -76,30 +122,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         //    }
         //}
 
-        [HttpPost]
-        [Route("createOffer")]
-        public IActionResult CreateOffer(AddOfferRequest request)
-        {
-            try
-            {
-                Offer newOffer = new()
-                {
-                   OfferDescription = request.OfferDescription,
-                    
-                };
-                OfferResponse response = new()
-                {
-                    OfferDescription = newOffer.OfferDescription,
-                    
-                };
-                
-                return Created("Meet creado", response);
-            }
-            catch (Exception ex)
-            {
-                return Problem(ex.Message);
-            }
-        }
+
 
         //[HttpDelete]
         //[Route("deleteMeet/{id}")]

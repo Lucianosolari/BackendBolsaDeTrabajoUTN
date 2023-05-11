@@ -13,6 +13,21 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
             _context = context;
         }
 
+
+        public void CreateCompany(Company newCompany)
+        {
+            try
+            {
+                _context.Companies.Add(newCompany);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+
+                throw new Exception("el error es" + ex);
+            }
+        }
         //public Company? GetSingleMeet(int id)
         //{
         //    try
@@ -80,6 +95,6 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
         //{
         //    return _context.Trials.Where(t => t.MeetId == id).ToList();
         //}
-   }
+    }
 
 }
