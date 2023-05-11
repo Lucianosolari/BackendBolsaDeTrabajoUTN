@@ -77,10 +77,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             {
                 try
                 {
-
                 Offer newOffer = new()
-
-
                 {
                     OfferTitle = request.OfferTitle,
                     OfferSpecialty = request.OfferSpecialty,
