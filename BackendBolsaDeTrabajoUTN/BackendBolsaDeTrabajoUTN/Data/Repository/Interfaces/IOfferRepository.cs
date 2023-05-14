@@ -19,5 +19,6 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
 
         public void CreateOffer(Offer newOffer);
         public ActionResult<IEnumerable<Offer>> GetOffersByCompany(int companyId);
+        public ActionResult<IEnumerable<Offer>> GetOffers();
     }
 }
