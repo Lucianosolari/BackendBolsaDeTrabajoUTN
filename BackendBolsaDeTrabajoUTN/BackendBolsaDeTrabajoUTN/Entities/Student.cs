@@ -19,7 +19,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public int File { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Email { get; set; }
+        
 
         public string AltEmail { get; set; }
         public string DocumentType { get; set; } // Ver tabla aparte (se repite la palabra)
