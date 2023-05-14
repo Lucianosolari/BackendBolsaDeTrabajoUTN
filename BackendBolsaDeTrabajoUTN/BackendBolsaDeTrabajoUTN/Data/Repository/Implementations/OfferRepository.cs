@@ -27,9 +27,19 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
             {
                 throw new Exception("La empresa no tiene ofertas");
             }
-            
+        }
 
-            
+
+        public ActionResult<IEnumerable<Offer>> GetOffers()
+        {
+            try
+            {
+                return _context.Offers.Include(o => o.Company).ToList();
+            }
+            catch
+            {
+                throw new Exception("No se encontraron ofertas");
+            }
         }
         //public List<Offer> GetTrials() 
         //{

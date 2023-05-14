@@ -11,7 +11,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+   
     public class OfferController : ControllerBase
     {
 
@@ -25,49 +25,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             _context = context;
         }
 
-        //[HttpGet]
-        //[Route("getAllTrials")]
-        //public IActionResult GetAllTrials()
-        //{
-        //        List<OfferResponse> trialsToReturn = new();
-        //        List<Offer> trials = _trialRepository.GetTrials();
-        //        foreach (var trial in trials)
-        //        {
-        //            trial.MeetName = _trialRepository.GetTrialMeetName(trial.MeetId);
-        //            trial.RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
-        //            OfferResponse response = new()
-        //            {
-        //                Id = trial.Id,
-        //                Distance = trial.Distance,
-        //                Style = trial.Style,
-        //                MeetName = trial.MeetName,
-        //                RegisteredSwimmers = trial.RegisteredSwimmers,
-        //                MeetId = trial.MeetId,
-        //            };
-        //            trialsToReturn.Add(response);
-        //        }
-        //        return Ok(trialsToReturn);
-        //}
-
-        //[HttpGet]
-        //[Route("getTrialById/{id}")]
-        //public IActionResult GetTrialByiD(int id)
-        //{
-        //    Offer? trial = _trialRepository.GetSingleTrial(id);
-        //    trial.MeetName = _trialRepository.GetTrialMeetName(trial.MeetId);
-        //    trial.RegisteredSwimmers = _trialRepository.GetRegisteredSwimmers(trial.Id);
-        //    OfferResponse response = new()
-        //    {
-        //        Id = trial.Id,
-        //        Distance = trial.Distance,
-        //        Style = trial.Style,
-        //        MeetName = trial.MeetName,
-        //        RegisteredSwimmers = trial.RegisteredSwimmers,
-        //        MeetId = trial.MeetId
-        //    };
-        //    return Ok(response);
-        //}
-
+        [Authorize]
         [HttpPost]
         [Route("createOffer")]
         public IActionResult CreateOffer(AddOfferRequest request)
@@ -107,9 +65,9 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
         }
 
-       
 
 
+        [Authorize]
         [HttpGet("ByCompany/{companyId}")]
         public IActionResult GetOffersByCompany(int companyId)
         {
@@ -123,6 +81,17 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             return Ok(offers);
         }
 
+        [HttpGet("Offers")]
+        public IActionResult GetOffers()
+        {
+            var offers = _offerRepository.GetOffers();
+            if (offers == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(offers);
+        }
         //[HttpDelete]
         //[Route("deleteTrial/{id}")]
         //public IActionResult DeleteTrial(int id)
