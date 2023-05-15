@@ -29,13 +29,12 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 UserId = 1,
                 UserName = "Company 1",
                 Password = "1234",
-                //CompanyId = 1,
+                UserEmail = "luciano3924@gmail.com",
                 CompanyCUIT = "20447575",
                 CompanyName = "Primera empresa",
                 CompanyPhone = 341367898,
                 CompanyAddress = "D 15",
                 CompanyContactPerson = "22",
-                CompanyEmail = "email",
                 CompanyDocumentation = "asdasd",
                 CompanyState = "ok",
                 CompanyType = "srl",
@@ -47,9 +46,10 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             {
                 UserId = 2,
                 UserName = "Company 2",
+                UserEmail = "luci_817@hotmail.es",
                 CompanyAddress = "D 15",
                 CompanyContactPerson = "22",
-                CompanyEmail = "email",
+                
                 CompanyDocumentation = "asdasd",
                 CompanyState = "ok",
                 //CompanyId = 2,
@@ -129,7 +129,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 Password = "1234",
                 UserId = 6,
                 UserName = "admin",
-                NameAdmin = "AdminPepe"
+                NameAdmin = "AdminPepe",
+                UserEmail ="luciano3924@gmail.com"
 
             };
 
@@ -141,18 +142,15 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 UserId = 3,
                 Name = "Manuel",
                 Surname = "Ibarbia",
-                Email = "manuel@gmail.com",
-
+                UserEmail = "manuel@gmail.com",
                 Password = "string",
                 UserName = "string",
                 DocumentType = "DNI",
                 DocumentNumber = 44555666,
-
                 File = 12345,
                 AltEmail = "manuelAlt@gmail.com",
                 CUIL_CUIT = 231332,
                 Birth = new DateTime(1995, 5, 12),
-
                 Sex = "Masculino",
                 CivilStatus = "Casado",
             };
@@ -162,18 +160,15 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 UserId = 4,
                 Name = "Luciano",
                 Surname = "Solari",
-                Email = "luciano@gmail.com",
-
+                UserEmail = "luciano@gmail.com",
                 Password = "123456",
                 UserName = "lucianoS",
                 DocumentType = "DNI",
                 DocumentNumber = 33444555,
-
                 File = 12346,
                 AltEmail = "lucianoAlt@gmail.com",
                 CUIL_CUIT = 2313321,
                 Birth = new DateTime(1800, 5, 12),
-
                 Sex = "Masculino",
                 CivilStatus = "Soltero",
             };
@@ -181,21 +176,17 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             Student student3 = new Student()
             {
                 UserId = 5,
-                //StudentId = 3,
                 Name = "Santiago",
                 Surname = "Caso",
-                Email = "santiago@gmail.com",
+                UserEmail = "santiago@gmail.com",
                 Password = "123456",
                 UserName = "santiagoC",
                 DocumentNumber = 55666777,
                 DocumentType = "DNI",
-                
-
                 File = 12347,
                 AltEmail = "santiagoAlt@gmail.com",
                 CUIL_CUIT = 2313321,
                 Birth = new DateTime(2005, 5, 12),
-
                 Sex = "Masculino",
                 CivilStatus = "Soltero",
             };

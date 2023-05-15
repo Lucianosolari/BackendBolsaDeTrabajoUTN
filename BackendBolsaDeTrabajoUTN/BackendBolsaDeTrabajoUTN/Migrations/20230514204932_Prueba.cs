@@ -44,12 +44,12 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     Password = table.Column<string>(type: "TEXT", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", nullable: false),
                     UserType = table.Column<string>(type: "TEXT", nullable: false),
+                    UserEmail = table.Column<string>(type: "TEXT", nullable: false),
                     NameAdmin = table.Column<string>(type: "TEXT", nullable: true),
                     CompanyCUIT = table.Column<string>(type: "TEXT", nullable: true),
                     CompanyName = table.Column<string>(type: "TEXT", nullable: true),
                     CompanyAddress = table.Column<string>(type: "TEXT", nullable: true),
                     CompanyPhone = table.Column<int>(type: "INTEGER", nullable: true),
-                    CompanyEmail = table.Column<string>(type: "TEXT", nullable: true),
                     CompanyWebPage = table.Column<string>(type: "TEXT", nullable: true),
                     CompanyContactPerson = table.Column<string>(type: "TEXT", nullable: true),
                     CompanyType = table.Column<string>(type: "TEXT", nullable: true),
@@ -58,7 +58,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     File = table.Column<int>(type: "INTEGER", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Surname = table.Column<string>(type: "TEXT", nullable: true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true),
                     AltEmail = table.Column<string>(type: "TEXT", nullable: true),
                     DocumentType = table.Column<string>(type: "TEXT", nullable: true),
                     DocumentNumber = table.Column<int>(type: "INTEGER", nullable: true),
@@ -194,33 +193,33 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "NameAdmin", "Password", "UserName", "UserType" },
-                values: new object[] { 6, "AdminPepe", "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", "admin", "Admin" });
+                columns: new[] { "UserId", "NameAdmin", "Password", "UserEmail", "UserName", "UserType" },
+                values: new object[] { 6, "AdminPepe", "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", "luciano3924@gmail.com", "admin", "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "CompanyAddress", "CompanyCUIT", "CompanyContactPerson", "CompanyDocumentation", "CompanyEmail", "CompanyName", "CompanyPhone", "CompanyState", "CompanyType", "CompanyWebPage", "Password", "UserName", "UserType" },
-                values: new object[] { 1, "D 15", "20447575", "22", "asdasd", "email", "Primera empresa", 341367898, "ok", "srl", "web", "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", "Company 1", "Company" });
+                columns: new[] { "UserId", "CompanyAddress", "CompanyCUIT", "CompanyContactPerson", "CompanyDocumentation", "CompanyName", "CompanyPhone", "CompanyState", "CompanyType", "CompanyWebPage", "Password", "UserEmail", "UserName", "UserType" },
+                values: new object[] { 1, "D 15", "20447575", "22", "asdasd", "Primera empresa", 341367898, "ok", "srl", "web", "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", "luciano3924@gmail.com", "Company 1", "Company" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "CompanyAddress", "CompanyCUIT", "CompanyContactPerson", "CompanyDocumentation", "CompanyEmail", "CompanyName", "CompanyPhone", "CompanyState", "CompanyType", "CompanyWebPage", "Password", "UserName", "UserType" },
-                values: new object[] { 2, "D 15", "20447575", "22", "asdasd", "email", "Segunda empresa", 341367899, "ok", "srl", "web", "3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79", "Company 2", "Company" });
+                columns: new[] { "UserId", "CompanyAddress", "CompanyCUIT", "CompanyContactPerson", "CompanyDocumentation", "CompanyName", "CompanyPhone", "CompanyState", "CompanyType", "CompanyWebPage", "Password", "UserEmail", "UserName", "UserType" },
+                values: new object[] { 2, "D 15", "20447575", "22", "asdasd", "Segunda empresa", 341367899, "ok", "srl", "web", "3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79", "luci_817@hotmail.es", "Company 2", "Company" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AltEmail", "Birth", "CUIL_CUIT", "CivilStatus", "DocumentNumber", "DocumentType", "Email", "File", "Name", "Password", "Sex", "Surname", "UserName", "UserType" },
-                values: new object[] { 3, "manuelAlt@gmail.com", new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 231332, "Casado", 44555666, "DNI", "manuel@gmail.com", 12345, "Manuel", "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87", "Masculino", "Ibarbia", "string", "Student" });
+                columns: new[] { "UserId", "AltEmail", "Birth", "CUIL_CUIT", "CivilStatus", "DocumentNumber", "DocumentType", "File", "Name", "Password", "Sex", "Surname", "UserEmail", "UserName", "UserType" },
+                values: new object[] { 3, "manuelAlt@gmail.com", new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 231332, "Casado", 44555666, "DNI", 12345, "Manuel", "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87", "Masculino", "Ibarbia", "manuel@gmail.com", "string", "Student" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AltEmail", "Birth", "CUIL_CUIT", "CivilStatus", "DocumentNumber", "DocumentType", "Email", "File", "Name", "Password", "Sex", "Surname", "UserName", "UserType" },
-                values: new object[] { 4, "lucianoAlt@gmail.com", new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", 33444555, "DNI", "luciano@gmail.com", 12346, "Luciano", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Masculino", "Solari", "lucianoS", "Student" });
+                columns: new[] { "UserId", "AltEmail", "Birth", "CUIL_CUIT", "CivilStatus", "DocumentNumber", "DocumentType", "File", "Name", "Password", "Sex", "Surname", "UserEmail", "UserName", "UserType" },
+                values: new object[] { 4, "lucianoAlt@gmail.com", new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", 33444555, "DNI", 12346, "Luciano", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Masculino", "Solari", "luciano@gmail.com", "lucianoS", "Student" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AltEmail", "Birth", "CUIL_CUIT", "CivilStatus", "DocumentNumber", "DocumentType", "Email", "File", "Name", "Password", "Sex", "Surname", "UserName", "UserType" },
-                values: new object[] { 5, "santiagoAlt@gmail.com", new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", 55666777, "DNI", "santiago@gmail.com", 12347, "Santiago", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Masculino", "Caso", "santiagoC", "Student" });
+                columns: new[] { "UserId", "AltEmail", "Birth", "CUIL_CUIT", "CivilStatus", "DocumentNumber", "DocumentType", "File", "Name", "Password", "Sex", "Surname", "UserEmail", "UserName", "UserType" },
+                values: new object[] { 5, "santiagoAlt@gmail.com", new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", 55666777, "DNI", 12347, "Santiago", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Masculino", "Caso", "santiago@gmail.com", "santiagoC", "Student" });
 
             migrationBuilder.InsertData(
                 table: "Offers",

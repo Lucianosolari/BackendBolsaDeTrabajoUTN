@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20230509211951_Prueba")]
+    [Migration("20230514204932_Prueba")]
     partial class Prueba
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -221,6 +221,10 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("UserEmail")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -251,6 +255,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             UserId = 6,
                             Password = "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db",
+                            UserEmail = "luciano3924@gmail.com",
                             UserName = "admin",
                             NameAdmin = "AdminPepe"
                         });
@@ -273,10 +278,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CompanyDocumentation")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CompanyEmail")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -306,12 +307,12 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             UserId = 1,
                             Password = "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db",
+                            UserEmail = "luciano3924@gmail.com",
                             UserName = "Company 1",
                             CompanyAddress = "D 15",
                             CompanyCUIT = "20447575",
                             CompanyContactPerson = "22",
                             CompanyDocumentation = "asdasd",
-                            CompanyEmail = "email",
                             CompanyName = "Primera empresa",
                             CompanyPhone = 341367898,
                             CompanyState = "ok",
@@ -322,12 +323,12 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             UserId = 2,
                             Password = "3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79",
+                            UserEmail = "luci_817@hotmail.es",
                             UserName = "Company 2",
                             CompanyAddress = "D 15",
                             CompanyCUIT = "20447575",
                             CompanyContactPerson = "22",
                             CompanyDocumentation = "asdasd",
-                            CompanyEmail = "email",
                             CompanyName = "Segunda empresa",
                             CompanyPhone = 341367899,
                             CompanyState = "ok",
@@ -361,10 +362,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("File")
                         .HasColumnType("INTEGER");
 
@@ -387,6 +384,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             UserId = 3,
                             Password = "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87",
+                            UserEmail = "manuel@gmail.com",
                             UserName = "string",
                             AltEmail = "manuelAlt@gmail.com",
                             Birth = new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -394,7 +392,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CivilStatus = "Casado",
                             DocumentNumber = 44555666,
                             DocumentType = "DNI",
-                            Email = "manuel@gmail.com",
                             File = 12345,
                             Name = "Manuel",
                             Sex = "Masculino",
@@ -404,6 +401,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             UserId = 4,
                             Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
+                            UserEmail = "luciano@gmail.com",
                             UserName = "lucianoS",
                             AltEmail = "lucianoAlt@gmail.com",
                             Birth = new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -411,7 +409,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CivilStatus = "Soltero",
                             DocumentNumber = 33444555,
                             DocumentType = "DNI",
-                            Email = "luciano@gmail.com",
                             File = 12346,
                             Name = "Luciano",
                             Sex = "Masculino",
@@ -421,6 +418,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             UserId = 5,
                             Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
+                            UserEmail = "santiago@gmail.com",
                             UserName = "santiagoC",
                             AltEmail = "santiagoAlt@gmail.com",
                             Birth = new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -428,7 +426,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CivilStatus = "Soltero",
                             DocumentNumber = 55666777,
                             DocumentType = "DNI",
-                            Email = "santiago@gmail.com",
                             File = 12347,
                             Name = "Santiago",
                             Sex = "Masculino",

@@ -19,5 +19,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         //[Required]
         public string UserName { get; set; }
         public string UserType { get; set; }
+
+        public string UserEmail { get; set; }  
     }
 }

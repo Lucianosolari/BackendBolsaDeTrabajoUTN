@@ -21,5 +21,13 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             var HashPassword = Security.CreateSHA512(dto.Password);
             return _context.Users.SingleOrDefault(u => u.UserName == dto.UserName && u.Password == Security.CreateSHA512(dto.Password) );
         }
+
+        public User? RecoverPassword(PasswordRequestBody dto)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.UserName == dto.UserName);
+            return user ?? null;
+        }
+
+
     }
 }

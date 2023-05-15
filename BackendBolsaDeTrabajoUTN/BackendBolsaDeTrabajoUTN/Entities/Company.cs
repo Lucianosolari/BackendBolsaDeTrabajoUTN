@@ -20,7 +20,6 @@ namespace BackendBolsaDeTrabajoUTN.Entities
 
         public int CompanyPhone { get; set; }
 
-        public string CompanyEmail { get; set; }
 
         public string CompanyWebPage { get; set; }
 

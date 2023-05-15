@@ -1,136 +1,88 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using BackendBolsaDeTrabajoUTN.Data.Repository;
-using BackendBolsaDeTrabajoUTN.Entities;
+﻿using Microsoft.AspNetCore.Mvc;
 using BackendBolsaDeTrabajoUTN.Models;
+using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
+using System.Text;
+using BackendBolsaDeTrabajoUTN.DBContexts;
+using SendGrid.Helpers.Mail;
+using SendGrid;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
-    public class MeetController : ControllerBase
+    //[Authorize]
+    public class UserController : ControllerBase
     {
+        private readonly IUserRepository _userRepository;
+        private readonly TPContext _context;
 
-        private readonly ICompanyRepository _meetRepository;
-
-        public MeetController(ICompanyRepository meetRepository)
+        public UserController(IUserRepository userRepository, TPContext context)
         {
-            _meetRepository = meetRepository;
+            _userRepository = userRepository;
+            _context = context;
         }
 
-        //[HttpGet]
-        //[Route("getAllMeets")]
-        //public IActionResult GetAllMeets()
-        //{
+        [HttpPost]
+        [Route("recoverPassword")]
+        public IActionResult RecoverPassword(PasswordRequestBody passwordRequestBody)
+        {
+            var user = _userRepository.RecoverPassword(passwordRequestBody);
 
-        //    try
-        //    {
-        //        List<CompanyResponse> meetsToReturn = new List<CompanyResponse>();
-        //        List<Company> meets = _meetRepository.GetMeets();
-        //        foreach (var meet in meets)
-        //        {
-        //            meet.Trials = _meetRepository.GetTrials(meet.Id);
-        //            CompanyResponse response = new()
-        //            {
-        //                Id = meet.Id,
-        //                MeetName = meet.MeetName,
-        //                MeetDate = meet.MeetDate,
-        //                MeetPlace = meet.MeetPlace,
-        //                Trials = meet.Trials,
-        //            };
-        //            meetsToReturn.Add(response);
-        //        }
-        //        return Ok(meetsToReturn);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Problem(ex.Message);
-        //    }
-        //}
+            if (user == null)
+            {
+                return NotFound(); // El usuario no existe
+            }
 
-        //[HttpGet]
-        //[Route("getMeetById/{id}")]
-        //public IActionResult GetMeetById(int id)
-        //{
-        //    try
-        //    {
-        //        Company? meet = _meetRepository.GetSingleMeet(id);
-        //        meet.Trials = _meetRepository.GetTrials(meet.Id);
-        //        CompanyResponse response = new()
-        //        {
-        //            MeetName = meet.MeetName,
-        //            MeetDate = meet.MeetDate,
-        //            MeetPlace = meet.MeetPlace,
-        //            Id = meet.Id,
-        //            Trials = meet.Trials
-        //        };
-        //        return Ok(response);
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        return Problem(ex.Message);
-        //    }
-        //}
+            string newPassword = GenerateRandomPassword();
 
-        //[HttpPost]
-        //[Route("createMeet")]
-        //public IActionResult CreateMeet(AddCompanyRequest request)
-        //{
-        //    try
-        //    {
-        //        Company newMeet = new()
-        //        {
-        //            MeetPlace = request.MeetPlace,
-        //            MeetName = request.MeetName,
-        //            MeetDate = request.MeetDate,
-        //        };
-        //        CompanyResponse response = new()
-        //        {
-        //            MeetPlace = newMeet.MeetPlace,
-        //            MeetName = newMeet.MeetName,
-        //            MeetDate = newMeet.MeetDate,
-        //        };
-        //        _meetRepository.AddMeet(newMeet);
-        //        return Created("Meet creado", response);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Problem(ex.Message);
-        //    }
-        //}
+            user.Password = newPassword; // Actualiza la contraseña del usuario en la base de datos
+            _context.SaveChanges(); // Guarda los cambios en la base de datos
+            
+            EnviarCorreoElectronico(user.UserEmail, "Recuperación de contraseña", $"Tu nueva contraseña es: {newPassword}");
 
-        //[HttpDelete]
-        //[Route("deleteMeet/{id}")]
-        //public IActionResult DeleteMeet(int id)
-        //{
-        //    try
-        //    {
-        //        _meetRepository.RemoveMeet(id);
-        //        return Ok("Meet borrado");
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        return Problem(ex.Message);
-        //    }
-        //}
+            return Ok("Cambio correcto"); // Opcionalmente, puedes devolver la nueva contraseña generada como respuesta
+        }
 
-        //[HttpPut]
-        //[Route("modifyMeetDate/{id}/{newMeetDate}")]
-        //public IActionResult ModifyMeetDate (int id, string newMeetDate)
-        //{
-        //    try
-        //    {
-        //        _meetRepository.EditMeetDate(id, newMeetDate);
-        //        return Ok("Fecha modificada");
-        //    }
-        //    catch(Exception ex)
-        //    {
-        //        return Problem(ex.Message);
-        //    }
-        //}
+
+        [NonAction]
+        private string GenerateRandomPassword()
+        {
+            string validChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            Random random = new Random();
+            StringBuilder password = new StringBuilder();
+
+            for (int i = 0; i < 8; i++) // Genera una contraseña de longitud 8
+            {
+                int randomIndex = random.Next(validChars.Length);
+                password.Append(validChars[randomIndex]);
+            }
+
+            return password.ToString();
+        }
+
+        private void EnviarCorreoElectronico(string destinatario, string asunto, string contenido)
+        {
+            string apiKey = "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"; // Reemplaza con tu API Key de SendGrid
+            var client = new SendGridClient(apiKey);
+
+            var from = new EmailAddress("luciano3924@gmail.com", "Bolsa de Trabajo");
+            var to = new EmailAddress(destinatario);
+            var msg = MailHelper.CreateSingleEmail(from, to, asunto, contenido, contenido);
+            try
+            {
+                var response = client.SendEmailAsync(msg).GetAwaiter().GetResult();
+                // Aquí puedes manejar la respuesta del envío del correo electrónico si es necesario
+            }
+            catch (Exception ex)
+            {
+                // Registra el error o realiza alguna acción de manejo de errores adecuada
+                Console.WriteLine($"Error al enviar el correo electrónico: {ex.Message}");
+            }
+           
+        }
     }
 }
+
 
 
 
