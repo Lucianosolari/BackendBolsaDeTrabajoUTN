@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20230514204932_Prueba")]
-    partial class Prueba
+    [Migration("20230516204929_probando")]
+    partial class probando
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -273,11 +273,11 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CompanyContactPerson")
+                    b.Property<string>("CompanyLine")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CompanyDocumentation")
+                    b.Property<string>("CompanyLocation")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -285,14 +285,32 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("CompanyPhone")
+                    b.Property<bool>("CompanyPendingConfirmation")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CompanyState")
+                    b.Property<string>("CompanyPersonalJob")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CompanyType")
+                    b.Property<string>("CompanyPersonalName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CompanyPersonalPhone")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CompanyPersonalSurname")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("CompanyPhone")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CompanyPostalCode")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CompanyRelationContact")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -307,33 +325,43 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             UserId = 1,
                             Password = "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db",
-                            UserEmail = "luciano3924@gmail.com",
+                            UserEmail = "mail1@gmai.com",
                             UserName = "Company 1",
                             CompanyAddress = "D 15",
                             CompanyCUIT = "20447575",
-                            CompanyContactPerson = "22",
-                            CompanyDocumentation = "asdasd",
-                            CompanyName = "Primera empresa",
+                            CompanyLine = "Textil",
+                            CompanyLocation = "Rosario",
+                            CompanyName = "SRL",
+                            CompanyPendingConfirmation = true,
+                            CompanyPersonalJob = "Gerente",
+                            CompanyPersonalName = "Juan Carlos",
+                            CompanyPersonalPhone = 22,
+                            CompanyPersonalSurname = "Peralta",
                             CompanyPhone = 341367898,
-                            CompanyState = "ok",
-                            CompanyType = "srl",
+                            CompanyPostalCode = "2000",
+                            CompanyRelationContact = "Vacio",
                             CompanyWebPage = "web"
                         },
                         new
                         {
                             UserId = 2,
-                            Password = "3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79",
-                            UserEmail = "luci_817@hotmail.es",
+                            Password = "7e2feac95dcd7d1df803345e197369af4b156e4e7a95fcb2955bdbbb3a11afd8bb9d35931bf15511370b18143e38b01b903f55c5ecbded4af99934602fcdf38c",
+                            UserEmail = "mail2@gmai.com",
                             UserName = "Company 2",
-                            CompanyAddress = "D 15",
-                            CompanyCUIT = "20447575",
-                            CompanyContactPerson = "22",
-                            CompanyDocumentation = "asdasd",
-                            CompanyName = "Segunda empresa",
-                            CompanyPhone = 341367899,
-                            CompanyState = "ok",
-                            CompanyType = "srl",
-                            CompanyWebPage = "web"
+                            CompanyAddress = "E 18",
+                            CompanyCUIT = "20445556661",
+                            CompanyLine = "Textil",
+                            CompanyLocation = "Rosario",
+                            CompanyName = "SRL",
+                            CompanyPendingConfirmation = true,
+                            CompanyPersonalJob = "Gerente",
+                            CompanyPersonalName = "Juan Esteban",
+                            CompanyPersonalPhone = 25,
+                            CompanyPersonalSurname = "Peralta",
+                            CompanyPhone = 341334455,
+                            CompanyPostalCode = "2000",
+                            CompanyRelationContact = "Vacio",
+                            CompanyWebPage = "web2"
                         });
                 });
 

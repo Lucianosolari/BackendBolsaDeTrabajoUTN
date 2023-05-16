@@ -35,22 +35,25 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         UserName = request.UserName,
                         Password = request.Password,
                         CompanyCUIT = request.CompanyCUIT,
-                       CompanyName = request.CompanyName,
+                        CompanyLine = request.CompanyLine,
+                        CompanyName = request.CompanyName,
                         CompanyAddress = request.CompanyAddress,
-                       CompanyPhone = request.CompanyPhone,
-                                UserEmail = request.CompanyEmail,
-                    CompanyWebPage = request.CompanyWebPage,
-                    CompanyContactPerson = request.CompanyContactPerson,
-                    CompanyType = request.CompanyType,
-                    CompanyState = request.CompanyState,
-                     CompanyDocumentation = request.CompanyDocumentation,
+                        CompanyLocation = request.CompanyLocation,
+                        CompanyPostalCode = request.CompanyPostalCode,
+                        CompanyPhone = request.CompanyPhone,
+                        UserEmail = request.CompanyEmail,
+                        CompanyWebPage = request.CompanyWebPage,
 
-
-    };
+                        CompanyPersonalName = request.CompanyPersonalName,
+                        CompanyPersonalSurname = request.CompanyPersonalSurname,
+                        CompanyPersonalJob = request.CompanyPersonalJob,
+                        CompanyPersonalPhone = request.CompanyPersonalPhone,
+                        CompanyRelationContact = request.CompanyRelationContact,
+                        CompanyPendingConfirmation = true
+                    };
                     CompanyResponse response = new()
                     {
                         CompanyName = newCompany.CompanyName,
-
                     };
                     _companyRepository.CreateCompany(newCompany);
                     return Created("Empresa creada", response);

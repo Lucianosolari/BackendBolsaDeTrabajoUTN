@@ -28,37 +28,46 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             {
                 UserId = 1,
                 UserName = "Company 1",
-                Password = "1234",
-                UserEmail = "luciano3924@gmail.com",
+                UserEmail = "mail1@gmai.com",
+                CompanyName = "SRL",
                 CompanyCUIT = "20447575",
-                CompanyName = "Primera empresa",
-                CompanyPhone = 341367898,
+                CompanyLine = "Textil",
                 CompanyAddress = "D 15",
-                CompanyContactPerson = "22",
-                CompanyDocumentation = "asdasd",
-                CompanyState = "ok",
-                CompanyType = "srl",
+                CompanyLocation = "Rosario",
+                CompanyPostalCode = "2000",
+                Password = "1234",
+                CompanyPhone = 341367898,
                 CompanyWebPage = "web",
 
+                CompanyPersonalName = "Juan Carlos",
+                CompanyPersonalSurname = "Peralta",
+                CompanyPersonalJob = "Gerente",
+                CompanyPersonalPhone = 22,
+                CompanyRelationContact = "Vacio",
+                CompanyPendingConfirmation = true
             };
 
             Company company2 = new Company()
             {
                 UserId = 2,
                 UserName = "Company 2",
-                UserEmail = "luci_817@hotmail.es",
-                CompanyAddress = "D 15",
-                CompanyContactPerson = "22",
-                
-                CompanyDocumentation = "asdasd",
-                CompanyState = "ok",
-                //CompanyId = 2,
-                Password = "12345",
-                CompanyCUIT = "20447575",
-                CompanyName = "Segunda empresa",
-                CompanyPhone = 341367899,
-                CompanyType = "srl",
-                CompanyWebPage = "web",
+                UserEmail = "mail2@gmai.com",
+                CompanyName = "SRL",
+                CompanyCUIT = "20445556661",
+                CompanyLine = "Textil",
+                CompanyAddress = "E 18",
+                CompanyLocation = "Rosario",
+                CompanyPostalCode = "2000",
+                Password = "4321",
+                CompanyPhone = 341334455,
+                CompanyWebPage = "web2",
+
+                CompanyPersonalName = "Juan Esteban",
+                CompanyPersonalSurname = "Peralta",
+                CompanyPersonalJob = "Gerente",
+                CompanyPersonalPhone = 25,
+                CompanyRelationContact = "Vacio",
+                CompanyPendingConfirmation = true
             };
 
             modelBuilder.Entity<Company>().HasData(
