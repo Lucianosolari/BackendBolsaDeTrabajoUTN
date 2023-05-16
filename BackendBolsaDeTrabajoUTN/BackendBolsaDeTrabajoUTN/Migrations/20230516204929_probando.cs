@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
-    public partial class Prueba : Migration
+    public partial class probando : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,15 +46,20 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     UserType = table.Column<string>(type: "TEXT", nullable: false),
                     UserEmail = table.Column<string>(type: "TEXT", nullable: false),
                     NameAdmin = table.Column<string>(type: "TEXT", nullable: true),
-                    CompanyCUIT = table.Column<string>(type: "TEXT", nullable: true),
                     CompanyName = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyCUIT = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyLine = table.Column<string>(type: "TEXT", nullable: true),
                     CompanyAddress = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyLocation = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyPostalCode = table.Column<string>(type: "TEXT", nullable: true),
                     CompanyPhone = table.Column<int>(type: "INTEGER", nullable: true),
                     CompanyWebPage = table.Column<string>(type: "TEXT", nullable: true),
-                    CompanyContactPerson = table.Column<string>(type: "TEXT", nullable: true),
-                    CompanyType = table.Column<string>(type: "TEXT", nullable: true),
-                    CompanyState = table.Column<string>(type: "TEXT", nullable: true),
-                    CompanyDocumentation = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyPersonalName = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyPersonalSurname = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyPersonalJob = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyPersonalPhone = table.Column<int>(type: "INTEGER", nullable: true),
+                    CompanyRelationContact = table.Column<string>(type: "TEXT", nullable: true),
+                    CompanyPendingConfirmation = table.Column<bool>(type: "INTEGER", nullable: true),
                     File = table.Column<int>(type: "INTEGER", nullable: true),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Surname = table.Column<string>(type: "TEXT", nullable: true),
@@ -198,13 +203,13 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "CompanyAddress", "CompanyCUIT", "CompanyContactPerson", "CompanyDocumentation", "CompanyName", "CompanyPhone", "CompanyState", "CompanyType", "CompanyWebPage", "Password", "UserEmail", "UserName", "UserType" },
-                values: new object[] { 1, "D 15", "20447575", "22", "asdasd", "Primera empresa", 341367898, "ok", "srl", "web", "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", "luciano3924@gmail.com", "Company 1", "Company" });
+                columns: new[] { "UserId", "CompanyAddress", "CompanyCUIT", "CompanyLine", "CompanyLocation", "CompanyName", "CompanyPendingConfirmation", "CompanyPersonalJob", "CompanyPersonalName", "CompanyPersonalPhone", "CompanyPersonalSurname", "CompanyPhone", "CompanyPostalCode", "CompanyRelationContact", "CompanyWebPage", "Password", "UserEmail", "UserName", "UserType" },
+                values: new object[] { 1, "D 15", "20447575", "Textil", "Rosario", "SRL", true, "Gerente", "Juan Carlos", 22, "Peralta", 341367898, "2000", "Vacio", "web", "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", "mail1@gmai.com", "Company 1", "Company" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "CompanyAddress", "CompanyCUIT", "CompanyContactPerson", "CompanyDocumentation", "CompanyName", "CompanyPhone", "CompanyState", "CompanyType", "CompanyWebPage", "Password", "UserEmail", "UserName", "UserType" },
-                values: new object[] { 2, "D 15", "20447575", "22", "asdasd", "Segunda empresa", 341367899, "ok", "srl", "web", "3627909a29c31381a071ec27f7c9ca97726182aed29a7ddd2e54353322cfb30abb9e3a6df2ac2c20fe23436311d678564d0c8d305930575f60e2d3d048184d79", "luci_817@hotmail.es", "Company 2", "Company" });
+                columns: new[] { "UserId", "CompanyAddress", "CompanyCUIT", "CompanyLine", "CompanyLocation", "CompanyName", "CompanyPendingConfirmation", "CompanyPersonalJob", "CompanyPersonalName", "CompanyPersonalPhone", "CompanyPersonalSurname", "CompanyPhone", "CompanyPostalCode", "CompanyRelationContact", "CompanyWebPage", "Password", "UserEmail", "UserName", "UserType" },
+                values: new object[] { 2, "E 18", "20445556661", "Textil", "Rosario", "SRL", true, "Gerente", "Juan Esteban", 25, "Peralta", 341334455, "2000", "Vacio", "web2", "7e2feac95dcd7d1df803345e197369af4b156e4e7a95fcb2955bdbbb3a11afd8bb9d35931bf15511370b18143e38b01b903f55c5ecbded4af99934602fcdf38c", "mail2@gmai.com", "Company 2", "Company" });
 
             migrationBuilder.InsertData(
                 table: "Users",

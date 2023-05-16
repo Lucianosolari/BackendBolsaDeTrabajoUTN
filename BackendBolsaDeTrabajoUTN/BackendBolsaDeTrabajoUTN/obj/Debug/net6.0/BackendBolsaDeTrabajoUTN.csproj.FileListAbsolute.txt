@@ -187,3 +187,6 @@ C:\Users\Luciano\Desktop\PRoyecto al 30-04\BackendBolsaDeTrabajoUTN\BackendBolsa
 C:\Users\Luciano\Desktop\PRoyecto al 30-04\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\Luciano\Desktop\PRoyecto al 30-04\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\bin\Debug\net6.0\SendGrid.dll
 C:\Users\Luciano\Desktop\PRoyecto al 30-04\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\bin\Debug\net6.0\StarkbankEcdsa.dll
+D:\TUP Manuel\Programas TUP\4to CUATRIMESTRE\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\TUP Manuel\Programas TUP\4to CUATRIMESTRE\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\bin\Debug\net6.0\SendGrid.dll
+D:\TUP Manuel\Programas TUP\4to CUATRIMESTRE\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\bin\Debug\net6.0\StarkbankEcdsa.dll
