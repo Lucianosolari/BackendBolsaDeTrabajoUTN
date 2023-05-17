@@ -36,6 +36,19 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
         }
 
+        public void RemoveStudent(int id)
+        {
+            try
+            {
+                _context.Students.Remove(_context.Students.First(x => x.UserId == id));
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Usuario no encontrado");
+            }
+        }
+
         public List<Student> GetStudents()
         {
             return _context.Students.ToList();

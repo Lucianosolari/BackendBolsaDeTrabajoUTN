@@ -105,6 +105,22 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
         }
 
+        [Authorize]
+        [HttpDelete]
+        [Route("deleteStudent")]
+        public IActionResult DeleteStudent(int id)
+        {
+            try
+            {
+                _studentRepository.RemoveStudent(id);
+                return Ok("Alumno borrado del sistema.");
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
         [NonAction]
         public void ValidateDNI(List<Student> students, int DNI)
         {
