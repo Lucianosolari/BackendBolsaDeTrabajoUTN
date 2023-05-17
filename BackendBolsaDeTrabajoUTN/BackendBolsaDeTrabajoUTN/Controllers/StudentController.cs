@@ -107,7 +107,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
         [Authorize]
         [HttpDelete]
-        [Route("deleteStudent")]
+        [Route("deleteStudent/{id}")]
         public IActionResult DeleteStudent(int id)
         {
             try
