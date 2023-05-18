@@ -69,5 +69,39 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
             return Ok(new { Token = tokenToReturn, UserType = user.UserType, UserId = user.UserId });
         }
+
+        //[HttpPost("logout")]
+        //public IActionResult Logout()
+        //{
+        //    // Eliminar el token estableciendo una fecha de expiración anterior a la actual
+        //    var expirationDate = DateTime.UtcNow.AddMinutes(-1); // Establecer una fecha de expiración anterior a la actual
+
+        //    var tokenDescriptor = new JwtSecurityTokenDescriptor
+        //    {
+        //        // Otros parámetros del token (issuer, audience, claims, etc.)
+        //        NotBefore = DateTime.UtcNow, // La fecha a partir de la cual el token es válido
+        //        Expires = expirationDate // La fecha de expiración del token
+        //    };
+
+        //    var tokenHandler = new JwtSecurityTokenHandler();
+        //    var jwtSecurityToken = tokenHandler.CreateToken(tokenDescriptor);
+        //    var tokenToReturn = tokenHandler.WriteToken(jwtSecurityToken);
+
+        //    // Devolver una respuesta exitosa junto con el nuevo token que indica que el cierre de sesión fue exitoso
+        //    return Ok(new { Message = "Logout successful", Token = tokenToReturn });
+        //}
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            // Eliminar el token almacenado en el cliente
+            // Esto podría implicar borrar el token del almacenamiento local, cookies, etc.
+            // Aquí se proporciona un ejemplo utilizando el almacenamiento local (LocalStorage) en un navegador web
+            HttpContext.Response.Cookies.Delete("token");
+
+            // Devolver una respuesta exitosa (status code 200) o cualquier otra información relevante
+            return Ok(new { Message = "Logout successful" });
+        }
+
     }
 }
