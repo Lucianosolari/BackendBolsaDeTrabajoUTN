@@ -4,6 +4,7 @@ using BackendBolsaDeTrabajoUTN.Data.Repository;
 using BackendBolsaDeTrabajoUTN.Entities;
 using BackendBolsaDeTrabajoUTN.Models;
 using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
+using BackendBolsaDeTrabajoUTN.Data.Repository.Implementations;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -69,6 +70,21 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             //}
         }
 
+        [Authorize]
+        [HttpDelete]
+        [Route("deleteCompany/{id}")]
+        public IActionResult DeleteStudent(int id)
+        {
+            try
+            {
+                _companyRepository.RemoveCompany(id);
+                return Ok("Empresa borrada del sistema.");
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
 
 
         //[HttpGet]

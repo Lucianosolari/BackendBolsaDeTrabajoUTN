@@ -113,18 +113,18 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             OfferId = 1,
                             CompanyId = 2,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            OfferDescription = "Primera descripción",
-                            OfferSpecialty = "hola",
-                            OfferTitle = "Primera oferta"
+                            OfferDescription = "Conocimientos avanzados en SQL",
+                            OfferSpecialty = "SQL",
+                            OfferTitle = "Analista de datos"
                         },
                         new
                         {
                             OfferId = 2,
                             CompanyId = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            OfferDescription = "Segunda descripción",
-                            OfferSpecialty = "hola",
-                            OfferTitle = "Segunda oferta"
+                            OfferDescription = "Conocimientos avanzados en entorno .NET",
+                            OfferSpecialty = ".NET",
+                            OfferTitle = "Desarrollador Backend"
                         });
                 });
 
@@ -329,7 +329,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CompanyCUIT = "20447575",
                             CompanyLine = "Textil",
                             CompanyLocation = "Rosario",
-                            CompanyName = "SRL",
+                            CompanyName = "Microsoft",
                             CompanyPendingConfirmation = true,
                             CompanyPersonalJob = "Gerente",
                             CompanyPersonalName = "Juan Carlos",
@@ -350,7 +350,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CompanyCUIT = "20445556661",
                             CompanyLine = "Textil",
                             CompanyLocation = "Rosario",
-                            CompanyName = "SRL",
+                            CompanyName = "Apple",
                             CompanyPendingConfirmation = true,
                             CompanyPersonalJob = "Gerente",
                             CompanyPersonalName = "Juan Esteban",
