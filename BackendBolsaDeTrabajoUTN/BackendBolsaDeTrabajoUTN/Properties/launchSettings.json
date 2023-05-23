@@ -6,7 +6,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "SendGridApiKey": "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"
+        
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7069;http://localhost:5069"
