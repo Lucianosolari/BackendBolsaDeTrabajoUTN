@@ -69,7 +69,27 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     CUIL_CUIT = table.Column<int>(type: "INTEGER", nullable: true),
                     Birth = table.Column<DateTime>(type: "TEXT", nullable: true),
                     Sex = table.Column<string>(type: "TEXT", nullable: true),
-                    CivilStatus = table.Column<string>(type: "TEXT", nullable: true)
+                    CivilStatus = table.Column<string>(type: "TEXT", nullable: true),
+                    FamilyStreet = table.Column<string>(type: "TEXT", nullable: true),
+                    FamilyStreetNumber = table.Column<int>(type: "INTEGER", nullable: true),
+                    FamilyStreetLetter = table.Column<string>(type: "TEXT", nullable: true),
+                    FamilyFloor = table.Column<int>(type: "INTEGER", nullable: true),
+                    FamilyDepartment = table.Column<string>(type: "TEXT", nullable: true),
+                    FamilyCountry = table.Column<string>(type: "TEXT", nullable: true),
+                    FamilyProvince = table.Column<string>(type: "TEXT", nullable: true),
+                    FamilyLocation = table.Column<string>(type: "TEXT", nullable: true),
+                    FamilyPersonalPhone = table.Column<int>(type: "INTEGER", nullable: true),
+                    FamilyOtherPhone = table.Column<int>(type: "INTEGER", nullable: true),
+                    PersonalStreet = table.Column<string>(type: "TEXT", nullable: true),
+                    PersonalStreetNumber = table.Column<int>(type: "INTEGER", nullable: true),
+                    PersonalStreetLetter = table.Column<string>(type: "TEXT", nullable: true),
+                    PersonalFloor = table.Column<int>(type: "INTEGER", nullable: true),
+                    PersonalDepartment = table.Column<string>(type: "TEXT", nullable: true),
+                    PersonalCountry = table.Column<string>(type: "TEXT", nullable: true),
+                    PersonalProvince = table.Column<string>(type: "TEXT", nullable: true),
+                    PersonalLocation = table.Column<string>(type: "TEXT", nullable: true),
+                    PersonalPersonalPhone = table.Column<int>(type: "INTEGER", nullable: true),
+                    PersonalOtherPhone = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -213,18 +233,18 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AltEmail", "Birth", "CUIL_CUIT", "CivilStatus", "DocumentNumber", "DocumentType", "File", "Name", "Password", "Sex", "Surname", "UserEmail", "UserName", "UserType" },
-                values: new object[] { 3, "manuelAlt@gmail.com", new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 231332, "Casado", 44555666, "DNI", 12345, "Manuel", "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87", "Masculino", "Ibarbia", "manuel@gmail.com", "string", "Student" });
+                columns: new[] { "UserId", "AltEmail", "Birth", "CUIL_CUIT", "CivilStatus", "DocumentNumber", "DocumentType", "FamilyCountry", "FamilyDepartment", "FamilyFloor", "FamilyLocation", "FamilyOtherPhone", "FamilyPersonalPhone", "FamilyProvince", "FamilyStreet", "FamilyStreetLetter", "FamilyStreetNumber", "File", "Name", "Password", "PersonalCountry", "PersonalDepartment", "PersonalFloor", "PersonalLocation", "PersonalOtherPhone", "PersonalPersonalPhone", "PersonalProvince", "PersonalStreet", "PersonalStreetLetter", "PersonalStreetNumber", "Sex", "Surname", "UserEmail", "UserName", "UserType" },
+                values: new object[] { 3, "manuelAlt@gmail.com", new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 231332, "Casado", 44555666, "DNI", "Argentina", "4B", 2, "Ciudad Autónoma de Buenos Aires", 987654321, 123456789, "Buenos Aires", "Calle Principal", "A", 123, 12345, "Manuel", "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Masculino", "Ibarbia", "manuel@gmail.com", "string", "Student" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AltEmail", "Birth", "CUIL_CUIT", "CivilStatus", "DocumentNumber", "DocumentType", "File", "Name", "Password", "Sex", "Surname", "UserEmail", "UserName", "UserType" },
-                values: new object[] { 4, "lucianoAlt@gmail.com", new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", 33444555, "DNI", 12346, "Luciano", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Masculino", "Solari", "luciano@gmail.com", "lucianoS", "Student" });
+                columns: new[] { "UserId", "AltEmail", "Birth", "CUIL_CUIT", "CivilStatus", "DocumentNumber", "DocumentType", "FamilyCountry", "FamilyDepartment", "FamilyFloor", "FamilyLocation", "FamilyOtherPhone", "FamilyPersonalPhone", "FamilyProvince", "FamilyStreet", "FamilyStreetLetter", "FamilyStreetNumber", "File", "Name", "Password", "PersonalCountry", "PersonalDepartment", "PersonalFloor", "PersonalLocation", "PersonalOtherPhone", "PersonalPersonalPhone", "PersonalProvince", "PersonalStreet", "PersonalStreetLetter", "PersonalStreetNumber", "Sex", "Surname", "UserEmail", "UserName", "UserType" },
+                values: new object[] { 4, "lucianoAlt@gmail.com", new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", 33444555, "DNI", "Argentina", "5B", 22, "Rosario", 987654321, 123456789, "Santa Fe", "Calle asdasd", "AA", 12, 12346, "Luciano", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Masculino", "Solari", "luciano@gmail.com", "lucianoS", "Student" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AltEmail", "Birth", "CUIL_CUIT", "CivilStatus", "DocumentNumber", "DocumentType", "File", "Name", "Password", "Sex", "Surname", "UserEmail", "UserName", "UserType" },
-                values: new object[] { 5, "santiagoAlt@gmail.com", new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", 55666777, "DNI", 12347, "Santiago", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Masculino", "Caso", "santiago@gmail.com", "santiagoC", "Student" });
+                columns: new[] { "UserId", "AltEmail", "Birth", "CUIL_CUIT", "CivilStatus", "DocumentNumber", "DocumentType", "FamilyCountry", "FamilyDepartment", "FamilyFloor", "FamilyLocation", "FamilyOtherPhone", "FamilyPersonalPhone", "FamilyProvince", "FamilyStreet", "FamilyStreetLetter", "FamilyStreetNumber", "File", "Name", "Password", "PersonalCountry", "PersonalDepartment", "PersonalFloor", "PersonalLocation", "PersonalOtherPhone", "PersonalPersonalPhone", "PersonalProvince", "PersonalStreet", "PersonalStreetLetter", "PersonalStreetNumber", "Sex", "Surname", "UserEmail", "UserName", "UserType" },
+                values: new object[] { 5, "santiagoAlt@gmail.com", new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", 55666777, "DNI", "Argentina", "5B", 22, "Rosario", 987654321, 123456789, "Santa Fe", "Calle asdasd", "AA", 12, 12347, "Santiago", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Masculino", "Caso", "santiago@gmail.com", "santiagoC", "Student" });
 
             migrationBuilder.InsertData(
                 table: "Offers",

@@ -388,12 +388,84 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("FamilyCountry")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FamilyDepartment")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("FamilyFloor")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FamilyLocation")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("FamilyOtherPhone")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("FamilyPersonalPhone")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("FamilyProvince")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FamilyStreet")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FamilyStreetLetter")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("FamilyStreetNumber")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("File")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<string>("PersonalCountry")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PersonalDepartment")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PersonalFloor")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PersonalLocation")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PersonalOtherPhone")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PersonalPersonalPhone")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PersonalProvince")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PersonalStreet")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PersonalStreetLetter")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("PersonalStreetNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Sex")
                         .IsRequired()
@@ -418,8 +490,28 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CivilStatus = "Casado",
                             DocumentNumber = 44555666,
                             DocumentType = "DNI",
+                            FamilyCountry = "Argentina",
+                            FamilyDepartment = "4B",
+                            FamilyFloor = 2,
+                            FamilyLocation = "Ciudad Autónoma de Buenos Aires",
+                            FamilyOtherPhone = 987654321,
+                            FamilyPersonalPhone = 123456789,
+                            FamilyProvince = "Buenos Aires",
+                            FamilyStreet = "Calle Principal",
+                            FamilyStreetLetter = "A",
+                            FamilyStreetNumber = 123,
                             File = 12345,
                             Name = "Manuel",
+                            PersonalCountry = "Argentina",
+                            PersonalDepartment = "Depto. 2",
+                            PersonalFloor = 1,
+                            PersonalLocation = "Córdoba Capital",
+                            PersonalOtherPhone = 123456789,
+                            PersonalPersonalPhone = 987654321,
+                            PersonalProvince = "Córdoba",
+                            PersonalStreet = "Avenida Principal",
+                            PersonalStreetLetter = "B",
+                            PersonalStreetNumber = 456,
                             Sex = "Masculino",
                             Surname = "Ibarbia"
                         },
@@ -435,8 +527,28 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CivilStatus = "Soltero",
                             DocumentNumber = 33444555,
                             DocumentType = "DNI",
+                            FamilyCountry = "Argentina",
+                            FamilyDepartment = "5B",
+                            FamilyFloor = 22,
+                            FamilyLocation = "Rosario",
+                            FamilyOtherPhone = 987654321,
+                            FamilyPersonalPhone = 123456789,
+                            FamilyProvince = "Santa Fe",
+                            FamilyStreet = "Calle asdasd",
+                            FamilyStreetLetter = "AA",
+                            FamilyStreetNumber = 12,
                             File = 12346,
                             Name = "Luciano",
+                            PersonalCountry = "Argentina",
+                            PersonalDepartment = "Depto. 2",
+                            PersonalFloor = 1,
+                            PersonalLocation = "Córdoba Capital",
+                            PersonalOtherPhone = 123456789,
+                            PersonalPersonalPhone = 987654321,
+                            PersonalProvince = "Córdoba",
+                            PersonalStreet = "Avenida Principal",
+                            PersonalStreetLetter = "B",
+                            PersonalStreetNumber = 456,
                             Sex = "Masculino",
                             Surname = "Solari"
                         },
@@ -452,8 +564,28 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CivilStatus = "Soltero",
                             DocumentNumber = 55666777,
                             DocumentType = "DNI",
+                            FamilyCountry = "Argentina",
+                            FamilyDepartment = "5B",
+                            FamilyFloor = 22,
+                            FamilyLocation = "Rosario",
+                            FamilyOtherPhone = 987654321,
+                            FamilyPersonalPhone = 123456789,
+                            FamilyProvince = "Santa Fe",
+                            FamilyStreet = "Calle asdasd",
+                            FamilyStreetLetter = "AA",
+                            FamilyStreetNumber = 12,
                             File = 12347,
                             Name = "Santiago",
+                            PersonalCountry = "Argentina",
+                            PersonalDepartment = "Depto. 2",
+                            PersonalFloor = 1,
+                            PersonalLocation = "Córdoba Capital",
+                            PersonalOtherPhone = 123456789,
+                            PersonalPersonalPhone = 987654321,
+                            PersonalProvince = "Córdoba",
+                            PersonalStreet = "Avenida Principal",
+                            PersonalStreetLetter = "B",
+                            PersonalStreetNumber = 456,
                             Sex = "Masculino",
                             Surname = "Caso"
                         });
