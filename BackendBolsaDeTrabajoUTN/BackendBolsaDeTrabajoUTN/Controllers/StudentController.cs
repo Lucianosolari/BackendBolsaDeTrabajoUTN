@@ -35,13 +35,13 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
                 try
                 {
-                List<Student> students = _studentRepository.GetStudents();
-                ValidateDNI(students, request.DocumentNumber);
-                ValidateFile(students, request.File);
-                ValidateUserName(students, request.UserName);
+                    List<Student> students = _studentRepository.GetStudents();
+                    ValidateDNI(students, request.DocumentNumber);
+                    ValidateFile(students, request.File);
+                    ValidateUserName(students, request.UserName);
 
-                Student newStudent = new()
-                {
+                    Student newStudent = new()
+                    {
                         UserName = request.UserName,
                         Password = request.Password,                       
                         File = request.File,
@@ -55,14 +55,12 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         Birth = request.Birth,
                         Sex = request.Sex,
                         CivilStatus = request.CivilStatus,
-                       
                     };
                     StudentResponse response = new()
                     {
                         File = newStudent.File,
                         Name = newStudent.Name,
                         Surname = newStudent.Surname,
-
                     };
                     _studentRepository.CreateStudent(newStudent);
                     return Created("Estudiante creado", response);
@@ -72,6 +70,21 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                     return BadRequest(ex.Message);
                 }
            
+        }
+
+        [HttpPut]
+        [Route("addStudentAdressInfo")]
+        public IActionResult addStudentAdressInfo(int id, AddStudentAdressInfroRequest newStudentAdressInfo)
+        {
+            try
+            {
+                _studentRepository.AddStudentAdressInfo(id, newStudentAdressInfo);
+                return Ok("Domicilios modificados");
+            }
+            catch(Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
 
 

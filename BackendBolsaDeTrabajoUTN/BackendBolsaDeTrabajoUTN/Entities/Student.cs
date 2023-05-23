@@ -33,30 +33,31 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public string Sex { get; set; } //Ver tabla aparte (se repite la palabra)
         public string CivilStatus { get; set; } // Ver tabla aparte (se repite la palabra)
 
-        //public int File { get; set; }
-
         //// Domicilio familiar
 
-        //public string Street { get; set; }
-        //public int StreetNumber { get; set; }
-
-        //public string StreetLetter { get; set; }
-
-        //public int Floor { get; set; }
-
-        //public string Department { get; set; }
-
-        //public string Country { get; set; }
-
-        //public string Province { get; set; }
-
-        //public string Location { get; set; }
-
-        //public int PersonalPhone { get; set; }
-
-        //public int OtherPhone { get; set; }
+        public string FamilyStreet { get; set; }
+        public int FamilyStreetNumber { get; set; }
+        public string FamilyStreetLetter { get; set; }
+        public int FamilyFloor { get; set; }
+        public string FamilyDepartment { get; set; }
+        public string FamilyCountry { get; set; }
+        public string FamilyProvince { get; set; }
+        public string FamilyLocation { get; set; }
+        public int FamilyPersonalPhone { get; set; }
+        public int FamilyOtherPhone { get; set; }
 
         ////Domicilio Personal  ?
+
+        public string PersonalStreet { get; set; }
+        public int PersonalStreetNumber { get; set; }
+        public string PersonalStreetLetter { get; set; }
+        public int PersonalFloor { get; set; }
+        public string PersonalDepartment { get; set; }
+        public string PersonalCountry { get; set; }
+        public string PersonalProvince { get; set; }
+        public string PersonalLocation { get; set; }
+        public int PersonalPersonalPhone { get; set; }
+        public int PersonalOtherPhone { get; set; }
 
 
         //// Datos universitarios? Va aca?

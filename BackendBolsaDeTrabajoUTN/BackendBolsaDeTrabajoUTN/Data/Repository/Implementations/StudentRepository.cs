@@ -36,6 +36,42 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
         }
 
+        public void AddStudentAdressInfo(int id, AddStudentAdressInfroRequest newStudentAdressInfo)
+        {
+            try
+            {
+                // domicilio familiar
+                _context.Students.First(s => s.UserId == id).FamilyStreet = newStudentAdressInfo.FamilyStreet;
+                _context.Students.First(s => s.UserId == id).FamilyStreetNumber = newStudentAdressInfo.FamilyStreetNumber;
+                _context.Students.First(s => s.UserId == id).FamilyStreetLetter = newStudentAdressInfo.FamilyStreetLetter;
+                _context.Students.First(s => s.UserId == id).FamilyFloor = newStudentAdressInfo.FamilyFloor;
+                _context.Students.First(s => s.UserId == id).FamilyDepartment = newStudentAdressInfo.FamilyDepartment;
+                _context.Students.First(s => s.UserId == id).FamilyCountry = newStudentAdressInfo.FamilyCountry;
+                _context.Students.First(s => s.UserId == id).FamilyProvince = newStudentAdressInfo.FamilyProvince;
+                _context.Students.First(s => s.UserId == id).FamilyLocation = newStudentAdressInfo.FamilyLocation;
+                _context.Students.First(s => s.UserId == id).FamilyPersonalPhone = newStudentAdressInfo.FamilyPersonalPhone;
+                _context.Students.First(s => s.UserId == id).FamilyOtherPhone = newStudentAdressInfo.FamilyOtherPhone;
+
+                // domicilio personal
+                _context.Students.First(s => s.UserId == id).PersonalStreet = newStudentAdressInfo.PersonalStreet;
+                _context.Students.First(s => s.UserId == id).PersonalStreetNumber = newStudentAdressInfo.PersonalStreetNumber;
+                _context.Students.First(s => s.UserId == id).PersonalStreetLetter = newStudentAdressInfo.PersonalStreetLetter;
+                _context.Students.First(s => s.UserId == id).PersonalFloor = newStudentAdressInfo.PersonalFloor;
+                _context.Students.First(s => s.UserId == id).PersonalDepartment = newStudentAdressInfo.PersonalDepartment;
+                _context.Students.First(s => s.UserId == id).PersonalCountry = newStudentAdressInfo.PersonalCountry;
+                _context.Students.First(s => s.UserId == id).PersonalProvince = newStudentAdressInfo.PersonalProvince;
+                _context.Students.First(s => s.UserId == id).PersonalLocation = newStudentAdressInfo.PersonalLocation;
+                _context.Students.First(s => s.UserId == id).PersonalPersonalPhone = newStudentAdressInfo.PersonalPersonalPhone;
+                _context.Students.First(s => s.UserId == id).PersonalOtherPhone = newStudentAdressInfo.PersonalOtherPhone;
+
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Estudiante no encontrado o parámetros no válidos");
+            }
+        }
+
         public void RemoveStudent(int id)
         {
             try

@@ -162,6 +162,28 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 Birth = new DateTime(1995, 5, 12),
                 Sex = "Masculino",
                 CivilStatus = "Casado",
+
+                FamilyStreet = "Calle Principal",
+                FamilyStreetNumber = 123,
+                FamilyStreetLetter = "A",
+                FamilyFloor = 2,
+                FamilyDepartment= "4B",
+                FamilyCountry = "Argentina",
+                FamilyProvince= "Buenos Aires",
+                FamilyLocation= "Ciudad Autónoma de Buenos Aires",
+                FamilyPersonalPhone= 123456789,
+                FamilyOtherPhone = 987654321,
+
+                PersonalStreet= "Avenida Principal",
+                PersonalStreetNumber = 456,
+                PersonalStreetLetter= "B",
+                PersonalFloor = 1,
+                PersonalDepartment = "Depto. 2",
+                PersonalCountry= "Argentina",
+                PersonalProvince = "Córdoba",
+                PersonalLocation = "Córdoba Capital",
+                PersonalPersonalPhone= 987654321,
+                PersonalOtherPhone = 123456789,
             };
 
             Student student2 = new Student()
@@ -180,6 +202,28 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 Birth = new DateTime(1800, 5, 12),
                 Sex = "Masculino",
                 CivilStatus = "Soltero",
+
+                FamilyStreet = "Calle asdasd",
+                FamilyStreetNumber = 12,
+                FamilyStreetLetter = "AA",
+                FamilyFloor = 22,
+                FamilyDepartment = "5B",
+                FamilyCountry = "Argentina",
+                FamilyProvince = "Santa Fe",
+                FamilyLocation = "Rosario",
+                FamilyPersonalPhone = 123456789,
+                FamilyOtherPhone = 987654321,
+
+                PersonalStreet = "Avenida Principal",
+                PersonalStreetNumber = 456,
+                PersonalStreetLetter = "B",
+                PersonalFloor = 1,
+                PersonalDepartment = "Depto. 2",
+                PersonalCountry = "Argentina",
+                PersonalProvince = "Córdoba",
+                PersonalLocation = "Córdoba Capital",
+                PersonalPersonalPhone = 987654321,
+                PersonalOtherPhone = 123456789,
             };
 
             Student student3 = new Student()
@@ -198,6 +242,28 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 Birth = new DateTime(2005, 5, 12),
                 Sex = "Masculino",
                 CivilStatus = "Soltero",
+                FamilyStreet = "Calle asdasd",
+                FamilyStreetNumber = 12,
+                FamilyStreetLetter = "AA",
+                FamilyFloor = 22,
+                FamilyDepartment = "5B",
+                FamilyCountry = "Argentina",
+                FamilyProvince = "Santa Fe",
+                FamilyLocation = "Rosario",
+                FamilyPersonalPhone = 123456789,
+                FamilyOtherPhone = 987654321,
+
+                PersonalStreet = "Avenida Principal",
+                PersonalStreetNumber = 456,
+                PersonalStreetLetter = "B",
+                PersonalFloor = 1,
+                PersonalDepartment = "Depto. 2",
+                PersonalCountry = "Argentina",
+                PersonalProvince = "Córdoba",
+                PersonalLocation = "Córdoba Capital",
+                PersonalPersonalPhone = 987654321,
+                PersonalOtherPhone = 123456789,
+
             };
 
 
