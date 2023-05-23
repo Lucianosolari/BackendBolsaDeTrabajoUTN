@@ -71,6 +71,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
             var client = new SendGridClient(apiKey);
 
+
             var from = new EmailAddress("luciano3924@gmail.com", "Bolsa de Trabajo");
             var to = new EmailAddress(destinatario);
             var msg = MailHelper.CreateSingleEmail(from, to, asunto, contenido, contenido);
