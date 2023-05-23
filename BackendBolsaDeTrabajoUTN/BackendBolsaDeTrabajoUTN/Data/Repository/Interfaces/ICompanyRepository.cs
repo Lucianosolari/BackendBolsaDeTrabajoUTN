@@ -7,6 +7,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
     public interface ICompanyRepository
     {
         public void CreateCompany(Company newCompany);
+        public void RemoveCompany(int id);
         //public Company? GetSingleMeet(int id);
         //public List<Company> GetMeets();
         //public void AddMeet(Company newMeet);

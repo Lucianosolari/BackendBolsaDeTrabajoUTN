@@ -29,7 +29,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 UserId = 1,
                 UserName = "Company 1",
                 UserEmail = "mail1@gmai.com",
-                CompanyName = "SRL",
+                CompanyName = "Microsoft",
                 CompanyCUIT = "20447575",
                 CompanyLine = "Textil",
                 CompanyAddress = "D 15",
@@ -52,7 +52,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 UserId = 2,
                 UserName = "Company 2",
                 UserEmail = "mail2@gmai.com",
-                CompanyName = "SRL",
+                CompanyName = "Apple",
                 CompanyCUIT = "20445556661",
                 CompanyLine = "Textil",
                 CompanyAddress = "E 18",
@@ -78,18 +78,18 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             Offer offer1 = new Offer()
             {
                 OfferId = 1,
-                OfferTitle = "Primera oferta",
-                OfferDescription = "Primera descripción",
-                OfferSpecialty = "hola",
+                OfferTitle = "Analista de datos",
+                OfferDescription = "Conocimientos avanzados en SQL",
+                OfferSpecialty = "SQL",
                 CompanyId = 2,
             };
 
             Offer offer2 = new Offer()
             {
                 OfferId = 2,
-                OfferTitle = "Segunda oferta",
-                OfferDescription = "Segunda descripción",
-                OfferSpecialty = "hola",
+                OfferTitle = "Desarrollador Backend",
+                OfferDescription = "Conocimientos avanzados en entorno .NET",
+                OfferSpecialty = ".NET",
                 CompanyId = 1,
             };
 

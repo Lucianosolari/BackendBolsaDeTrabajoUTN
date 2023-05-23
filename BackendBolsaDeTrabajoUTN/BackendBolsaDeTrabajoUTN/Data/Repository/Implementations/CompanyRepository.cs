@@ -28,6 +28,19 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
                 throw new Exception("el error es" + ex);
             }
         }
+
+        public void RemoveCompany(int id)
+        {
+            try
+            {
+                _context.Companies.Remove(_context.Companies.First(x => x.UserId == id));
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Empresa no encontrada");
+            }
+        }
         //public Company? GetSingleMeet(int id)
         //{
         //    try

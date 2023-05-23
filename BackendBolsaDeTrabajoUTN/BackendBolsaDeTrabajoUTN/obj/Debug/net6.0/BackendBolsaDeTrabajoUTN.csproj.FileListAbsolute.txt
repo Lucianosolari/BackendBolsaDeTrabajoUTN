@@ -255,3 +255,5 @@ C:\Users\Luciano\Desktop\PROYECTO bak\BackendBolsaDeTrabajoUTN\BackendBolsaDeTra
 C:\Users\Luciano\Desktop\PROYECTO bak\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\obj\Debug\net6.0\BackendBolsaDeTrabajoUTN.pdb
 C:\Users\Luciano\Desktop\PROYECTO bak\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\obj\Debug\net6.0\BackendBolsaDeTrabajoUTN.genruntimeconfig.cache
 C:\Users\Luciano\Desktop\PROYECTO bak\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\obj\Debug\net6.0\ref\BackendBolsaDeTrabajoUTN.dll
+C:\Users\Luciano\Desktop\PROYECTO bak\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\bin\Debug\net6.0\DotNetEnv.dll
+C:\Users\Luciano\Desktop\PROYECTO bak\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\bin\Debug\net6.0\Sprache.dll

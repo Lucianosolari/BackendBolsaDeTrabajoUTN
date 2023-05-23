@@ -2,9 +2,12 @@
 using BackendBolsaDeTrabajoUTN.Models;
 using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 using System.Text;
+using System.Configuration;
 using BackendBolsaDeTrabajoUTN.DBContexts;
 using SendGrid.Helpers.Mail;
 using SendGrid;
+using DotNetEnv;
+
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -62,8 +65,12 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
         private void EnviarCorreoElectronico(string destinatario, string asunto, string contenido)
         {
-            string apiKey = "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"; // Reemplaza con tu API Key de SendGrid
+            Env.Load(); // Cargar variables de entorno desde el archivo .env
+
+            string apiKey = Env.GetString("API_KEY");
+
             var client = new SendGridClient(apiKey);
+
 
             var from = new EmailAddress("luciano3924@gmail.com", "Bolsa de Trabajo");
             var to = new EmailAddress(destinatario);
@@ -71,7 +78,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             try
             {
                 var response = client.SendEmailAsync(msg).GetAwaiter().GetResult();
-                // Aquí puedes manejar la respuesta del envío del correo electrónico si es necesario
+                
             }
             catch (Exception ex)
             {
