@@ -41,7 +41,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             user.Password = newPassword; // Actualiza la contraseña del usuario en la base de datos
             _context.SaveChanges(); // Guarda los cambios en la base de datos
             
-            EnviarCorreoElectronico(user.UserEmail, "Recuperación de contraseña", $"Tu nueva contraseña es: {newPassword}");
+            EnviarCorreoElectronico(user.UserEmail, "Recuperación de contraseña", $"Hola {user.UserName}. Tu nueva contraseña es: {newPassword}");
 
             return Ok("Cambio correcto"); // Opcionalmente, puedes devolver la nueva contraseña generada como respuesta
         }
