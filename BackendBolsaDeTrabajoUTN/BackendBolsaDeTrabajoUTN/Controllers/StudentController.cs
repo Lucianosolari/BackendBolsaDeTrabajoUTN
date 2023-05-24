@@ -6,7 +6,7 @@ using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 using BackendBolsaDeTrabajoUTN.Entities;
 using BackendBolsaDeTrabajoUTN.Models;
 using System.Security.AccessControl;
-
+using System.Security.Claims;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -72,20 +72,24 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
            
         }
 
+        [Authorize]
         [HttpPut]
         [Route("addStudentAdressInfo")]
-        public IActionResult addStudentAdressInfo(int id, AddStudentAdressInfroRequest newStudentAdressInfo)
+        public IActionResult addStudentAdressInfo(AddStudentAdressInfroRequest newStudentAdressInfo)
         {
             try
             {
+                int id = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
                 _studentRepository.AddStudentAdressInfo(id, newStudentAdressInfo);
-                return Ok("Domicilios modificados");
+                return Ok(new { message = "Domicilios modificados" });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Problem(ex.Message);
             }
         }
+
+
 
 
         [Authorize]
