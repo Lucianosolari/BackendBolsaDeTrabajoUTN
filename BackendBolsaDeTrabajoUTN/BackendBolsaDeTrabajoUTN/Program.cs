@@ -36,7 +36,7 @@ builder.Services.AddSwaggerGen(setupAction =>
     });
 });
 
-builder.Services.AddDbContext<TPContext>(dbContextOptions => dbContextOptions.UseSqlite(
+builder.Services.AddDbContext<TPContext>(dbContextOptions => dbContextOptions.UseSqlServer(
     builder.Configuration["ConnectionStrings:BackendBolsaDeTrabajoUTNDBConnectionString"]));
 
 builder.Services.AddAuthentication("Bearer") //"Bearer" es el tipo de auntenticación que tenemos que elegir después en PostMan para pasarle el token
