@@ -319,27 +319,28 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                     }
                 );
 
-
-                modelBuilder.Entity<Student>()
-          .HasMany(s => s.Offers)
-          .WithMany(o => o.Students)
-          .UsingEntity<StudentOffer>(
-              j => j
-                  .HasOne(so => so.Offer)
-                  .WithMany(o => o.StudentOffers)
-                  .HasForeignKey(so => so.OfferId),
-              j => j
-                  .HasOne(so => so.Student)
-                  .WithMany(s => s.StudentOffers)
-                  .HasForeignKey(so => so.StudentId),
-              j =>
-              {
-                  j.ToTable("StudentOffer");
-                  j.HasData(
-                      new StudentOffer { OfferId = 1, StudentId = 4 },
-                      new StudentOffer { OfferId = 2, StudentId = 5 }
-                  );
-              });
+            modelBuilder.Entity<Student>()
+                .HasMany(s => s.Offers)
+                .WithMany(o => o.Students)
+                .UsingEntity<StudentOffer>(
+                    j => j
+                        .HasOne(so => so.Offer)
+                        .WithMany(o => o.StudentOffers)
+                        .HasForeignKey(so => so.OfferId)
+                        .OnDelete(DeleteBehavior.NoAction), // Desactivar eliminación en cascada para OfferId
+                    j => j
+                        .HasOne(so => so.Student)
+                        .WithMany(s => s.StudentOffers)
+                        .HasForeignKey(so => so.StudentId)
+                        .OnDelete(DeleteBehavior.NoAction), // Desactivar eliminación en cascada para StudentId
+                    j =>
+                    {
+                        j.ToTable("StudentOffer");
+                        j.HasData(
+                            new StudentOffer { OfferId = 1, StudentId = 4 },
+                            new StudentOffer { OfferId = 2, StudentId = 5 }
+                        );
+                    });
 
 
             base.OnModelCreating(modelBuilder);
