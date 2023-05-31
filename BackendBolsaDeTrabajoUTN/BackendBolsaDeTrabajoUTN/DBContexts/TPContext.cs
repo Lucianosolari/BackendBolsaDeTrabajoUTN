@@ -96,16 +96,24 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             modelBuilder.Entity<Offer>().HasData(
                 offer1, offer2);
 
-           
+
 
             Career career1 = new Career()
             {
                 CareerId = 1,
+                CareerName = "Tecnicatura Universitaria en Programación",
+                CareerAbbreviation = "TUP",
+                CareerType = "Programación",
+                CareerTotalSubjects = 20
             };
 
             Career career2 = new Career()
             {
                 CareerId = 2,
+                CareerName = "Tecnicatura Universitaria en Higiene y Seguridad",
+                CareerAbbreviation = "TUHS",
+                CareerType = "Seguridad",
+                CareerTotalSubjects = 15
             };
 
 

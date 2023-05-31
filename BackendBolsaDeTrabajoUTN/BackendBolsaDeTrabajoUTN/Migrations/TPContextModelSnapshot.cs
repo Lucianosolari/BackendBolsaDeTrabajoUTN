@@ -30,6 +30,21 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CareerId"), 1L, 1);
 
+                    b.Property<string>("CareerAbbreviation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CareerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CareerTotalSubjects")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CareerType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("CareerId");
 
                     b.ToTable("Careers");
@@ -37,11 +52,19 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.HasData(
                         new
                         {
-                            CareerId = 1
+                            CareerId = 1,
+                            CareerAbbreviation = "TUP",
+                            CareerName = "Tecnicatura Universitaria en Programación",
+                            CareerTotalSubjects = 20,
+                            CareerType = "Programación"
                         },
                         new
                         {
-                            CareerId = 2
+                            CareerId = 2,
+                            CareerAbbreviation = "TUHS",
+                            CareerName = "Tecnicatura Universitaria en Higiene y Seguridad",
+                            CareerTotalSubjects = 15,
+                            CareerType = "Seguridad"
                         });
                 });
 

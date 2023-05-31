@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
-    public partial class Prueba : Migration
+    public partial class migracion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,11 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: table => new
                 {
                     CareerId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CareerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CareerAbbreviation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CareerType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CareerTotalSubjects = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -191,11 +195,11 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
 
             migrationBuilder.InsertData(
                 table: "Careers",
-                column: "CareerId",
-                values: new object[]
+                columns: new[] { "CareerId", "CareerAbbreviation", "CareerName", "CareerTotalSubjects", "CareerType" },
+                values: new object[,]
                 {
-                    1,
-                    2
+                    { 1, "TUP", "Tecnicatura Universitaria en Programación", 20, "Programación" },
+                    { 2, "TUHS", "Tecnicatura Universitaria en Higiene y Seguridad", 15, "Seguridad" }
                 });
 
             migrationBuilder.InsertData(
