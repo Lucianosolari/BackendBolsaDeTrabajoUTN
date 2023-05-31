@@ -72,6 +72,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
            
         }
 
+<<<<<<< HEAD
         [Authorize]
         [HttpPut]
         [Route("addStudentAdressInfo")]
@@ -84,13 +85,28 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 return Ok(new { message = "Domicilios modificados" });
             }
             catch (Exception ex)
+=======
+        [HttpPut]
+        [Route("addStudentAdressInfo")]
+        public IActionResult addStudentAdressInfo(int id, AddStudentAdressInfroRequest newStudentAdressInfo)
+        {
+            try
+            {
+                _studentRepository.AddStudentAdressInfo(id, newStudentAdressInfo);
+                return Ok("Domicilios modificados");
+            }
+            catch(Exception ex)
+>>>>>>> 643f8ac5f1e56255caeb51242799cac74f45eb95
             {
                 return Problem(ex.Message);
             }
         }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 643f8ac5f1e56255caeb51242799cac74f45eb95
 
         [Authorize]
         [HttpPost("{offerId}/Students/{studentId}")]
