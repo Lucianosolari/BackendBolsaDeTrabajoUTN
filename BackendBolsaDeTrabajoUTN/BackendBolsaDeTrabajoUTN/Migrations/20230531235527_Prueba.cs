@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
-    public partial class migracion : Migration
+    public partial class Prueba : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
