@@ -29,5 +29,20 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
                 throw new Exception("el error es" + ex);
             }
         }
+
+        public void CreateKnowledge(Knowledge newKnowledge)
+        {
+            try
+            {
+                _context.Knowledges.Add(newKnowledge);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+
+                throw new Exception("el error es" + ex);
+            }
+        }
     }
 }
