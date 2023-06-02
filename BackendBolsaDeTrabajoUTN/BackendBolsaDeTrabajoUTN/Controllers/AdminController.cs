@@ -19,11 +19,15 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             _adminRepository = adminRepository;
         }
 
+        [Authorize]
         [HttpPost]
         [Route("createCareer")]
         public IActionResult CreateCareer(AddCareerRequest request)
         {
-            try
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Admin")
+            { 
+                try
             {
                 Career newCareer = new()
                 {
@@ -45,6 +49,43 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
+            }
+            }
+            else
+            {
+                return BadRequest("El usuario no esta autorizado para crear Carreras");
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("createKnowledge")]
+        public IActionResult CreateKnowledge(AddKnowledgeRequest request) 
+        {
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Admin")
+            {
+                try
+            {
+                Knowledge newKnowledge = new()
+                {
+
+                    Type = request.Type,
+                    Level = request.Level,
+                    
+                };
+                
+                _adminRepository.CreateKnowledge(newKnowledge);
+                return Ok("Conocimiento creado");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            }
+            else
+            {
+                return BadRequest("El usuario no esta autorizado para crear Conocimientos");
             }
         }
     }

@@ -6,5 +6,6 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
     public interface IAdminRepository
     {
         public void CreateCareer(Career newCareer);
+        public void CreateKnowledge(Knowledge newKnowledge);
     }
 }
