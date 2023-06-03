@@ -1,9 +1,6 @@
 ﻿using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 using BackendBolsaDeTrabajoUTN.DBContexts;
 using BackendBolsaDeTrabajoUTN.Entities;
-using BackendBolsaDeTrabajoUTN.Helpers;
-using BackendBolsaDeTrabajoUTN.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
 {
@@ -42,6 +39,31 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
 
 
                 throw new Exception("el error es" + ex);
+            }
+        }
+
+        public void DeleteCareer(int id)
+        {
+            try
+            {
+                _context.Careers.Remove(_context.Careers.First(x => x.CareerId == id));
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Carrera no encontrada");
+            }
+        }
+        public void DeleteKnowledge(int id)
+        {
+            try
+            {
+                _context.Knowledges.Remove(_context.Knowledges.First(x => x.KnowledgeId == id));
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Conocimiento no encontrado");
             }
         }
     }

@@ -88,5 +88,53 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 return BadRequest("El usuario no esta autorizado para crear Conocimientos");
             }
         }
+
+        [Authorize]
+        [HttpDelete]
+        [Route("deleteCareer")]
+        public IActionResult DeleteCareer(int id)
+        {
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Admin")
+            {
+                try
+            {
+                _adminRepository.DeleteCareer(id);
+                return Ok("Carrera borrada");
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+            }
+            else
+            {
+                return BadRequest("El usuario no esta autorizado para borrar carreras");
+            }
+        }
+
+        [Authorize]
+        [HttpDelete]
+        [Route("deleteKnowledge")]
+        public IActionResult DeleteKnowledge(int id)
+        {
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Admin")
+            {
+                try
+                {
+                    _adminRepository.DeleteKnowledge(id);
+                    return Ok("Conocimiento borrado");
+                }
+                catch (Exception ex)
+                {
+                    return Problem(ex.Message);
+                }
+            }
+            else
+            {
+                return BadRequest("El usuario no esta autorizado para borrar carreras");
+            }
+        }
     }
 }
