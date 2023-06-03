@@ -86,6 +86,46 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
         }
 
+        [Authorize]
+        [HttpPost]
+        [Route("createOffer")]
+        public IActionResult CreateOffer(AddOfferRequest request)
+        {
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Company")
+            {
+                try
+                {
+                    Offer newOffer = new()
+                    {
+                        OfferTitle = request.OfferTitle,
+                        OfferSpecialty = request.OfferSpecialty,
+                        OfferDescription = request.OfferDescription,
+                        CreatedDate = request.CreatedDate,
+                        CompanyId = request.CompanyId,
+                    };
+                    OfferResponse response = new()
+                    {
+                        OfferTitle = newOffer.OfferTitle,
+                        OfferSpecialty = newOffer.OfferSpecialty,
+                        OfferDescription = newOffer.OfferDescription,
+                        CreatedDate = newOffer.CreatedDate,
+
+                    };
+                    _companyRepository.CreateOffer(newOffer);
+                    return Created("Oferta creada", response);
+                }
+                catch (Exception ex)
+                {
+                    return Problem(ex.Message);
+                }
+            }
+            else
+            {
+                return BadRequest("El usuario no esta autorizado para crear ofertas");
+            }
+        }
+
         //[Authorize]
         //[HttpPost]
         //[Route("createOffer")]

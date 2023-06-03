@@ -41,6 +41,21 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
                 throw new Exception("Empresa no encontrada");
             }
         }
+
+        public void CreateOffer(Offer newOffer)
+        {
+            try
+            {
+                _context.Offers.Add(newOffer);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+
+                throw new Exception("el error es" + ex);
+            }
+        }
         //public Company? GetSingleMeet(int id)
         //{
         //    try

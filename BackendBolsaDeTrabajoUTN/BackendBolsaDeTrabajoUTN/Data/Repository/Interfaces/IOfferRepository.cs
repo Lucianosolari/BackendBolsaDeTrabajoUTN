@@ -17,7 +17,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
         //public string GetTrialMeetName(int id);
         //public List<Meet> GetSingleMeet(int id);
 
-        public void CreateOffer(Offer newOffer);
+        
         public ActionResult<IEnumerable<Offer>> GetOffersByCompany(int companyId);
         public ActionResult<IEnumerable<Offer>> GetOffers();
     }
