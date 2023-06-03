@@ -9,5 +9,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
         public void CreateKnowledge(Knowledge newKnowledge);
         public void DeleteCareer(int id);
         public void DeleteKnowledge(int id);
+        public void DeleteUser(int id);
+        public void DeleteOffer(int id);
     }
 }

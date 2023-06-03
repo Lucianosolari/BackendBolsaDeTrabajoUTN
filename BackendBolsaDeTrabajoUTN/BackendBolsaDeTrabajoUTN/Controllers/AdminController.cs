@@ -136,5 +136,53 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 return BadRequest("El usuario no esta autorizado para borrar carreras");
             }
         }
+
+        [Authorize]
+        [HttpDelete]
+        [Route("deleteUser")]
+        public IActionResult DeleteUser(int id)
+        {
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Admin")
+            {
+                try
+                {
+                    _adminRepository.DeleteUser(id);
+                    return Ok("Usuario borrado");
+                }
+                catch (Exception ex)
+                {
+                    return Problem(ex.Message);
+                }
+            }
+            else
+            {
+                return BadRequest("El usuario no esta autorizado para borrar usuarios");
+            }
+        }
+
+        [Authorize]
+        [HttpDelete]
+        [Route("deleteOffer")]
+        public IActionResult DeleteOffer(int id)
+        {
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Admin")
+            {
+                try
+                {
+                    _adminRepository.DeleteOffer(id);
+                    return Ok("Oferta borrado");
+                }
+                catch (Exception ex)
+                {
+                    return Problem(ex.Message);
+                }
+            }
+            else
+            {
+                return BadRequest("El usuario no esta autorizado para borrar Ofertas");
+            }
+        }
     }
 }
