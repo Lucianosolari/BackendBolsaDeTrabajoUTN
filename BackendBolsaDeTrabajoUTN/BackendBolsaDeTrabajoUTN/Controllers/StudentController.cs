@@ -7,6 +7,8 @@ using BackendBolsaDeTrabajoUTN.Entities;
 using BackendBolsaDeTrabajoUTN.Models;
 using System.Security.AccessControl;
 using System.Security.Claims;
+using BackendBolsaDeTrabajoUTN.DBContexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -20,12 +22,16 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         
         private readonly IStudentRepository _studentRepository;
 
-        public StudentController(IStudentOfferRepository studentOfferRepository, IStudentRepository studentRepository)
+        private readonly TPContext _context;
+
+        public StudentController(IStudentOfferRepository studentOfferRepository, IStudentRepository studentRepository, TPContext context)
         {
 
             _studentOfferRepository = studentOfferRepository;
             
             _studentRepository = studentRepository;
+
+            _context = context;
         }
 
         [HttpPost]
@@ -90,8 +96,6 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
 
-
-
         [Authorize]
         [HttpPost("{offerId}/Students/{studentId}")]
         public ActionResult AddStudentToOffer(int offerId, int studentId)
@@ -136,6 +140,67 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             {
                 return Problem(ex.Message);
             }
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("uploadCV")]
+        public IActionResult UploadCV(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+            {
+                return BadRequest("No se ha enviado ningún archivo.");
+            }
+
+            byte[] fileBytes;
+            using (var memoryStream = new MemoryStream())
+            {
+                file.CopyTo(memoryStream);
+                fileBytes = memoryStream.ToArray();
+            }
+
+            // Obtener el studentId del claim
+            string studentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(studentId))
+            {
+                return BadRequest("No esta logeado como estudiante.");
+            }
+
+            CVFile cvFile = new CVFile
+            {
+                Name = file.FileName,
+                File = fileBytes,
+                StudentId = int.Parse(studentId)
+            };
+
+            _context.CVFiles.Add(cvFile);
+            _context.SaveChanges();
+
+            return Ok("Archivo guardado exitosamente en la base de datos.");
+        }
+
+        [Authorize]
+        [HttpGet]
+        [Route("downloadCV")]
+        public IActionResult DownloadCV()
+        {
+            // Obtener el studentId del claim
+            string studentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(studentId))
+            {
+                return BadRequest("No esta logeado como estudiante, o no cargo su CV.");
+            }
+
+            CVFile cvFile = _context.CVFiles.FirstOrDefault(c => c.StudentId == int.Parse(studentId));
+
+            if (cvFile == null)
+            {
+                return NotFound("No se encontró el archivo.");
+            }
+
+            return File(cvFile.File, "application/octet-stream", cvFile.Name);
         }
 
         [NonAction]

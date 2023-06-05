@@ -71,14 +71,24 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
         {
             try
             {
-                _context.Users.Remove(_context.Users.First(x => x.UserId == id));
-                _context.SaveChanges();
+                var user = _context.Users.FirstOrDefault(x => x.UserId == id);
+
+                if (user != null)
+                {
+                    _context.Users.Remove(user);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Usuario no encontrado");
+                }
             }
             catch
             {
-                throw new Exception("Usuario no encontrado");
+                throw new Exception("Error al eliminar el usuario");
             }
         }
+
 
         public void DeleteOffer(int id)
         {

@@ -44,7 +44,6 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         CompanyPhone = request.CompanyPhone,
                         UserEmail = request.CompanyEmail,
                         CompanyWebPage = request.CompanyWebPage,
-
                         CompanyPersonalName = request.CompanyPersonalName,
                         CompanyPersonalSurname = request.CompanyPersonalSurname,
                         CompanyPersonalJob = request.CompanyPersonalJob,

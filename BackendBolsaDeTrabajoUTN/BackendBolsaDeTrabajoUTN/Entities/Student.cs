@@ -60,32 +60,28 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public int PersonalOtherPhone { get; set; }
 
 
-        //// Datos universitarios? Va aca?
+        //// Datos universitarios
 
-        //public string Specialty { get; set; }
-        //public int ApprovedSubjects { get; set; }
+        public string Specialty { get; set; }
+        public int ApprovedSubjects { get; set; }
 
-        //public int SpecialtyPlan { get; set; }
-        //public int StudyYear{ get; set; }
-        //public int Turn { get; set; }
-        //public int AverageWithPostponement { get; set; }
-        //public int AverageWithoutPostponement { get; set; }
-        //public string CollegeDegree { get; set; }
+        public int SpecialtyPlan { get; set; }
+        public int StudyYear { get; set; }
+        public string Turn { get; set; }
+        public int AverageWithPostponement { get; set; }
+        public int AverageWithoutPostponement { get; set; }
+        public string CollegeDegree { get; set; }
 
 
         //// Otros datos
 
-        //public string SecondaryDegree { get; set; }
+        public string SecondaryDegree { get; set; }
 
         //public string CVFile { get; set; } // public HttpPostedFileBase Archivo { get; set; }
 
-        //public string Observations { get; set; }
+        public string Observations { get; set; }
 
-        //// Actualizar Contenido
-
-        //public string Knowledge { get; set; }
-        //public string Value { get; set; }
-
+    
         public ICollection<Knowledge>? Knowledges { get; set; } = new List<Knowledge>();
         public ICollection<Career>? Careers { get; set; } = new List<Career>();
         public ICollection<Offer>? Offers { get; set; } = new List<Offer>();

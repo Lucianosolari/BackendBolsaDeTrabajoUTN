@@ -9,11 +9,14 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
         public DbSet<Student> Students { get; set; } //lo que hagamos con LINQ sobre estos DbSets lo va a transformar en consultas SQL
         public DbSet<Company> Companies { get; set; } //Los warnings los podemos obviar porque DbContext se encarga de eso.
         public DbSet<Offer> Offers { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Career> Careers { get; set; }
         public DbSet<Knowledge> Knowledges { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<StudentKnowledge> StudentKnowledge { get; set; }
         public DbSet<StudentOffer> StudentOffers { get; set; }
+        public DbSet<CVFile> CVFiles { get; set; }
+      
 
         // PROBANDO COMMIT
         public TPContext(DbContextOptions<TPContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
@@ -175,24 +178,42 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 FamilyStreetNumber = 123,
                 FamilyStreetLetter = "A",
                 FamilyFloor = 2,
-                FamilyDepartment= "4B",
+                FamilyDepartment = "4B",
                 FamilyCountry = "Argentina",
-                FamilyProvince= "Buenos Aires",
-                FamilyLocation= "Ciudad Autónoma de Buenos Aires",
-                FamilyPersonalPhone= 123456789,
+                FamilyProvince = "Buenos Aires",
+                FamilyLocation = "Ciudad Autónoma de Buenos Aires",
+                FamilyPersonalPhone = 123456789,
                 FamilyOtherPhone = 987654321,
 
-                PersonalStreet= "Avenida Principal",
+                PersonalStreet = "Avenida Principal",
                 PersonalStreetNumber = 456,
-                PersonalStreetLetter= "B",
+                PersonalStreetLetter = "B",
                 PersonalFloor = 1,
                 PersonalDepartment = "Depto. 2",
-                PersonalCountry= "Argentina",
+                PersonalCountry = "Argentina",
                 PersonalProvince = "Córdoba",
                 PersonalLocation = "Córdoba Capital",
-                PersonalPersonalPhone= 987654321,
+                PersonalPersonalPhone = 987654321,
                 PersonalOtherPhone = 123456789,
-            };
+
+                //// Datos universitarios
+                Specialty = "Sistemas",
+                ApprovedSubjects = 10,
+                SpecialtyPlan = 2002,
+                StudyYear = 2,
+                Turn = "Tarde",
+                AverageWithPostponement=6,
+                AverageWithoutPostponement=7,
+                CollegeDegree="Sistemas",
+
+                //// Otros datos
+                SecondaryDegree = "Completo",
+                
+                Observations = "Fanatico de linux",
+
+
+
+    };
 
             Student student2 = new Student()
             {
@@ -232,6 +253,21 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 PersonalLocation = "Córdoba Capital",
                 PersonalPersonalPhone = 987654321,
                 PersonalOtherPhone = 123456789,
+
+                //// Datos universitarios
+                Specialty = "Sistemas",
+                ApprovedSubjects = 10,
+                SpecialtyPlan = 2002,
+                StudyYear = 2,
+                Turn = "Tarde",
+                AverageWithPostponement = 6,
+                AverageWithoutPostponement = 7,
+                CollegeDegree = "Sistemas",
+
+                //// Otros datos
+                SecondaryDegree = "Completo",
+               
+                Observations = "Fanatico de linux",
             };
 
             Student student3 = new Student()
@@ -272,6 +308,21 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 PersonalPersonalPhone = 987654321,
                 PersonalOtherPhone = 123456789,
 
+                //// Datos universitarios
+                Specialty = "Sistemas",
+                ApprovedSubjects = 10,
+                SpecialtyPlan = 2002,
+                StudyYear = 2,
+                Turn = "Tarde",
+                AverageWithPostponement = 6,
+                AverageWithoutPostponement = 7,
+                CollegeDegree = "Sistemas",
+
+                //// Otros datos
+                SecondaryDegree = "Completo",
+                
+                Observations = "Fanatico de linux",
+
             };
 
 
@@ -290,10 +341,12 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                     .HasOne(sk => sk.Knowledge)
                     .WithMany(k => k.StudentKnowledges)
                     .HasForeignKey(sk => sk.KnowledgeId),
+                    
                 j => j
                     .HasOne(sk => sk.Student)
                     .WithMany(s => s.StudentKnowledges)
                     .HasForeignKey(sk => sk.UserId),
+                    
                 j =>
                 {
                     j.HasKey(sk => new { sk.UserId, sk.KnowledgeId });
@@ -313,9 +366,11 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                     j => j.HasOne(c => c.Career)
                           .WithMany()
                           .HasForeignKey(c => c.CareerId),
+                          
                     j => j.HasOne(s => s.Student)
                           .WithMany()
                           .HasForeignKey(s => s.StudentId),
+                          
                     j =>
                     {
                         j.ToTable("StudentCareer");
@@ -334,13 +389,13 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                     j => j
                         .HasOne(so => so.Offer)
                         .WithMany(o => o.StudentOffers)
-                        .HasForeignKey(so => so.OfferId)
-                        .OnDelete(DeleteBehavior.NoAction), // Desactivar eliminación en cascada para OfferId
+                        .HasForeignKey(so => so.OfferId),
+                        
                     j => j
                         .HasOne(so => so.Student)
                         .WithMany(s => s.StudentOffers)
-                        .HasForeignKey(so => so.StudentId)
-                        .OnDelete(DeleteBehavior.NoAction), // Desactivar eliminación en cascada para StudentId
+                        .HasForeignKey(so => so.StudentId),
+                        
                     j =>
                     {
                         j.ToTable("StudentOffer");
