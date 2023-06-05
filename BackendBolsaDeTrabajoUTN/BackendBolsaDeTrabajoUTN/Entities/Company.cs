@@ -6,11 +6,6 @@ namespace BackendBolsaDeTrabajoUTN.Entities
 {
     public class Company : User
     {
-        //[Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        //public int CompanyId { get; set; }
-
-        // datos de la empresa
 
         public string CompanyName { get; set; } //razón social
         public string CompanyCUIT { get; set; }
@@ -28,12 +23,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public int CompanyPersonalPhone { get; set; }
         public string CompanyRelationContact { get; set; } //ver
 
-
         public bool CompanyPendingConfirmation { get; set; }
-
-        //[ForeignKey("UserId")]
-        //public User User { get; set; }
-        //public int UserId { get; set; }
 
         public List<Offer> AnnouncedOffers { get; set; } = new List<Offer>();
 

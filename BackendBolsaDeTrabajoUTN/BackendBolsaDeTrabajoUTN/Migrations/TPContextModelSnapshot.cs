@@ -68,6 +68,32 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         });
                 });
 
+            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.CVFile", b =>
+                {
+                    b.Property<int>("CVId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CVId"), 1L, 1);
+
+                    b.Property<byte[]>("File")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CVId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("CVFiles");
+                });
+
             modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.Knowledge", b =>
                 {
                     b.Property<int>("KnowledgeId")
@@ -407,6 +433,15 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ApprovedSubjects")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AverageWithPostponement")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AverageWithoutPostponement")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Birth")
                         .HasColumnType("datetime2");
 
@@ -414,6 +449,10 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CivilStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CollegeDegree")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -467,6 +506,10 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Observations")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PersonalCountry")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -503,11 +546,29 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Property<int>("PersonalStreetNumber")
                         .HasColumnType("int");
 
+                    b.Property<string>("SecondaryDegree")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Sex")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Specialty")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SpecialtyPlan")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudyYear")
+                        .HasColumnType("int");
+
                     b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Turn")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -521,9 +582,13 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserEmail = "manuel@gmail.com",
                             UserName = "string",
                             AltEmail = "manuelAlt@gmail.com",
+                            ApprovedSubjects = 10,
+                            AverageWithPostponement = 6,
+                            AverageWithoutPostponement = 7,
                             Birth = new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CUIL_CUIT = 231332,
                             CivilStatus = "Casado",
+                            CollegeDegree = "Sistemas",
                             DocumentNumber = 44555666,
                             DocumentType = "DNI",
                             FamilyCountry = "Argentina",
@@ -538,6 +603,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             FamilyStreetNumber = 123,
                             File = 12345,
                             Name = "Manuel",
+                            Observations = "Fanatico de linux",
                             PersonalCountry = "Argentina",
                             PersonalDepartment = "Depto. 2",
                             PersonalFloor = 1,
@@ -548,8 +614,13 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             PersonalStreet = "Avenida Principal",
                             PersonalStreetLetter = "B",
                             PersonalStreetNumber = 456,
+                            SecondaryDegree = "Completo",
                             Sex = "Masculino",
-                            Surname = "Ibarbia"
+                            Specialty = "Sistemas",
+                            SpecialtyPlan = 2002,
+                            StudyYear = 2,
+                            Surname = "Ibarbia",
+                            Turn = "Tarde"
                         },
                         new
                         {
@@ -558,9 +629,13 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserEmail = "luciano@gmail.com",
                             UserName = "lucianoS",
                             AltEmail = "lucianoAlt@gmail.com",
+                            ApprovedSubjects = 10,
+                            AverageWithPostponement = 6,
+                            AverageWithoutPostponement = 7,
                             Birth = new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CUIL_CUIT = 2313321,
                             CivilStatus = "Soltero",
+                            CollegeDegree = "Sistemas",
                             DocumentNumber = 33444555,
                             DocumentType = "DNI",
                             FamilyCountry = "Argentina",
@@ -575,6 +650,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             FamilyStreetNumber = 12,
                             File = 12346,
                             Name = "Luciano",
+                            Observations = "Fanatico de linux",
                             PersonalCountry = "Argentina",
                             PersonalDepartment = "Depto. 2",
                             PersonalFloor = 1,
@@ -585,8 +661,13 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             PersonalStreet = "Avenida Principal",
                             PersonalStreetLetter = "B",
                             PersonalStreetNumber = 456,
+                            SecondaryDegree = "Completo",
                             Sex = "Masculino",
-                            Surname = "Solari"
+                            Specialty = "Sistemas",
+                            SpecialtyPlan = 2002,
+                            StudyYear = 2,
+                            Surname = "Solari",
+                            Turn = "Tarde"
                         },
                         new
                         {
@@ -595,9 +676,13 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserEmail = "santiago@gmail.com",
                             UserName = "santiagoC",
                             AltEmail = "santiagoAlt@gmail.com",
+                            ApprovedSubjects = 10,
+                            AverageWithPostponement = 6,
+                            AverageWithoutPostponement = 7,
                             Birth = new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CUIL_CUIT = 2313321,
                             CivilStatus = "Soltero",
+                            CollegeDegree = "Sistemas",
                             DocumentNumber = 55666777,
                             DocumentType = "DNI",
                             FamilyCountry = "Argentina",
@@ -612,6 +697,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             FamilyStreetNumber = 12,
                             File = 12347,
                             Name = "Santiago",
+                            Observations = "Fanatico de linux",
                             PersonalCountry = "Argentina",
                             PersonalDepartment = "Depto. 2",
                             PersonalFloor = 1,
@@ -622,9 +708,25 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             PersonalStreet = "Avenida Principal",
                             PersonalStreetLetter = "B",
                             PersonalStreetNumber = 456,
+                            SecondaryDegree = "Completo",
                             Sex = "Masculino",
-                            Surname = "Caso"
+                            Specialty = "Sistemas",
+                            SpecialtyPlan = 2002,
+                            StudyYear = 2,
+                            Surname = "Caso",
+                            Turn = "Tarde"
                         });
+                });
+
+            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.CVFile", b =>
+                {
+                    b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.Offer", b =>
@@ -681,13 +783,13 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Offer", "Offer")
                         .WithMany("StudentOffers")
                         .HasForeignKey("OfferId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BackendBolsaDeTrabajoUTN.Entities.Student", "Student")
                         .WithMany("StudentOffers")
                         .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Offer");
