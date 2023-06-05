@@ -6,7 +6,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
 {
     public class Company : User
     {
-
+        // datos de la empresa
         public string CompanyName { get; set; } //razón social
         public string CompanyCUIT { get; set; }
         public string CompanyLine { get; set; } //rubro
@@ -21,8 +21,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public string CompanyPersonalSurname { get; set; }
         public string CompanyPersonalJob { get; set; }
         public int CompanyPersonalPhone { get; set; }
-        public string CompanyRelationContact { get; set; } //ver
-
+        public string CompanyRelationContact { get; set; }
         public bool CompanyPendingConfirmation { get; set; }
 
         public List<Offer> AnnouncedOffers { get; set; } = new List<Offer>();

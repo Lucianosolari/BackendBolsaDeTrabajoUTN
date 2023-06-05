@@ -33,6 +33,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 {
                     Company newCompany = new()
                     {
+                        // datos de la empresa
                         UserName = request.UserName,
                         Password = request.Password,
                         CompanyCUIT = request.CompanyCUIT,
@@ -42,12 +43,14 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         CompanyLocation = request.CompanyLocation,
                         CompanyPostalCode = request.CompanyPostalCode,
                         CompanyPhone = request.CompanyPhone,
-                        UserEmail = request.CompanyEmail, //cambiar en request
+
+                        // datos de contacto
                         CompanyWebPage = request.CompanyWebPage,
                         CompanyPersonalName = request.CompanyPersonalName,
                         CompanyPersonalSurname = request.CompanyPersonalSurname,
                         CompanyPersonalJob = request.CompanyPersonalJob,
                         CompanyPersonalPhone = request.CompanyPersonalPhone,
+                        UserEmail = request.UserEmail,
                         CompanyRelationContact = request.CompanyRelationContact,
                         CompanyPendingConfirmation = true
                     };
