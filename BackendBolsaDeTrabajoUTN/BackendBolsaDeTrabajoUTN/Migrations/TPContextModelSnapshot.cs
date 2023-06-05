@@ -188,33 +188,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.StudentCareer", b =>
-                {
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CareerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("StudentId", "CareerId");
-
-                    b.HasIndex("CareerId");
-
-                    b.ToTable("StudentCareer", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            StudentId = 4,
-                            CareerId = 1
-                        },
-                        new
-                        {
-                            StudentId = 5,
-                            CareerId = 2
-                        });
-                });
-
             modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.StudentKnowledge", b =>
                 {
                     b.Property<int>("UserId")
@@ -239,33 +212,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             UserId = 3,
                             KnowledgeId = 2
-                        });
-                });
-
-            modelBuilder.Entity("BackendBolsaDeTrabajoUTN.Entities.StudentOffer", b =>
-                {
-                    b.Property<int>("OfferId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("OfferId", "StudentId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("StudentOffer", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            OfferId = 1,
-                            StudentId = 4
-                        },
-                        new
-                        {
-                            OfferId = 2,
-                            StudentId = 5
                         });
                 });
 

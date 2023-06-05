@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
-    public partial class Prueba : Migration
+    public partial class probando : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -168,8 +168,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         name: "FK_StudentCareer_Careers_CareerId",
                         column: x => x.CareerId,
                         principalTable: "Careers",
-                        principalColumn: "CareerId");
-                        
+                        principalColumn: "CareerId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_StudentCareer_Users_StudentId",
                         column: x => x.StudentId,
@@ -197,30 +197,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     table.ForeignKey(
                         name: "FK_StudentKnowledge_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StudentOffer",
-                columns: table => new
-                {
-                    StudentId = table.Column<int>(type: "int", nullable: false),
-                    OfferId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StudentOffer", x => new { x.OfferId, x.StudentId });
-                    table.ForeignKey(
-                        name: "FK_StudentOffer_Offers_OfferId",
-                        column: x => x.OfferId,
-                        principalTable: "Offers",
-                        principalColumn: "OfferId");
-                        
-                    table.ForeignKey(
-                        name: "FK_StudentOffer_Users_StudentId",
-                        column: x => x.StudentId,
                         principalTable: "Users",
                         principalColumn: "UserId",
                         onDelete: ReferentialAction.Cascade);
@@ -296,16 +272,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     { 1, 4 }
                 });
 
-            migrationBuilder.InsertData(
-                table: "StudentOffer",
-                columns: new[] { "OfferId", "StudentId" },
-                values: new object[] { 1, 4 });
-
-            migrationBuilder.InsertData(
-                table: "StudentOffer",
-                columns: new[] { "OfferId", "StudentId" },
-                values: new object[] { 2, 5 });
-
             migrationBuilder.CreateIndex(
                 name: "IX_CVFiles_StudentId",
                 table: "CVFiles",
@@ -325,11 +291,6 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 name: "IX_StudentKnowledge_KnowledgeId",
                 table: "StudentKnowledge",
                 column: "KnowledgeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StudentOffer_StudentId",
-                table: "StudentOffer",
-                column: "StudentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
