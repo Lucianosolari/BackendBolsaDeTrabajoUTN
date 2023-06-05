@@ -42,7 +42,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         CompanyLocation = request.CompanyLocation,
                         CompanyPostalCode = request.CompanyPostalCode,
                         CompanyPhone = request.CompanyPhone,
-                        UserEmail = request.CompanyEmail,
+                        UserEmail = request.CompanyEmail, //cambiar en request
                         CompanyWebPage = request.CompanyWebPage,
                         CompanyPersonalName = request.CompanyPersonalName,
                         CompanyPersonalSurname = request.CompanyPersonalSurname,
