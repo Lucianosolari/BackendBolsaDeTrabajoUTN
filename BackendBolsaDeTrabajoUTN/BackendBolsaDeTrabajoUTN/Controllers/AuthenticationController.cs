@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using BackendBolsaDeTrabajoUTN.Models;
 using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
+using BackendBolsaDeTrabajoUTN.DBContexts;
+using BackendBolsaDeTrabajoUTN.Entities;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -14,11 +16,13 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
     {
         private readonly IConfiguration _config;
         private readonly IUserRepository _userRepository;
+        private readonly TPContext _context;
 
-        public AuthenticationController(IConfiguration config, IUserRepository userRepository)
+        public AuthenticationController(IConfiguration config, IUserRepository userRepository, TPContext context )
         {
             _config = config; //Hacemos la inyección para poder usar el appsettings.json
-            this._userRepository = userRepository;
+            _userRepository = userRepository;
+            _context = context;
 
         }
 
@@ -27,9 +31,22 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         {
             //Paso 1: Validamos las credenciales
             var user = _userRepository.ValidateUser(authenticationRequestBody); //Lo primero que hacemos es llamar a una función que valide los parámetros que enviamos.
-
-            if (user is null) //Si el la función de arriba no devuelve nada es porque los datos son incorrectos, por lo que devolvemos un Unauthorized (un status code 401).
+            if (user is null)
                 return Unauthorized();
+
+            var company = _context.Companies
+            .Where(u => u.UserId == user.UserId && u.CompanyPendingConfirmation)
+            .FirstOrDefault();
+
+            if (user.UserType == "Company" && company != null)
+            {
+                return BadRequest("Empresa pendiente de autorizar");
+            }
+
+            if (user.UserType == "Company" && company != null && company.CompanyPendingConfirmation)
+            {
+                return BadRequest("Empresa pendiente de autorizar");
+            }
 
             //Paso 2: Crear el token
             var securityPassword = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_config["Authentication:SecretForKey"])); //Traemos la SecretKey del Json. agregar antes: using Microsoft.IdentityModel.Tokens;
