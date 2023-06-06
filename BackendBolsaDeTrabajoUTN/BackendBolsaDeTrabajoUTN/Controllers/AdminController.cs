@@ -184,5 +184,60 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 return BadRequest("El usuario no esta autorizado para borrar Ofertas");
             }
         }
+
+        [Authorize]
+        [HttpGet]
+        [Route("getAllCompanyPending")]
+        public IActionResult GetAllCompanyPending()
+        {
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Admin")
+            {
+                try
+            {
+                List<Company> pendingCompanies = _adminRepository.CompanyPending();
+                return Ok(pendingCompanies);
+            }
+            catch (Exception ex)
+            {
+                
+                return Problem(ex.Message);
+            }
+            }
+            else
+            {
+                return BadRequest("El usuario no esta autorizado para lista empresas");
+            }
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("updateCompanyPending/{companyId}")]
+        public IActionResult UpdateCompanyPendingConfirmation(int companyId)
+        {
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Admin")
+            {
+                    try
+                     {
+                _adminRepository.UpdateCompanyPending(companyId);
+                return Ok();
+                     }
+             catch (Exception ex)
+                 {
+                // Manejo de errores
+                return Problem(ex.Message);
+                 }
+            }
+            else
+            {
+                    return BadRequest("El usuario no esta autorizado para modificar estado de empresas");
+            }
+
+
+        }
+
+
+
     }
 }

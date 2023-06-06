@@ -102,5 +102,24 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
                 throw new Exception("Oferta no encontrado");
             }
         }
+
+        public List<Company> CompanyPending()
+        {
+            return _context.Companies
+                .Where(u => u.UserType == "Company" && u.CompanyPendingConfirmation == true)
+                .ToList();
+        }
+
+        public void UpdateCompanyPending(int companyId)
+        {
+            Company company = _context.Companies.FirstOrDefault(c => c.UserId == companyId);
+            if (company != null)
+            {
+                company.CompanyPendingConfirmation = false;
+                _context.Update(company);
+                _context.SaveChanges();
+            }
+        }
+
     }
 }
