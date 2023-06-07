@@ -9,6 +9,11 @@ using BackendBolsaDeTrabajoUTN.Data.Repository.Implementations;
 using BackendBolsaDeTrabajoUTN.Services.Interfaces;
 using BackendBolsaDeTrabajoUTN.Data.Repository;
 using System.Text.Json.Serialization;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
+
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,8 +41,11 @@ builder.Services.AddSwaggerGen(setupAction =>
     });
 });
 
-builder.Services.AddDbContext<TPContext>(dbContextOptions => dbContextOptions.UseSqlServer(
-    builder.Configuration["ConnectionStrings:BackendBolsaDeTrabajoUTNDBConnectionString"]));
+builder.Services.AddDbContext<TPContext>(dbContextOptions =>
+    dbContextOptions.UseMySql(
+        builder.Configuration["ConnectionStrings:BackendBolsaDeTrabajoUTNDBConnectionString"],
+        new MySqlServerVersion(new Version(8, 0, 22)))
+);
 
 builder.Services.AddAuthentication("Bearer") //"Bearer" es el tipo de auntenticación que tenemos que elegir después en PostMan para pasarle el token
     .AddJwtBearer(options => //Acá definimos la configuración de la autenticación. le decimos qué cosas queremos comprobar. La fecha de expiración se valida por defecto.
