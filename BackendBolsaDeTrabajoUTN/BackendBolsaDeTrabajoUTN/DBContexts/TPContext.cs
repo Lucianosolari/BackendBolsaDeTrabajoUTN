@@ -198,17 +198,16 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
 
                 //// Datos universitarios
                 Specialty = "Sistemas",
-                ApprovedSubjects = 10,
+                ApprovedSubjectsQuantity = 10,
                 SpecialtyPlan = 2002,
-                StudyYear = 2,
-                Turn = "Tarde",
-                AverageWithPostponement=6,
-                AverageWithoutPostponement=7,
+                CurrentStudyYear = 2,
+                StudyTurn = "Tarde",
+                AverageMarksWithPostponement=6,
+                AverageMarksWithoutPostponement=7,
                 CollegeDegree="Sistemas",
 
                 //// Otros datos
                 SecondaryDegree = "Completo",
-                
                 Observations = "Fanatico de linux",
 
 
@@ -256,12 +255,12 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
 
                 //// Datos universitarios
                 Specialty = "Sistemas",
-                ApprovedSubjects = 10,
+                ApprovedSubjectsQuantity = 10,
                 SpecialtyPlan = 2002,
-                StudyYear = 2,
-                Turn = "Tarde",
-                AverageWithPostponement = 6,
-                AverageWithoutPostponement = 7,
+                CurrentStudyYear = 2,
+                StudyTurn = "Tarde",
+                AverageMarksWithPostponement = 6,
+                AverageMarksWithoutPostponement = 7,
                 CollegeDegree = "Sistemas",
 
                 //// Otros datos
@@ -310,12 +309,12 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
 
                 //// Datos universitarios
                 Specialty = "Sistemas",
-                ApprovedSubjects = 10,
+                ApprovedSubjectsQuantity = 10,
                 SpecialtyPlan = 2002,
-                StudyYear = 2,
-                Turn = "Tarde",
-                AverageWithPostponement = 6,
-                AverageWithoutPostponement = 7,
+                CurrentStudyYear = 2,
+                StudyTurn = "Tarde",
+                AverageMarksWithPostponement = 6,
+                AverageMarksWithoutPostponement = 7,
                 CollegeDegree = "Sistemas",
 
                 //// Otros datos

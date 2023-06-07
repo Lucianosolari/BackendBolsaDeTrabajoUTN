@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20230605195846_probando")]
-    partial class probando
+    [Migration("20230607200435_migracion")]
+    partial class migracion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -435,13 +435,13 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ApprovedSubjects")
+                    b.Property<int>("ApprovedSubjectsQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("AverageWithPostponement")
+                    b.Property<int>("AverageMarksWithPostponement")
                         .HasColumnType("int");
 
-                    b.Property<int>("AverageWithoutPostponement")
+                    b.Property<int>("AverageMarksWithoutPostponement")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Birth")
@@ -457,6 +457,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Property<string>("CollegeDegree")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CurrentStudyYear")
+                        .HasColumnType("int");
 
                     b.Property<int>("DocumentNumber")
                         .HasColumnType("int");
@@ -563,14 +566,11 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Property<int>("SpecialtyPlan")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudyYear")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Surname")
+                    b.Property<string>("StudyTurn")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Turn")
+                    b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -584,13 +584,14 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserEmail = "manuel@gmail.com",
                             UserName = "string",
                             AltEmail = "manuelAlt@gmail.com",
-                            ApprovedSubjects = 10,
-                            AverageWithPostponement = 6,
-                            AverageWithoutPostponement = 7,
+                            ApprovedSubjectsQuantity = 10,
+                            AverageMarksWithPostponement = 6,
+                            AverageMarksWithoutPostponement = 7,
                             Birth = new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CUIL_CUIT = 231332,
                             CivilStatus = "Casado",
                             CollegeDegree = "Sistemas",
+                            CurrentStudyYear = 2,
                             DocumentNumber = 44555666,
                             DocumentType = "DNI",
                             FamilyCountry = "Argentina",
@@ -620,9 +621,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             Sex = "Masculino",
                             Specialty = "Sistemas",
                             SpecialtyPlan = 2002,
-                            StudyYear = 2,
-                            Surname = "Ibarbia",
-                            Turn = "Tarde"
+                            StudyTurn = "Tarde",
+                            Surname = "Ibarbia"
                         },
                         new
                         {
@@ -631,13 +631,14 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserEmail = "luciano@gmail.com",
                             UserName = "lucianoS",
                             AltEmail = "lucianoAlt@gmail.com",
-                            ApprovedSubjects = 10,
-                            AverageWithPostponement = 6,
-                            AverageWithoutPostponement = 7,
+                            ApprovedSubjectsQuantity = 10,
+                            AverageMarksWithPostponement = 6,
+                            AverageMarksWithoutPostponement = 7,
                             Birth = new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CUIL_CUIT = 2313321,
                             CivilStatus = "Soltero",
                             CollegeDegree = "Sistemas",
+                            CurrentStudyYear = 2,
                             DocumentNumber = 33444555,
                             DocumentType = "DNI",
                             FamilyCountry = "Argentina",
@@ -667,9 +668,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             Sex = "Masculino",
                             Specialty = "Sistemas",
                             SpecialtyPlan = 2002,
-                            StudyYear = 2,
-                            Surname = "Solari",
-                            Turn = "Tarde"
+                            StudyTurn = "Tarde",
+                            Surname = "Solari"
                         },
                         new
                         {
@@ -678,13 +678,14 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserEmail = "santiago@gmail.com",
                             UserName = "santiagoC",
                             AltEmail = "santiagoAlt@gmail.com",
-                            ApprovedSubjects = 10,
-                            AverageWithPostponement = 6,
-                            AverageWithoutPostponement = 7,
+                            ApprovedSubjectsQuantity = 10,
+                            AverageMarksWithPostponement = 6,
+                            AverageMarksWithoutPostponement = 7,
                             Birth = new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CUIL_CUIT = 2313321,
                             CivilStatus = "Soltero",
                             CollegeDegree = "Sistemas",
+                            CurrentStudyYear = 2,
                             DocumentNumber = 55666777,
                             DocumentType = "DNI",
                             FamilyCountry = "Argentina",
@@ -714,9 +715,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             Sex = "Masculino",
                             Specialty = "Sistemas",
                             SpecialtyPlan = 2002,
-                            StudyYear = 2,
-                            Surname = "Caso",
-                            Turn = "Tarde"
+                            StudyTurn = "Tarde",
+                            Surname = "Caso"
                         });
                 });
 
