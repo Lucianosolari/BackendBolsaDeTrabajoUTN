@@ -41,7 +41,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             user.Password = newPassword; // Actualiza la contraseña del usuario en la base de datos
             _context.SaveChanges(); // Guarda los cambios en la base de datos
             
-            EnviarCorreoElectronico(user.UserEmail, "Recuperación de contraseña", $"Hola {user.UserName}. Tu nueva contraseña es: {newPassword}");
+            SendEmail(user.UserEmail, "Recuperación de contraseña", $"Hola {user.UserName}. Tu nueva contraseña es: {newPassword}");
 
             return Ok("Cambio correcto"); // Opcionalmente, puedes devolver la nueva contraseña generada como respuesta
         }
@@ -63,7 +63,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             return password.ToString();
         }
 
-        private void EnviarCorreoElectronico(string destinatario, string asunto, string contenido)
+        private void SendEmail(string destinatario, string asunto, string contenido)
         {
             Env.Load(); // Cargar variables de entorno desde el archivo .env
 
