@@ -38,10 +38,6 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             .Where(u => u.UserId == user.UserId && u.CompanyPendingConfirmation)
             .FirstOrDefault();
 
-            if (user.UserType == "Company" && company != null)
-            {
-                return BadRequest("Empresa pendiente de autorizar");
-            }
 
             if (user.UserType == "Company" && company != null && company.CompanyPendingConfirmation)
             {
