@@ -19,17 +19,11 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public int File { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        
-
         public string AltEmail { get; set; }
         public string DocumentType { get; set; } // Ver tabla aparte (se repite la palabra)
-
         public int DocumentNumber { get; set; }
-
         public int CUIL_CUIT { get; set; }
-
         public DateTime Birth { get; set; }
-
         public string Sex { get; set; } //Ver tabla aparte (se repite la palabra)
         public string CivilStatus { get; set; } // Ver tabla aparte (se repite la palabra)
 
@@ -63,22 +57,18 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         //// Datos universitarios
 
         public string Specialty { get; set; }
-        public int ApprovedSubjects { get; set; }
-
+        public int ApprovedSubjectsQuantity { get; set; }
         public int SpecialtyPlan { get; set; }
-        public int StudyYear { get; set; }
-        public string Turn { get; set; }
-        public int AverageWithPostponement { get; set; }
-        public int AverageWithoutPostponement { get; set; }
+        public int CurrentStudyYear { get; set; }
+        public string StudyTurn { get; set; }
+        public int AverageMarksWithPostponement { get; set; }
+        public int AverageMarksWithoutPostponement { get; set; }
         public string CollegeDegree { get; set; }
 
 
         //// Otros datos
 
         public string SecondaryDegree { get; set; }
-
-        //public string CVFile { get; set; } // public HttpPostedFileBase Archivo { get; set; }
-
         public string Observations { get; set; }
 
     
