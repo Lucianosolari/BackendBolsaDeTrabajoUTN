@@ -81,7 +81,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Authorize]
         [HttpPut]
         [Route("addStudentAdressInfo")]
-        public IActionResult addStudentAdressInfo(AddStudentAdressInfroRequest newStudentAdressInfo)
+        public IActionResult addStudentAdressInfo(AddStudentAdressInfoRequest newStudentAdressInfo)
         {
             try
             {
@@ -94,6 +94,25 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 return Problem(ex.Message);
             }
         }
+
+        [Authorize]
+        [HttpPut]
+        [Route("updateStudentUniversityInfo")]
+        public IActionResult addStudentUniversityInfo(AddStudentUniversityInfoRequest newStudentUniversityInfo)
+        {
+            try
+            {
+                int id = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                _studentRepository.AddStudentUniversityInfo(id, newStudentUniversityInfo);
+                return Ok(new { message = "Datos universitarios modificados" });
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
+
 
 
         [Authorize]

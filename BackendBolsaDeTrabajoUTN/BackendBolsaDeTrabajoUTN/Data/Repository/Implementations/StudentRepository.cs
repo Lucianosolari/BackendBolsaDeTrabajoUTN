@@ -36,7 +36,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
         }
 
-        public void AddStudentAdressInfo(int id, AddStudentAdressInfroRequest newStudentAdressInfo)
+        public void AddStudentAdressInfo(int id, AddStudentAdressInfoRequest newStudentAdressInfo)
         {
             try
             {
@@ -71,6 +71,37 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
                 throw new Exception("Estudiante no encontrado o parámetros no válidos");
             }
         }
+
+        public void AddStudentUniversityInfo(int id, AddStudentUniversityInfoRequest newStudentUniversityInfo)
+        {
+            try
+            {
+                var student = _context.Students.FirstOrDefault(s => s.UserId == id);
+
+                if (student != null)
+                {
+                    student.Specialty = newStudentUniversityInfo.Specialty;
+                    student.ApprovedSubjectsQuantity = newStudentUniversityInfo.ApprovedSubjectsQuantity;
+                    student.SpecialtyPlan = newStudentUniversityInfo.SpecialtyPlan;
+                    student.CurrentStudyYear = newStudentUniversityInfo.CurrentStudyYear;
+                    student.StudyTurn = newStudentUniversityInfo.StudyTurn;
+                    student.AverageMarksWithPostponement = newStudentUniversityInfo.AverageMarksWithPostponement;
+                    student.AverageMarksWithoutPostponement = newStudentUniversityInfo.AverageMarksWithoutPostponement;
+                    student.CollegeDegree = newStudentUniversityInfo.CollegeDegree;
+
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Estudiante no encontrado");
+                }
+            }
+            catch
+            {
+                throw new Exception("Parámetros no válidos");
+            }
+        }
+
 
         public void RemoveStudent(int id)
         {
