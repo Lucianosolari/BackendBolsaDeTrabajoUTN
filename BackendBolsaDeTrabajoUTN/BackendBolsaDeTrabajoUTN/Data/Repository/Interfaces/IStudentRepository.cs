@@ -8,7 +8,10 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
        
         public ICollection<Offer> GetOffers(int id);
         public void CreateStudent(Student newStudent);
-        public void AddStudentAdressInfo(int id, AddStudentAdressInfroRequest newStudentAdressInfo);
+        public void AddStudentAdressInfo(int id, AddStudentAdressInfoRequest newStudentAdressInfo);
+        public void AddStudentUniversityInfo(int id, AddStudentUniversityInfoRequest newStudentUniversityInfo);
+
+        
         public void RemoveStudent(int id);
         public List<Student> GetStudents();
         //public Student? GetSingleSwimmer(int id);

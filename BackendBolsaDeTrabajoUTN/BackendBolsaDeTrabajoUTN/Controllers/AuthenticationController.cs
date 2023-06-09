@@ -41,7 +41,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
             if (user.UserType == "Company" && company != null && company.CompanyPendingConfirmation)
             {
-                return BadRequest("Empresa pendiente de autorizar");
+                return BadRequest(new { error = "Su empresa se encuentra pendiente de autorizar, comuníquese con el administrador" });
             }
 
             //Paso 2: Crear el token
