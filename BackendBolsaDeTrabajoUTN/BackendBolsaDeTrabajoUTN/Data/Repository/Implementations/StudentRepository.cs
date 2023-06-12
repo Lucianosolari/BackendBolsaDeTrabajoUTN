@@ -1,7 +1,6 @@
 ﻿using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 using BackendBolsaDeTrabajoUTN.DBContexts;
 using BackendBolsaDeTrabajoUTN.Entities;
-using BackendBolsaDeTrabajoUTN.Helpers;
 using BackendBolsaDeTrabajoUTN.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -99,6 +98,19 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             catch
             {
                 throw new Exception("Parámetros no válidos");
+            }
+        }
+
+        public void UploadStudentCV(CVFile CV)
+        {
+            try
+            {
+                _context.CVFiles.Add(CV);
+                _context.SaveChanges();
+            }
+            catch
+            {
+                throw new Exception("Problema al cargar el archivo");
             }
         }
 

@@ -166,37 +166,43 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Route("uploadCV")]
         public IActionResult UploadCV(IFormFile file)
         {
-            if (file == null || file.Length == 0)
+            try
             {
-                return BadRequest("No se ha enviado ningún archivo.");
+                if (file == null || file.Length == 0)
+                {
+                    return BadRequest("No se ha enviado ningún archivo.");
+                }
+
+                byte[] fileBytes;
+                using (var memoryStream = new MemoryStream())
+                {
+                    file.CopyTo(memoryStream);
+                    fileBytes = memoryStream.ToArray();
+                }
+
+                // Obtener el studentId del claim
+                string studentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                if (string.IsNullOrEmpty(studentId))
+                {
+                    return BadRequest("No esta logeado como estudiante.");
+                }
+
+                CVFile cvFile = new CVFile
+                {
+                    Name = file.FileName,
+                    File = fileBytes,
+                    StudentId = int.Parse(studentId)
+                };
+
+                _studentRepository.UploadStudentCV(cvFile);
+
+                return Ok(new { message = "Archivo guardado exitosamente en la base de datos." });
             }
-
-            byte[] fileBytes;
-            using (var memoryStream = new MemoryStream())
+            catch(Exception ex)
             {
-                file.CopyTo(memoryStream);
-                fileBytes = memoryStream.ToArray();
+                return BadRequest(ex.Message);
             }
-
-            // Obtener el studentId del claim
-            string studentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (string.IsNullOrEmpty(studentId))
-            {
-                return BadRequest("No esta logeado como estudiante.");
-            }
-
-            CVFile cvFile = new CVFile
-            {
-                Name = file.FileName,
-                File = fileBytes,
-                StudentId = int.Parse(studentId)
-            };
-
-            _context.CVFiles.Add(cvFile);
-            _context.SaveChanges();
-
-            return Ok("Archivo guardado exitosamente en la base de datos.");
         }
 
         [Authorize]
