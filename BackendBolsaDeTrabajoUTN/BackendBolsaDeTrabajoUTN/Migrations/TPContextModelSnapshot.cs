@@ -218,13 +218,13 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             StudentId = 4,
                             CareerId = 1,
-                            StudentCareerIsActive = false
+                            StudentCareerIsActive = true
                         },
                         new
                         {
                             StudentId = 5,
                             CareerId = 2,
-                            StudentCareerIsActive = false
+                            StudentCareerIsActive = true
                         });
                 });
 
@@ -250,13 +250,13 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             UserId = 4,
                             KnowledgeId = 1,
-                            StudentKnowledgeIsActive = false
+                            StudentKnowledgeIsActive = true
                         },
                         new
                         {
                             UserId = 3,
                             KnowledgeId = 2,
-                            StudentKnowledgeIsActive = false
+                            StudentKnowledgeIsActive = true
                         });
                 });
 
@@ -282,13 +282,13 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             OfferId = 1,
                             StudentId = 4,
-                            StudentOfferIsActive = false
+                            StudentOfferIsActive = true
                         },
                         new
                         {
                             OfferId = 2,
                             StudentId = 5,
-                            StudentOfferIsActive = false
+                            StudentOfferIsActive = true
                         });
                 });
 

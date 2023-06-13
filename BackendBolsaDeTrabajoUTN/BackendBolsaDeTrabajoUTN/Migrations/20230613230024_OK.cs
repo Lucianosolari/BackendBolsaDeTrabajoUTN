@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     /// <inheritdoc />
-    public partial class Prueba : Migration
+    public partial class OK : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -355,8 +355,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: new[] { "CareerId", "StudentId", "StudentCareerIsActive" },
                 values: new object[,]
                 {
-                    { 1, 4, false },
-                    { 2, 5, false }
+                    { 1, 4, true },
+                    { 2, 5, true }
                 });
 
             migrationBuilder.InsertData(
@@ -364,8 +364,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: new[] { "KnowledgeId", "UserId", "StudentKnowledgeIsActive" },
                 values: new object[,]
                 {
-                    { 2, 3, false },
-                    { 1, 4, false }
+                    { 2, 3, true },
+                    { 1, 4, true }
                 });
 
             migrationBuilder.InsertData(
@@ -373,8 +373,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: new[] { "OfferId", "StudentId", "StudentOfferIsActive" },
                 values: new object[,]
                 {
-                    { 1, 4, false },
-                    { 2, 5, false }
+                    { 1, 4, true },
+                    { 2, 5, true }
                 });
 
             migrationBuilder.CreateIndex(

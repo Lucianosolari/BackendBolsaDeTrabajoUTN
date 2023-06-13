@@ -106,6 +106,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         OfferDescription = request.OfferDescription,
                         CreatedDate = request.CreatedDate,
                         CompanyId = request.CompanyId,
+                        OfferIsActive = true,
                     };
                     OfferResponse response = new()
                     {
@@ -113,8 +114,9 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         OfferSpecialty = newOffer.OfferSpecialty,
                         OfferDescription = newOffer.OfferDescription,
                         CreatedDate = newOffer.CreatedDate,
+                        OfferIsActive = true,
 
-                    };
+            };
                     _companyRepository.CreateOffer(newOffer);
                     return Created("Oferta creada", response);
                 }

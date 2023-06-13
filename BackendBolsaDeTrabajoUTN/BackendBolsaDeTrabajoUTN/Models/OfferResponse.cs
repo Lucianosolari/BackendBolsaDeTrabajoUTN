@@ -15,7 +15,7 @@ namespace BackendBolsaDeTrabajoUTN.Models
         public ICollection<Student>? Students { get; set; } = new List<Student>();
         public ICollection<StudentOffer> StudentOffers { get; set; }
 
-
+        public bool OfferIsActive { get; set; }
         public int CompanyId { get; set; }
 
 

@@ -372,8 +372,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                     j.HasKey(sk => new { sk.UserId, sk.KnowledgeId });
                     j.ToTable("StudentKnowledge");
                     j.HasData(
-                        new StudentKnowledge { UserId = 4, KnowledgeId = 1 },
-                        new StudentKnowledge { UserId = 3, KnowledgeId = 2 }
+                        new StudentKnowledge { UserId = 4, KnowledgeId = 1, StudentKnowledgeIsActive=true},
+                        new StudentKnowledge { UserId = 3, KnowledgeId = 2, StudentKnowledgeIsActive = true }
                     );
                 }
             );
@@ -396,8 +396,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                         j.ToTable("StudentCareer");
                         j.HasKey(k => new { k.StudentId, k.CareerId });
                         j.HasData(
-                            new StudentCareer { StudentId = 4, CareerId = 1 },
-                            new StudentCareer { StudentId = 5, CareerId = 2 }
+                            new StudentCareer { StudentId = 4, CareerId = 1, StudentCareerIsActive= true},
+                            new StudentCareer { StudentId = 5, CareerId = 2, StudentCareerIsActive =true}
                         );
                     }
                 );
@@ -420,8 +420,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                     {
                         j.ToTable("StudentOffer");
                         j.HasData(
-                            new StudentOffer { OfferId = 1, StudentId = 4 },
-                            new StudentOffer { OfferId = 2, StudentId = 5 }
+                            new StudentOffer { OfferId = 1, StudentId = 4, StudentOfferIsActive= true },
+                            new StudentOffer { OfferId = 2, StudentId = 5, StudentOfferIsActive= true }
                         );
                     });
 
