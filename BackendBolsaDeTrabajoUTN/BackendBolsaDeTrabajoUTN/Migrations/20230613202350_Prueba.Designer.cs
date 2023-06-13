@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20230613153415_migracionConIsActive")]
-    partial class migracionConIsActive
+    [Migration("20230613202350_Prueba")]
+    partial class Prueba
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

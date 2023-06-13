@@ -2,6 +2,7 @@
 using BackendBolsaDeTrabajoUTN.DBContexts;
 using BackendBolsaDeTrabajoUTN.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
 {
@@ -13,24 +14,27 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             _context = context;
         }
 
-        public async void AddStudentToOffer(int offerId, int studentId)
+        public void AddStudentToOffer(int offerId, int studentId)
         {
-            var offer = await _context.Offers.FindAsync(offerId);
-            var student = await _context.Students.FindAsync(studentId);
+            var offer = _context.Offers.FirstOrDefault(o => o.OfferId == offerId);
+            var student = _context.Students.FirstOrDefault(s => s.UserId == studentId);
 
             if (offer == null || student == null)
             {
                 throw new Exception("No existe la oferta o el estudiante");
             }
 
-            if (offer.Students.Any(s => s.UserId == student.UserId))
+            var isAssociated = _context.StudentOffers.Any(os => os.StudentId == student.UserId && os.OfferId == offerId);
+            if (isAssociated)
             {
-                throw new Exception("El estudiante ya esta asociado a esta oferta.");
+                throw new Exception("El estudiante ya está asociado a esta oferta.");
             }
 
             offer.Students.Add(student);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
+
+
 
         public List<Offer> GetStudentToOffers(int studentId)
         {

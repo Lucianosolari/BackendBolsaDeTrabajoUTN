@@ -31,8 +31,4 @@
     <None Include="C:\Users\Luciano\Desktop\PROYECTO bak\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\BackendBolsaDeTrabajoUTN\.editorconfig" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
-
 </Project>

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     /// <inheritdoc />
-    public partial class migracionConIsActive : Migration
+    public partial class Prueba : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
