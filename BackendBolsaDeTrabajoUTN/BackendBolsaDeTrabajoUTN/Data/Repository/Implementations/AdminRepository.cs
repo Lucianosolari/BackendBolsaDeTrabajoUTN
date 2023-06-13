@@ -1,6 +1,7 @@
 ﻿using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 using BackendBolsaDeTrabajoUTN.DBContexts;
 using BackendBolsaDeTrabajoUTN.Entities;
+using System.Linq;
 
 namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
 {
@@ -46,8 +47,10 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
         {
             try
             {
-                _context.Careers.Remove(_context.Careers.First(x => x.CareerId == id));
+                var career = _context.Careers.FirstOrDefault(x => x.CareerId == id);
+                career.CareerIsActive = false;
                 _context.SaveChanges();
+              
             }
             catch
             {
@@ -58,7 +61,8 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
         {
             try
             {
-                _context.Knowledges.Remove(_context.Knowledges.First(x => x.KnowledgeId == id));
+                var knowledge =_context.Knowledges.FirstOrDefault(x => x.KnowledgeId == id);
+                knowledge.KnowledgeIsActive = false;
                 _context.SaveChanges();
             }
             catch
@@ -75,7 +79,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
 
                 if (user != null)
                 {
-                    _context.Users.Remove(user);
+                    user.UserIsActive = false;
                     _context.SaveChanges();
                 }
                 else
@@ -94,7 +98,8 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
         {
             try
             {
-                _context.Offers.Remove(_context.Offers.First(x => x.OfferId == id));
+                var offer = _context.Offers.FirstOrDefault(x => x.OfferId == id);
+                offer.OfferIsActive = false;
                 _context.SaveChanges();
             }
             catch
