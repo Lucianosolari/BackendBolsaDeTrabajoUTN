@@ -34,7 +34,8 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                     CareerName = request.CareerName,
                     CareerAbbreviation = request.CareerAbbreviation,
                     CareerType = request.CareerType,
-                    CareerTotalSubjects = request.CareerTotalSubjects
+                    CareerTotalSubjects = request.CareerTotalSubjects,
+                    CareerIsActive = true
                 };
                 CareerResponse response = new()
                 {
@@ -72,7 +73,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
                     Type = request.Type,
                     Level = request.Level,
-                    
+                    KnowledgeIsActive = true
                 };
                 
                 _adminRepository.CreateKnowledge(newKnowledge);
@@ -90,7 +91,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [Authorize]
-        [HttpDelete]
+        [HttpDelete] //Cambiar a put (modifica CareerIsActive de True a False)
         [Route("deleteCareer")]
         public IActionResult DeleteCareer(int id)
         {
@@ -114,7 +115,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [Authorize]
-        [HttpDelete]
+        [HttpDelete] //Cambiar a put (modifica KnowledgeIsActive de True a False)
         [Route("deleteKnowledge")]
         public IActionResult DeleteKnowledge(int id)
         {
@@ -139,7 +140,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
         //[Authorize]
         [HttpDelete]
-        [Route("deleteUser")]
+        [Route("deleteUser")] //Cambiar a put (modifica UserIsActive de True a False)
         public IActionResult DeleteUser(int id)
         {
             //var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
@@ -162,7 +163,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [Authorize]
-        [HttpDelete]
+        [HttpDelete] //Cambiar a put (modifica OfferIsActive de True a False)
         [Route("deleteOffer")]
         public IActionResult DeleteOffer(int id)
         {
@@ -220,24 +221,19 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             {
                     try
                      {
-                _adminRepository.UpdateCompanyPending(companyId);
-                return Ok();
+                        _adminRepository.UpdateCompanyPending(companyId);
+                        return Ok();
                      }
-             catch (Exception ex)
-                 {
-                // Manejo de errores
-                return Problem(ex.Message);
-                 }
+                    catch (Exception ex)
+                     {
+                        // Manejo de errores
+                        return Problem(ex.Message);
+                    }
             }
             else
             {
                     return BadRequest("El usuario no esta autorizado para modificar estado de empresas");
             }
-
-
         }
-
-
-
     }
 }

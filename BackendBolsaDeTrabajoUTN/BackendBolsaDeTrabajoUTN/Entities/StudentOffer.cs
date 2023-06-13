@@ -7,5 +7,7 @@
 
         public int OfferId { get; set; }
         public Offer Offer { get; set; }
+
+        public bool StudentOfferIsActive { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     /// <inheritdoc />
-    public partial class migracion : Migration
+    public partial class migracionConIsActive : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -29,7 +29,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CareerType = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CareerTotalSubjects = table.Column<int>(type: "int", nullable: false)
+                    CareerTotalSubjects = table.Column<int>(type: "int", nullable: false),
+                    CareerIsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -46,7 +47,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     Type = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Level = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    KnowledgeIsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -68,6 +70,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UserEmail = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    UserIsActive = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     NameAdmin = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CompanyName = table.Column<string>(type: "longtext", nullable: true)
@@ -174,7 +177,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     Name = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     File = table.Column<byte[]>(type: "longblob", nullable: false),
-                    StudentId = table.Column<int>(type: "int", nullable: false)
+                    StudentId = table.Column<int>(type: "int", nullable: false),
+                    CVIsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -201,7 +205,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     OfferDescription = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    CompanyId = table.Column<int>(type: "int", nullable: false)
+                    CompanyId = table.Column<int>(type: "int", nullable: false),
+                    OfferIsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -220,7 +225,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: table => new
                 {
                     StudentId = table.Column<int>(type: "int", nullable: false),
-                    CareerId = table.Column<int>(type: "int", nullable: false)
+                    CareerId = table.Column<int>(type: "int", nullable: false),
+                    StudentCareerIsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -245,7 +251,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    KnowledgeId = table.Column<int>(type: "int", nullable: false)
+                    KnowledgeId = table.Column<int>(type: "int", nullable: false),
+                    StudentKnowledgeIsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -270,7 +277,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: table => new
                 {
                     StudentId = table.Column<int>(type: "int", nullable: false),
-                    OfferId = table.Column<int>(type: "int", nullable: false)
+                    OfferId = table.Column<int>(type: "int", nullable: false),
+                    StudentOfferIsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -292,81 +300,81 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
 
             migrationBuilder.InsertData(
                 table: "Careers",
-                columns: new[] { "CareerId", "CareerAbbreviation", "CareerName", "CareerTotalSubjects", "CareerType" },
+                columns: new[] { "CareerId", "CareerAbbreviation", "CareerIsActive", "CareerName", "CareerTotalSubjects", "CareerType" },
                 values: new object[,]
                 {
-                    { 1, "TUP", "Tecnicatura Universitaria en Programación", 20, "Programación" },
-                    { 2, "TUHS", "Tecnicatura Universitaria en Higiene y Seguridad", 15, "Seguridad" }
+                    { 1, "TUP", true, "Tecnicatura Universitaria en Programación", 20, "Programación" },
+                    { 2, "TUHS", true, "Tecnicatura Universitaria en Higiene y Seguridad", 15, "Seguridad" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Knowledges",
-                columns: new[] { "KnowledgeId", "Level", "Type" },
+                columns: new[] { "KnowledgeId", "KnowledgeIsActive", "Level", "Type" },
                 values: new object[,]
                 {
-                    { 1, "Advanced", "Programming" },
-                    { 2, "Intermediate", "Design" },
-                    { 3, "Beginner", "Marketing" }
+                    { 1, true, "Advanced", "Programming" },
+                    { 2, true, "Intermediate", "Design" },
+                    { 3, true, "Beginner", "Marketing" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "CompanyAddress", "CompanyCUIT", "CompanyLine", "CompanyLocation", "CompanyName", "CompanyPendingConfirmation", "CompanyPersonalJob", "CompanyPersonalName", "CompanyPersonalPhone", "CompanyPersonalSurname", "CompanyPhone", "CompanyPostalCode", "CompanyRelationContact", "CompanyWebPage", "Password", "UserEmail", "UserName", "UserType" },
+                columns: new[] { "UserId", "CompanyAddress", "CompanyCUIT", "CompanyLine", "CompanyLocation", "CompanyName", "CompanyPendingConfirmation", "CompanyPersonalJob", "CompanyPersonalName", "CompanyPersonalPhone", "CompanyPersonalSurname", "CompanyPhone", "CompanyPostalCode", "CompanyRelationContact", "CompanyWebPage", "Password", "UserEmail", "UserIsActive", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { 1, "D 15", "20447575", "Textil", "Rosario", "Microsoft", true, "Gerente", "Juan Carlos", 22, "Peralta", 341367898, "2000", "Vacio", "web", "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", "mail1@gmai.com", "Company 1", "Company" },
-                    { 2, "E 18", "20445556661", "Textil", "Rosario", "Apple", true, "Gerente", "Juan Esteban", 25, "Peralta", 341334455, "2000", "Vacio", "web2", "7e2feac95dcd7d1df803345e197369af4b156e4e7a95fcb2955bdbbb3a11afd8bb9d35931bf15511370b18143e38b01b903f55c5ecbded4af99934602fcdf38c", "mail2@gmai.com", "Company 2", "Company" }
+                    { 1, "D 15", "20447575", "Textil", "Rosario", "Microsoft", true, "Gerente", "Juan Carlos", 22, "Peralta", 341367898, "2000", "Vacio", "web", "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", "mail1@gmai.com", true, "Company 1", "Company" },
+                    { 2, "E 18", "20445556661", "Textil", "Rosario", "Apple", true, "Gerente", "Juan Esteban", 25, "Peralta", 341334455, "2000", "Vacio", "web2", "7e2feac95dcd7d1df803345e197369af4b156e4e7a95fcb2955bdbbb3a11afd8bb9d35931bf15511370b18143e38b01b903f55c5ecbded4af99934602fcdf38c", "mail2@gmai.com", true, "Company 2", "Company" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "AltEmail", "ApprovedSubjectsQuantity", "AverageMarksWithPostponement", "AverageMarksWithoutPostponement", "Birth", "CUIL_CUIT", "CivilStatus", "CollegeDegree", "CurrentStudyYear", "DocumentNumber", "DocumentType", "FamilyCountry", "FamilyDepartment", "FamilyFloor", "FamilyLocation", "FamilyOtherPhone", "FamilyPersonalPhone", "FamilyProvince", "FamilyStreet", "FamilyStreetLetter", "FamilyStreetNumber", "File", "Name", "Observations", "Password", "PersonalCountry", "PersonalDepartment", "PersonalFloor", "PersonalLocation", "PersonalOtherPhone", "PersonalPersonalPhone", "PersonalProvince", "PersonalStreet", "PersonalStreetLetter", "PersonalStreetNumber", "SecondaryDegree", "Sex", "Specialty", "SpecialtyPlan", "StudyTurn", "Surname", "UserEmail", "UserName", "UserType" },
+                columns: new[] { "UserId", "AltEmail", "ApprovedSubjectsQuantity", "AverageMarksWithPostponement", "AverageMarksWithoutPostponement", "Birth", "CUIL_CUIT", "CivilStatus", "CollegeDegree", "CurrentStudyYear", "DocumentNumber", "DocumentType", "FamilyCountry", "FamilyDepartment", "FamilyFloor", "FamilyLocation", "FamilyOtherPhone", "FamilyPersonalPhone", "FamilyProvince", "FamilyStreet", "FamilyStreetLetter", "FamilyStreetNumber", "File", "Name", "Observations", "Password", "PersonalCountry", "PersonalDepartment", "PersonalFloor", "PersonalLocation", "PersonalOtherPhone", "PersonalPersonalPhone", "PersonalProvince", "PersonalStreet", "PersonalStreetLetter", "PersonalStreetNumber", "SecondaryDegree", "Sex", "Specialty", "SpecialtyPlan", "StudyTurn", "Surname", "UserEmail", "UserIsActive", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { 3, "manuelAlt@gmail.com", 10, 6, 7, new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 231332, "Casado", "Sistemas", 2, 44555666, "DNI", "Argentina", "4B", 2, "Ciudad Autónoma de Buenos Aires", 987654321, 123456789, "Buenos Aires", "Calle Principal", "A", 123, 12345, "Manuel", "Fanatico de linux", "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Ibarbia", "manuel@gmail.com", "string", "Student" },
-                    { 4, "lucianoAlt@gmail.com", 10, 6, 7, new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", "Sistemas", 2, 33444555, "DNI", "Argentina", "5B", 22, "Rosario", 987654321, 123456789, "Santa Fe", "Calle asdasd", "AA", 12, 12346, "Luciano", "Fanatico de linux", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Solari", "luciano@gmail.com", "lucianoS", "Student" },
-                    { 5, "santiagoAlt@gmail.com", 10, 6, 7, new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", "Sistemas", 2, 55666777, "DNI", "Argentina", "5B", 22, "Rosario", 987654321, 123456789, "Santa Fe", "Calle asdasd", "AA", 12, 12347, "Santiago", "Fanatico de linux", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Caso", "santiago@gmail.com", "santiagoC", "Student" }
+                    { 3, "manuelAlt@gmail.com", 10, 6, 7, new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 231332, "Casado", "Sistemas", 2, 44555666, "DNI", "Argentina", "4B", 2, "Ciudad Autónoma de Buenos Aires", 987654321, 123456789, "Buenos Aires", "Calle Principal", "A", 123, 12345, "Manuel", "Fanatico de linux", "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Ibarbia", "manuel@gmail.com", true, "string", "Student" },
+                    { 4, "lucianoAlt@gmail.com", 10, 6, 7, new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", "Sistemas", 2, 33444555, "DNI", "Argentina", "5B", 22, "Rosario", 987654321, 123456789, "Santa Fe", "Calle asdasd", "AA", 12, 12346, "Luciano", "Fanatico de linux", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Solari", "luciano@gmail.com", true, "lucianoS", "Student" },
+                    { 5, "santiagoAlt@gmail.com", 10, 6, 7, new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", "Sistemas", 2, 55666777, "DNI", "Argentina", "5B", 22, "Rosario", 987654321, 123456789, "Santa Fe", "Calle asdasd", "AA", 12, 12347, "Santiago", "Fanatico de linux", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Caso", "santiago@gmail.com", true, "santiagoC", "Student" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "UserId", "NameAdmin", "Password", "UserEmail", "UserName", "UserType" },
-                values: new object[] { 6, "AdminPepe", "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", "luciano3924@gmail.com", "admin", "Admin" });
+                columns: new[] { "UserId", "NameAdmin", "Password", "UserEmail", "UserIsActive", "UserName", "UserType" },
+                values: new object[] { 6, "AdminPepe", "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", "luciano3924@gmail.com", true, "admin", "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Offers",
-                columns: new[] { "OfferId", "CompanyId", "CreatedDate", "OfferDescription", "OfferSpecialty", "OfferTitle" },
+                columns: new[] { "OfferId", "CompanyId", "CreatedDate", "OfferDescription", "OfferIsActive", "OfferSpecialty", "OfferTitle" },
                 values: new object[,]
                 {
-                    { 1, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Conocimientos avanzados en SQL", "SQL", "Analista de datos" },
-                    { 2, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Conocimientos avanzados en entorno .NET", ".NET", "Desarrollador Backend" }
+                    { 1, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Conocimientos avanzados en SQL", true, "SQL", "Analista de datos" },
+                    { 2, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Conocimientos avanzados en entorno .NET", true, ".NET", "Desarrollador Backend" }
                 });
 
             migrationBuilder.InsertData(
                 table: "StudentCareer",
-                columns: new[] { "CareerId", "StudentId" },
+                columns: new[] { "CareerId", "StudentId", "StudentCareerIsActive" },
                 values: new object[,]
                 {
-                    { 1, 4 },
-                    { 2, 5 }
+                    { 1, 4, false },
+                    { 2, 5, false }
                 });
 
             migrationBuilder.InsertData(
                 table: "StudentKnowledge",
-                columns: new[] { "KnowledgeId", "UserId" },
+                columns: new[] { "KnowledgeId", "UserId", "StudentKnowledgeIsActive" },
                 values: new object[,]
                 {
-                    { 2, 3 },
-                    { 1, 4 }
+                    { 2, 3, false },
+                    { 1, 4, false }
                 });
 
             migrationBuilder.InsertData(
                 table: "StudentOffer",
-                columns: new[] { "OfferId", "StudentId" },
+                columns: new[] { "OfferId", "StudentId", "StudentOfferIsActive" },
                 values: new object[,]
                 {
-                    { 1, 4 },
-                    { 2, 5 }
+                    { 1, 4, false },
+                    { 2, 5, false }
                 });
 
             migrationBuilder.CreateIndex(

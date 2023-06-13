@@ -47,7 +47,9 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 CompanyPersonalJob = "Gerente",
                 CompanyPersonalPhone = 22,
                 CompanyRelationContact = "Vacio",
-                CompanyPendingConfirmation = true
+                CompanyPendingConfirmation = true,
+
+                UserIsActive = true
             };
 
             Company company2 = new Company()
@@ -70,7 +72,9 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 CompanyPersonalJob = "Gerente",
                 CompanyPersonalPhone = 25,
                 CompanyRelationContact = "Vacio",
-                CompanyPendingConfirmation = true
+                CompanyPendingConfirmation = true,
+
+                UserIsActive = true
             };
 
             modelBuilder.Entity<Company>().HasData(
@@ -85,6 +89,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 OfferDescription = "Conocimientos avanzados en SQL",
                 OfferSpecialty = "SQL",
                 CompanyId = 2,
+
+                OfferIsActive = true
             };
 
             Offer offer2 = new Offer()
@@ -94,6 +100,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 OfferDescription = "Conocimientos avanzados en entorno .NET",
                 OfferSpecialty = ".NET",
                 CompanyId = 1,
+
+                OfferIsActive = true
             };
 
             modelBuilder.Entity<Offer>().HasData(
@@ -107,7 +115,9 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 CareerName = "Tecnicatura Universitaria en Programación",
                 CareerAbbreviation = "TUP",
                 CareerType = "Programación",
-                CareerTotalSubjects = 20
+                CareerTotalSubjects = 20,
+
+                CareerIsActive = true
             };
 
             Career career2 = new Career()
@@ -116,7 +126,9 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 CareerName = "Tecnicatura Universitaria en Higiene y Seguridad",
                 CareerAbbreviation = "TUHS",
                 CareerType = "Seguridad",
-                CareerTotalSubjects = 15
+                CareerTotalSubjects = 15,
+
+                CareerIsActive= true
             };
 
 
@@ -127,19 +139,25 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             {
                 KnowledgeId = 1,
                 Type = "Programming",
-                Level = "Advanced"
+                Level = "Advanced",
+
+                KnowledgeIsActive = true
             };
             Knowledge knowledge2 = new Knowledge()
             {
                 KnowledgeId = 2,
                 Type = "Design",
-                Level = "Intermediate"
+                Level = "Intermediate",
+
+                KnowledgeIsActive = true
             };
             Knowledge knowledge3 = new Knowledge()
             {
                 KnowledgeId = 3,
                 Type = "Marketing",
-                Level = "Beginner"
+                Level = "Beginner",
+
+                KnowledgeIsActive = true
             };
             modelBuilder.Entity<Knowledge>().HasData(
                 knowledge1, knowledge2, knowledge3);
@@ -150,8 +168,9 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 UserId = 6,
                 UserName = "admin",
                 NameAdmin = "AdminPepe",
-                UserEmail ="luciano3924@gmail.com"
+                UserEmail ="luciano3924@gmail.com",
 
+                UserIsActive = true
             };
 
             modelBuilder.Entity<Admin>().HasData(
@@ -210,8 +229,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 SecondaryDegree = "Completo",
                 Observations = "Fanatico de linux",
 
-
-
+                UserIsActive = true
     };
 
             Student student2 = new Student()
@@ -267,6 +285,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 SecondaryDegree = "Completo",
                
                 Observations = "Fanatico de linux",
+
+                UserIsActive = true
             };
 
             Student student3 = new Student()
@@ -322,6 +342,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 
                 Observations = "Fanatico de linux",
 
+                UserIsActive = true
             };
 
 

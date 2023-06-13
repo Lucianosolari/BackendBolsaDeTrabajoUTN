@@ -26,5 +26,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         [ForeignKey("CompanyId")]
         public Company Company { get; set; }
         public int CompanyId { get; set; }
+
+        public bool OfferIsActive { get; set; }
     }
 }

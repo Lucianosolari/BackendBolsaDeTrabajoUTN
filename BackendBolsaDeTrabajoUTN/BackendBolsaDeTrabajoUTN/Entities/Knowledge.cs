@@ -13,5 +13,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
 
         public ICollection<Student> Students { get; set; } = new List<Student>();
         public ICollection<StudentKnowledge> StudentKnowledges { get; set; }
+
+        public bool KnowledgeIsActive { get; set; }
     }
 }
