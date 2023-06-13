@@ -33,7 +33,8 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
         {
             try
             {
-                _context.Companies.Remove(_context.Companies.First(x => x.UserId == id));
+                var company = _context.Companies.FirstOrDefault(s => s.UserId == id);
+                company.UserIsActive = false;
                 _context.SaveChanges();
             }
             catch

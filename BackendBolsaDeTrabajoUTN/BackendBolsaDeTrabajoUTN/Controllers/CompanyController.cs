@@ -74,9 +74,9 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [Authorize]
-        [HttpDelete] //Cambiar a put (modifica UserIsActive de True a False)
+        [HttpPut] //Cambiar a put (modifica UserIsActive de True a False)
         [Route("deleteCompany/{id}")]
-        public IActionResult DeleteStudent(int id)
+        public IActionResult DeleteCompany(int id)
         {
             try
             {
