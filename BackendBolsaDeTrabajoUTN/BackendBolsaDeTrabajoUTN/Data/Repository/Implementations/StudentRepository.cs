@@ -119,7 +119,8 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
         {
             try
             {
-                _context.Students.Remove(_context.Students.First(x => x.UserId == id));
+                var student = _context.Students.FirstOrDefault(s => s.UserId == id);
+                student.UserIsActive = false;
                 _context.SaveChanges();
             }
             catch
