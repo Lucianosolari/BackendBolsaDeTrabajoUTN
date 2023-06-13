@@ -13,6 +13,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public string CareerType { get; set; }
         public int CareerTotalSubjects { get; set; }
         public ICollection<Student>? Students { get; set; } = new List<Student>();
-        
+
+        public bool CareerIsActive { get; set; }
     }
 }

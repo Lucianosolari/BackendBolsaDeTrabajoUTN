@@ -21,5 +21,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public string UserType { get; set; }
 
         public string UserEmail { get; set; }  
+
+        public bool UserIsActive { get; set; }
     }
 }

@@ -25,6 +25,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<bool>("CVIsActive")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<byte[]>("File")
                         .IsRequired()
                         .HasColumnType("longblob");
@@ -53,6 +56,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<bool>("CareerIsActive")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("CareerName")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -73,6 +79,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             CareerId = 1,
                             CareerAbbreviation = "TUP",
+                            CareerIsActive = true,
                             CareerName = "Tecnicatura Universitaria en Programación",
                             CareerTotalSubjects = 20,
                             CareerType = "Programación"
@@ -81,6 +88,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             CareerId = 2,
                             CareerAbbreviation = "TUHS",
+                            CareerIsActive = true,
                             CareerName = "Tecnicatura Universitaria en Higiene y Seguridad",
                             CareerTotalSubjects = 15,
                             CareerType = "Seguridad"
@@ -92,6 +100,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Property<int>("KnowledgeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<bool>("KnowledgeIsActive")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Level")
                         .IsRequired()
@@ -109,18 +120,21 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         new
                         {
                             KnowledgeId = 1,
+                            KnowledgeIsActive = true,
                             Level = "Advanced",
                             Type = "Programming"
                         },
                         new
                         {
                             KnowledgeId = 2,
+                            KnowledgeIsActive = true,
                             Level = "Intermediate",
                             Type = "Design"
                         },
                         new
                         {
                             KnowledgeId = 3,
+                            KnowledgeIsActive = true,
                             Level = "Beginner",
                             Type = "Marketing"
                         });
@@ -141,6 +155,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Property<string>("OfferDescription")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("OfferIsActive")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("OfferSpecialty")
                         .IsRequired()
@@ -163,6 +180,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CompanyId = 2,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OfferDescription = "Conocimientos avanzados en SQL",
+                            OfferIsActive = true,
                             OfferSpecialty = "SQL",
                             OfferTitle = "Analista de datos"
                         },
@@ -172,6 +190,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CompanyId = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OfferDescription = "Conocimientos avanzados en entorno .NET",
+                            OfferIsActive = true,
                             OfferSpecialty = ".NET",
                             OfferTitle = "Desarrollador Backend"
                         });
@@ -185,6 +204,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Property<int>("CareerId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("StudentCareerIsActive")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("StudentId", "CareerId");
 
                     b.HasIndex("CareerId");
@@ -195,12 +217,14 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         new
                         {
                             StudentId = 4,
-                            CareerId = 1
+                            CareerId = 1,
+                            StudentCareerIsActive = false
                         },
                         new
                         {
                             StudentId = 5,
-                            CareerId = 2
+                            CareerId = 2,
+                            StudentCareerIsActive = false
                         });
                 });
 
@@ -212,6 +236,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Property<int>("KnowledgeId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("StudentKnowledgeIsActive")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("UserId", "KnowledgeId");
 
                     b.HasIndex("KnowledgeId");
@@ -222,12 +249,14 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         new
                         {
                             UserId = 4,
-                            KnowledgeId = 1
+                            KnowledgeId = 1,
+                            StudentKnowledgeIsActive = false
                         },
                         new
                         {
                             UserId = 3,
-                            KnowledgeId = 2
+                            KnowledgeId = 2,
+                            StudentKnowledgeIsActive = false
                         });
                 });
 
@@ -239,6 +268,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("StudentOfferIsActive")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("OfferId", "StudentId");
 
                     b.HasIndex("StudentId");
@@ -249,12 +281,14 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         new
                         {
                             OfferId = 1,
-                            StudentId = 4
+                            StudentId = 4,
+                            StudentOfferIsActive = false
                         },
                         new
                         {
                             OfferId = 2,
-                            StudentId = 5
+                            StudentId = 5,
+                            StudentOfferIsActive = false
                         });
                 });
 
@@ -271,6 +305,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Property<string>("UserEmail")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<bool>("UserIsActive")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -305,6 +342,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserId = 6,
                             Password = "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db",
                             UserEmail = "luciano3924@gmail.com",
+                            UserIsActive = true,
                             UserName = "admin",
                             NameAdmin = "AdminPepe"
                         });
@@ -375,6 +413,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserId = 1,
                             Password = "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db",
                             UserEmail = "mail1@gmai.com",
+                            UserIsActive = true,
                             UserName = "Company 1",
                             CompanyAddress = "D 15",
                             CompanyCUIT = "20447575",
@@ -396,6 +435,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserId = 2,
                             Password = "7e2feac95dcd7d1df803345e197369af4b156e4e7a95fcb2955bdbbb3a11afd8bb9d35931bf15511370b18143e38b01b903f55c5ecbded4af99934602fcdf38c",
                             UserEmail = "mail2@gmai.com",
+                            UserIsActive = true,
                             UserName = "Company 2",
                             CompanyAddress = "E 18",
                             CompanyCUIT = "20445556661",
@@ -569,6 +609,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserId = 3,
                             Password = "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87",
                             UserEmail = "manuel@gmail.com",
+                            UserIsActive = true,
                             UserName = "string",
                             AltEmail = "manuelAlt@gmail.com",
                             ApprovedSubjectsQuantity = 10,
@@ -616,6 +657,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserId = 4,
                             Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
                             UserEmail = "luciano@gmail.com",
+                            UserIsActive = true,
                             UserName = "lucianoS",
                             AltEmail = "lucianoAlt@gmail.com",
                             ApprovedSubjectsQuantity = 10,
@@ -663,6 +705,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserId = 5,
                             Password = "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413",
                             UserEmail = "santiago@gmail.com",
+                            UserIsActive = true,
                             UserName = "santiagoC",
                             AltEmail = "santiagoAlt@gmail.com",
                             ApprovedSubjectsQuantity = 10,
