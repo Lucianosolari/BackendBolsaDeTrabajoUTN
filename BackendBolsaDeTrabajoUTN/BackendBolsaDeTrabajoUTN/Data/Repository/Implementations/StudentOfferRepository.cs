@@ -40,11 +40,25 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
         {
             var offers = _context.StudentOffers
                 .Where(so => so.StudentId == studentId)
-                .Select(so => so.Offer)
+                .Select(so => new Offer
+                {
+                    OfferId = so.Offer.OfferId,
+                    OfferTitle = so.Offer.OfferTitle,
+                    OfferSpecialty = so.Offer.OfferSpecialty,
+                    OfferDescription = so.Offer.OfferDescription,
+                    CreatedDate = so.Offer.CreatedDate,
+                    Company = new Company
+                    {
+                        CompanyName = so.Offer.Company.CompanyName,
+                        CompanyLocation = so.Offer.Company.CompanyLocation,
+                        CompanyLine = so.Offer.Company.CompanyLine
+                    },
+                })
                 .ToList();
 
             return offers;
         }
+
 
 
     }
