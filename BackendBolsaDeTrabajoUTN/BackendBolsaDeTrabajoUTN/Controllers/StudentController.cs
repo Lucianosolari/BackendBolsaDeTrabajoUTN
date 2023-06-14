@@ -231,11 +231,23 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [NonAction]
         public void ValidateDNI(List<Student> students, int DNI)
         {
-            var inUse = students.FirstOrDefault(s => s.DocumentNumber == DNI);
-            if (inUse != null)
+            try
             {
-                throw new Exception("DNI ya registrado");
+                if (DNI.ToString().Length != 8)
+                {
+                    throw new Exception("DNI inválido, debe tener una longitud de 8 dígitos.");
+                }
+                var inUse = students.FirstOrDefault(s => s.DocumentNumber == DNI);
+                if (inUse != null)
+                {
+                    throw new Exception("DNI ya registrado");
+                }
             }
+            catch (FormatException)
+            {
+                throw new Exception("El DNI debe ser un número entero.");
+            }
+            
         }
         [NonAction]
         public void ValidateFile(List<Student> students, int file)

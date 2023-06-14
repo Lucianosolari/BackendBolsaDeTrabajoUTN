@@ -222,7 +222,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                     try
                      {
                         _adminRepository.UpdateCompanyPending(companyId);
-                        return Ok();
+                        return Ok(new { Message = "Estado cambiado"});
                      }
                     catch (Exception ex)
                      {
