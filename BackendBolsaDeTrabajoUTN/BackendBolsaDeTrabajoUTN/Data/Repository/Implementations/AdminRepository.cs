@@ -99,6 +99,11 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             try
             {
                 var offer = _context.Offers.FirstOrDefault(x => x.OfferId == id);
+                var studentOffers = _context.StudentOffers.Where(x => x.OfferId == id).ToList();
+                foreach (var studentOffer in studentOffers)
+                {
+                    studentOffer.StudentOfferIsActive = false;
+                }
                 offer.OfferIsActive = false;
                 _context.SaveChanges();
             }
