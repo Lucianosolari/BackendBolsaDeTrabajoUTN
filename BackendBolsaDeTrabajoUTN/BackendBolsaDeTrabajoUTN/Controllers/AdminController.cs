@@ -90,6 +90,8 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
         }
 
+
+
         [Authorize]
         [HttpDelete] //Cambiar a put (modifica CareerIsActive de True a False)
         [Route("deleteCareer")]
