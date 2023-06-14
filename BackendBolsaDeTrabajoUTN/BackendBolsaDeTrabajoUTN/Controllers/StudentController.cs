@@ -243,7 +243,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                     throw new Exception("DNI ya registrado");
                 }
             }
-            catch (FormatException)
+            catch (FormatException) //No lo está tomando. => "$.documentNumber": "'p' is an invalid start of a value. Path: $.documentNumber | LineNumber: 9 | BytePositionInLine: 20."]
             {
                 throw new Exception("El DNI debe ser un número entero.");
             }

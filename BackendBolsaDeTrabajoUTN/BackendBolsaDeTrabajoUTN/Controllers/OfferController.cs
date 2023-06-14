@@ -14,20 +14,12 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
    
     public class OfferController : ControllerBase
     {
-
-
-        private readonly TPContext _context;
         private readonly IOfferRepository _offerRepository;
 
-        public OfferController(IOfferRepository offerRepository, TPContext context)
+        public OfferController(IOfferRepository offerRepository)
         {
             _offerRepository = offerRepository;
-            _context = context;
         }
-
-        
-
-
 
         [Authorize]
         [HttpGet("ByCompany/{companyId}")]
