@@ -474,8 +474,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Property<DateTime>("Birth")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("CUIL_CUIT")
-                        .HasColumnType("int");
+                    b.Property<long>("CUIL_CUIT")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CivilStatus")
                         .IsRequired()
@@ -616,7 +616,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             AverageMarksWithPostponement = 6,
                             AverageMarksWithoutPostponement = 7,
                             Birth = new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CUIL_CUIT = 231332,
+                            CUIL_CUIT = 20445556661L,
                             CivilStatus = "Casado",
                             CollegeDegree = "Sistemas",
                             CurrentStudyYear = 2,
@@ -664,7 +664,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             AverageMarksWithPostponement = 6,
                             AverageMarksWithoutPostponement = 7,
                             Birth = new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CUIL_CUIT = 2313321,
+                            CUIL_CUIT = 203334445551L,
                             CivilStatus = "Soltero",
                             CollegeDegree = "Sistemas",
                             CurrentStudyYear = 2,
@@ -712,7 +712,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             AverageMarksWithPostponement = 6,
                             AverageMarksWithoutPostponement = 7,
                             Birth = new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CUIL_CUIT = 2313321,
+                            CUIL_CUIT = 20556667771L,
                             CivilStatus = "Soltero",
                             CollegeDegree = "Sistemas",
                             CurrentStudyYear = 2,
