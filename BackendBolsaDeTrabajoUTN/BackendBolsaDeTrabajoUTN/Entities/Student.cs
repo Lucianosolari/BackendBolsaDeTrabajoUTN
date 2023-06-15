@@ -22,7 +22,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public string AltEmail { get; set; }
         public string DocumentType { get; set; } // Ver tabla aparte (se repite la palabra)
         public int DocumentNumber { get; set; }
-        public int CUIL_CUIT { get; set; }
+        public long CUIL_CUIT { get; set; }
         public DateTime Birth { get; set; }
         public string Sex { get; set; } //Ver tabla aparte (se repite la palabra)
         public string CivilStatus { get; set; } // Ver tabla aparte (se repite la palabra)

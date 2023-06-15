@@ -43,6 +43,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 {
                     List<Student> students = _studentRepository.GetStudents();
                     ValidateDNI(students, request.DocumentNumber);
+                    ValidateCUIL_CUIT(students, request.CUIL_CUIT);
                     ValidateFile(students, request.File);
                     ValidateUserName(students, request.UserName);
 
@@ -61,6 +62,8 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         Birth = request.Birth,
                         Sex = request.Sex,
                         CivilStatus = request.CivilStatus,
+
+                        UserIsActive = true
                     };
                     StudentResponse response = new()
                     {
@@ -247,8 +250,29 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             {
                 throw new Exception("El DNI debe ser un número entero.");
             }
-            
         }
+
+        [NonAction]
+        public void ValidateCUIL_CUIT(List<Student> students, long CUIL_CUIT)
+        {
+            try
+            {
+                if (CUIL_CUIT.ToString().Length != 11)
+                {
+                    throw new Exception("CUIT inválido, debe tener una longitud de 11 dígitos.");
+                }
+                var inUse = students.FirstOrDefault(s => s.CUIL_CUIT == CUIL_CUIT);
+                if (inUse != null)
+                {
+                    throw new Exception("CUIT ya registrado");
+                }
+            }
+            catch (FormatException)
+            {
+                throw new Exception("El CUIT debe ser un número entero.");
+            }
+        }
+
         [NonAction]
         public void ValidateFile(List<Student> students, int file)
         {

@@ -17,7 +17,7 @@ namespace BackendBolsaDeTrabajoUTN.Models
 
         public int DocumentNumber { get; set; }
 
-        public int CUIL_CUIT { get; set; }
+        public long CUIL_CUIT { get; set; }
 
         public DateTime Birth { get; set; }
 

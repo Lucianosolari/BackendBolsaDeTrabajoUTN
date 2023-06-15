@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     /// <inheritdoc />
-    public partial class OK : Migration
+    public partial class migracion : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -108,7 +108,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     DocumentType = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DocumentNumber = table.Column<int>(type: "int", nullable: true),
-                    CUIL_CUIT = table.Column<int>(type: "int", nullable: true),
+                    CUIL_CUIT = table.Column<long>(type: "bigint", nullable: true),
                     Birth = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     Sex = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -331,9 +331,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: new[] { "UserId", "AltEmail", "ApprovedSubjectsQuantity", "AverageMarksWithPostponement", "AverageMarksWithoutPostponement", "Birth", "CUIL_CUIT", "CivilStatus", "CollegeDegree", "CurrentStudyYear", "DocumentNumber", "DocumentType", "FamilyCountry", "FamilyDepartment", "FamilyFloor", "FamilyLocation", "FamilyOtherPhone", "FamilyPersonalPhone", "FamilyProvince", "FamilyStreet", "FamilyStreetLetter", "FamilyStreetNumber", "File", "Name", "Observations", "Password", "PersonalCountry", "PersonalDepartment", "PersonalFloor", "PersonalLocation", "PersonalOtherPhone", "PersonalPersonalPhone", "PersonalProvince", "PersonalStreet", "PersonalStreetLetter", "PersonalStreetNumber", "SecondaryDegree", "Sex", "Specialty", "SpecialtyPlan", "StudyTurn", "Surname", "UserEmail", "UserIsActive", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { 3, "manuelAlt@gmail.com", 10, 6, 7, new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 231332, "Casado", "Sistemas", 2, 44555666, "DNI", "Argentina", "4B", 2, "Ciudad Autónoma de Buenos Aires", 987654321, 123456789, "Buenos Aires", "Calle Principal", "A", 123, 12345, "Manuel", "Fanatico de linux", "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Ibarbia", "manuel@gmail.com", true, "string", "Student" },
-                    { 4, "lucianoAlt@gmail.com", 10, 6, 7, new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", "Sistemas", 2, 33444555, "DNI", "Argentina", "5B", 22, "Rosario", 987654321, 123456789, "Santa Fe", "Calle asdasd", "AA", 12, 12346, "Luciano", "Fanatico de linux", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Solari", "luciano@gmail.com", true, "lucianoS", "Student" },
-                    { 5, "santiagoAlt@gmail.com", 10, 6, 7, new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2313321, "Soltero", "Sistemas", 2, 55666777, "DNI", "Argentina", "5B", 22, "Rosario", 987654321, 123456789, "Santa Fe", "Calle asdasd", "AA", 12, 12347, "Santiago", "Fanatico de linux", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Caso", "santiago@gmail.com", true, "santiagoC", "Student" }
+                    { 3, "manuelAlt@gmail.com", 10, 6, 7, new DateTime(1995, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 20445556661L, "Casado", "Sistemas", 2, 44555666, "DNI", "Argentina", "4B", 2, "Ciudad Autónoma de Buenos Aires", 987654321, 123456789, "Buenos Aires", "Calle Principal", "A", 123, 12345, "Manuel", "Fanatico de linux", "2757cb3cafc39af451abb2697be79b4ab61d63d74d85b0418629de8c26811b529f3f3780d0150063ff55a2beee74c4ec102a2a2731a1f1f7f10d473ad18a6a87", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Ibarbia", "manuel@gmail.com", true, "string", "Student" },
+                    { 4, "lucianoAlt@gmail.com", 10, 6, 7, new DateTime(1800, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 203334445551L, "Soltero", "Sistemas", 2, 33444555, "DNI", "Argentina", "5B", 22, "Rosario", 987654321, 123456789, "Santa Fe", "Calle asdasd", "AA", 12, 12346, "Luciano", "Fanatico de linux", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Solari", "luciano@gmail.com", true, "lucianoS", "Student" },
+                    { 5, "santiagoAlt@gmail.com", 10, 6, 7, new DateTime(2005, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 20556667771L, "Soltero", "Sistemas", 2, 55666777, "DNI", "Argentina", "5B", 22, "Rosario", 987654321, 123456789, "Santa Fe", "Calle asdasd", "AA", 12, 12347, "Santiago", "Fanatico de linux", "ba3253876aed6bc22d4a6ff53d8406c6ad864195ed144ab5c87621b6c233b548baeae6956df346ec8c17f5ea10f35ee3cbc514797ed7ddd3145464e2a0bab413", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Caso", "santiago@gmail.com", true, "santiagoC", "Student" }
                 });
 
             migrationBuilder.InsertData(
