@@ -46,6 +46,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                     ValidateCUIL_CUIT(students, request.CUIL_CUIT);
                     ValidateFile(students, request.File);
                     ValidateUserName(students, request.UserName);
+                    ValidateUserEmail(students, request.UserEmail);
 
                     Student newStudent = new()
                     {
@@ -115,9 +116,6 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
         }
 
-
-
-
         [Authorize]
         [HttpPost("{offerId}/Students/{studentId}")]
         public ActionResult AddStudentToOffer(int offerId, int studentId)
@@ -149,7 +147,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [Authorize]
-        [HttpPut] //Cambiar a put (modifica UserIsActive de True a False)
+        [HttpDelete] //Cambiar a put (modifica UserIsActive de True a False)
         [Route("deleteStudent/{id}")]
         public IActionResult DeleteStudent(int id)
         {
@@ -238,7 +236,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             {
                 if (DNI.ToString().Length != 8)
                 {
-                    throw new Exception("DNI inválido, debe tener una longitud de 8 dígitos.");
+                    throw new Exception("DNI no válido, debe tener una longitud de 8 dígitos.");
                 }
                 var inUse = students.FirstOrDefault(s => s.DocumentNumber == DNI);
                 if (inUse != null)
@@ -259,7 +257,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             {
                 if (CUIL_CUIT.ToString().Length != 11)
                 {
-                    throw new Exception("CUIT inválido, debe tener una longitud de 11 dígitos.");
+                    throw new Exception("CUIT no válido, debe tener una longitud de 11 dígitos.");
                 }
                 var inUse = students.FirstOrDefault(s => s.CUIL_CUIT == CUIL_CUIT);
                 if (inUse != null)
@@ -276,10 +274,21 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [NonAction]
         public void ValidateFile(List<Student> students, int file)
         {
-            var inUse = students.FirstOrDefault(s => s.File == file);
-            if (inUse != null)
+            try
             {
-                throw new Exception("Legajo ya registrado");
+                if (file.ToString().Length != 5)
+                {
+                    throw new Exception("Legajo no válido, debe tener una longitud de 5 dígitos.");
+                }
+                var inUse = students.FirstOrDefault(s => s.File == file);
+                if (inUse != null)
+                {
+                    throw new Exception("Legajo ya registrado");
+                }
+            }
+            catch (FormatException)
+            {
+                throw new Exception("El legajo debe ser un número entero");
             }
         }
 
@@ -290,6 +299,32 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             if (inUse != null)
             {
                 throw new Exception("Nombre de usuario ya utilizado");
+            }
+        }
+
+        [NonAction]
+        public void ValidateUserEmail(List<Student> students, string userEmail)
+        {
+            try
+            {
+                if (!userEmail.EndsWith("@frro.utn.edu.ar"))
+                {
+                    throw new Exception("El correo electrónico debe terminar en @frro.utn.edu.ar");
+                }
+                int atIndex = userEmail.IndexOf("@");
+                if (atIndex <= 0)
+                {
+                    throw new Exception("El correo electrónico debe contener texto antes de @frro.utn.edu.ar");
+                }
+                var inUse = students.FirstOrDefault(s => s.UserEmail == userEmail);
+                if (inUse != null)
+                {
+                    throw new Exception("Correo electrónico ya registrado");
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }
