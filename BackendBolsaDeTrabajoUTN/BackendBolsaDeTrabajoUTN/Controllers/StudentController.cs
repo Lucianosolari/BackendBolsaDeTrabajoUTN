@@ -26,7 +26,6 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
         public StudentController(IStudentOfferRepository studentOfferRepository, IStudentRepository studentRepository, TPContext context)
         {
-
             _studentOfferRepository = studentOfferRepository;
             
             _studentRepository = studentRepository;
@@ -38,14 +37,14 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Route("createStudent")]
         public IActionResult CreateStudent(AddStudentRequest request)
         {
-
                 try
                 {
+                    List<User> users = _studentRepository.GetUsers();
                     List<Student> students = _studentRepository.GetStudents();
                     ValidateDNI(students, request.DocumentNumber);
                     ValidateCUIL_CUIT(students, request.CUIL_CUIT);
                     ValidateFile(students, request.File);
-                    ValidateUserName(students, request.UserName);
+                    ValidateUserName(users, request.UserName);
                     ValidateUserEmail(students, request.UserEmail);
 
                     Student newStudent = new()
@@ -79,7 +78,6 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 {
                     return BadRequest(ex.Message);
                 }
-           
         }
 
         [Authorize]
@@ -293,9 +291,9 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [NonAction]
-        public void ValidateUserName(List<Student> students, string userName)
+        public void ValidateUserName(List<User> users, string userName)
         {
-            var inUse = students.FirstOrDefault(s => s.UserName == userName);
+            var inUse = users.FirstOrDefault(u => u.UserName.ToLower() == userName.ToLower());
             if (inUse != null)
             {
                 throw new Exception("Nombre de usuario ya utilizado");
