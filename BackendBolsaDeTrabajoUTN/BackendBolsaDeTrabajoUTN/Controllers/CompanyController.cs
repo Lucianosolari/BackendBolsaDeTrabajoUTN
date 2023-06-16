@@ -13,10 +13,8 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
     
     public class CompanyController : ControllerBase
     {
-
         private readonly ICompanyRepository _companyRepository;
         
-
         public CompanyController(ICompanyRepository companyRepository)
         {
             _companyRepository = companyRepository;
@@ -31,6 +29,10 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             //{
                 try
                 {
+                    List<User> users = _companyRepository.GetUsers();
+                    List<Company> companies = _companyRepository.GetCompanies();
+                    ValidateUserName(users, request.UserName);
+
                     Company newCompany = new()
                     {
                         // datos de la empresa
@@ -64,7 +66,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 }
                 catch (Exception ex)
                 {
-                    return Problem(ex.Message);
+                    return BadRequest(ex.Message);
                 }
             //}
             //else
@@ -74,7 +76,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [Authorize]
-        [HttpPut] //Cambiar a put (modifica UserIsActive de True a False)
+        [HttpDelete]
         [Route("deleteCompany/{id}")]
         public IActionResult DeleteCompany(int id)
         {
@@ -115,8 +117,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         OfferDescription = newOffer.OfferDescription,
                         CreatedDate = newOffer.CreatedDate,
                         OfferIsActive = true,
-
-            };
+                };
                     _companyRepository.CreateOffer(newOffer);
                     return Created("Oferta creada", response);
                 }
@@ -130,10 +131,15 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 return BadRequest("El usuario no esta autorizado para crear ofertas");
             }
         }
+
+        [NonAction]
+        public void ValidateUserName(List<User> users, string userName)
+        {
+            var inUse = users.FirstOrDefault(c => c.UserName.ToLower() == userName.ToLower());
+            if (inUse != null)
+            {
+                throw new Exception("Nombre de usuario ya utilizado");
+            }
+        }
     }
 }
-
-
-
-
-

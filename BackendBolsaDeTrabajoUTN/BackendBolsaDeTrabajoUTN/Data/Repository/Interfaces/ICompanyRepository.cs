@@ -8,7 +8,8 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
     {
         public void CreateCompany(Company newCompany);
         public void RemoveCompany(int id);
-        //public void CreateOffer(Offer offer);
         public void CreateOffer(Offer newOffer);
+        public List<User> GetUsers();
+        public List<Company> GetCompanies();
     }
 }
