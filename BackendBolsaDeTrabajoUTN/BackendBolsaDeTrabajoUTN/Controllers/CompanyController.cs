@@ -32,6 +32,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                     List<User> users = _companyRepository.GetUsers();
                     List<Company> companies = _companyRepository.GetCompanies();
                     ValidateUserName(users, request.UserName);
+                    ValidateCUIT(companies, request.CompanyCUIT);
 
                     Company newCompany = new()
                     {
@@ -139,6 +140,27 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             if (inUse != null)
             {
                 throw new Exception("Nombre de usuario ya utilizado");
+            }
+        }
+
+        [NonAction]
+        public void ValidateCUIT(List<Company> companies, long CUIT)
+        {
+            try
+            {
+                if (CUIT.ToString().Length != 11)
+                {
+                    throw new Exception("CUIT no válido, debe tener una longitud de 11 dígitos.");
+                }
+                var inUse = companies.FirstOrDefault(c => c.CompanyCUIT == CUIT);
+                if (inUse != null)
+                {
+                    throw new Exception("CUIT ya registrado");
+                }
+            }
+            catch (FormatException)
+            {
+                throw new Exception("El CUIT debe ser un número entero.");
             }
         }
     }
