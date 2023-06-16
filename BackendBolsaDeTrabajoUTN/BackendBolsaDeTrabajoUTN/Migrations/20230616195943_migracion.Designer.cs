@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20230614234510_migracion")]
+    [Migration("20230616195943_migracion")]
     partial class migracion
     {
         /// <inheritdoc />
@@ -359,9 +359,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("CompanyCUIT")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<long>("CompanyCUIT")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CompanyLine")
                         .IsRequired()
@@ -419,7 +418,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserIsActive = true,
                             UserName = "Company 1",
                             CompanyAddress = "D 15",
-                            CompanyCUIT = "20447575",
+                            CompanyCUIT = 20447575751L,
                             CompanyLine = "Textil",
                             CompanyLocation = "Rosario",
                             CompanyName = "Microsoft",
@@ -441,7 +440,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserIsActive = true,
                             UserName = "Company 2",
                             CompanyAddress = "E 18",
-                            CompanyCUIT = "20445556661",
+                            CompanyCUIT = 20445556661L,
                             CompanyLine = "Textil",
                             CompanyLocation = "Rosario",
                             CompanyName = "Apple",

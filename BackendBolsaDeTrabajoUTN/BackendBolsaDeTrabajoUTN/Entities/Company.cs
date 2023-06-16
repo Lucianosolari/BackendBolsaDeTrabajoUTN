@@ -8,7 +8,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
     {
         // datos de la empresa
         public string CompanyName { get; set; } //razón social
-        public string CompanyCUIT { get; set; }
+        public long CompanyCUIT { get; set; }
         public string CompanyLine { get; set; } //rubro
         public string CompanyAddress { get; set; }
         public string CompanyLocation { get; set; }
