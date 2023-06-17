@@ -27,7 +27,5 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             var user = _context.Users.SingleOrDefault(u => u.UserName == dto.UserName);
             return user ?? null;
         }
-
-
     }
 }

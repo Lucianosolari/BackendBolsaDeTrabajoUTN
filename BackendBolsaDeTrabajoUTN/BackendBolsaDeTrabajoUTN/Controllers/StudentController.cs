@@ -5,10 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 using BackendBolsaDeTrabajoUTN.Entities;
 using BackendBolsaDeTrabajoUTN.Models;
-using System.Security.AccessControl;
 using System.Security.Claims;
 using BackendBolsaDeTrabajoUTN.DBContexts;
-using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -45,7 +44,8 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                     ValidateCUIL_CUIT(students, request.CUIL_CUIT);
                     ValidateFile(students, request.File);
                     ValidateUserName(users, request.UserName);
-                    ValidateUserEmail(students, request.UserEmail);
+                    ValidateUserEmail(students, users, request.UserEmail);
+                    ValidateAltEmail(users, students, request.AltEmail);
 
                     Student newStudent = new()
                     {
@@ -54,8 +54,8 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         File = request.File,
                         Name = request.Name,
                         Surname = request.Surname,
-                        UserEmail = request.UserEmail,
-                        AltEmail = request.AltEmail,
+                        UserEmail = request.UserEmail.ToLower(),
+                        AltEmail = request.AltEmail.ToLower(),
                         DocumentType = request.DocumentType,
                         DocumentNumber = request.DocumentNumber,
                         CUIL_CUIT = request.CUIL_CUIT,
@@ -301,28 +301,73 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [NonAction]
-        public void ValidateUserEmail(List<Student> students, string userEmail)
+        public void ValidateUserEmail(List<Student> students, List<User> users, string userEmail)
         {
             try
             {
                 if (!userEmail.EndsWith("@frro.utn.edu.ar"))
                 {
-                    throw new Exception("El correo electrónico debe terminar en @frro.utn.edu.ar");
+                    throw new Exception("El correo electrónico principal debe terminar en @frro.utn.edu.ar");
                 }
                 int atIndex = userEmail.IndexOf("@");
                 if (atIndex <= 0)
                 {
-                    throw new Exception("El correo electrónico debe contener texto antes de @frro.utn.edu.ar");
+                    throw new Exception("El correo electrónico principal debe contener texto antes de @frro.utn.edu.ar");
                 }
-                var inUse = students.FirstOrDefault(s => s.UserEmail == userEmail);
-                if (inUse != null)
+                var inUseStudent = students.FirstOrDefault(s => s.UserEmail.ToLower() == userEmail.ToLower()); //Comparamos con mails alternativos de estudiantes
+                var inUseUser = users.FirstOrDefault(u => u.UserEmail.ToLower() == userEmail.ToLower()); //Comparamos con todos los email de user (incluyendo empresas)
+                if (inUseStudent != null || inUseUser != null)
                 {
-                    throw new Exception("Correo electrónico ya registrado");
+                    throw new Exception("El correo electrónico principal introducido ya está registrado");
                 }
             }
             catch(Exception ex)
             {
                 throw new Exception(ex.Message);
+            }
+        }
+
+        [NonAction]
+        public void ValidateAltEmail(List<User> users, List<Student> students, string altEmail)
+        {
+            try
+            {
+                if (altEmail.EndsWith("@frro.utn.edu.ar"))
+                {
+                    throw new Exception("Correo electrónico alternativo no válido, está intentando introducir un correo institucional");
+                }
+                if (!IsValidEmail(altEmail))
+                {
+                    throw new Exception("Correo electrónico alternativo no válido");
+                }
+                var inUseStudent = students.FirstOrDefault(s => s.AltEmail.ToLower() == altEmail.ToLower()); 
+                var inUseUser = users.FirstOrDefault(u => u.UserEmail.ToLower() == altEmail.ToLower());
+                if (inUseStudent != null || inUseUser != null)
+                {
+                    throw new Exception("El correo electrónico alternativo introducido ya está registrado");
+                }
+            }
+            catch (FormatException)
+            {
+                throw new Exception("El correo electrónico alternativo debe ser válido");
+            }
+        }
+        private bool IsValidEmail(string altEmail)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(altEmail);
+
+                if (!Regex.IsMatch(addr.Host, @"^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
+                {
+                    return false;
+                }
+
+                return addr.Address == altEmail;
+            }
+            catch
+            {
+                return false;
             }
         }
     }
