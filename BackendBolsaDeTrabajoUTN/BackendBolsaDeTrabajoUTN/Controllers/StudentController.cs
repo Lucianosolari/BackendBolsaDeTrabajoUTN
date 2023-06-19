@@ -130,6 +130,18 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [Authorize]
+        [HttpDelete("{offerId}/DeleteStudent/{studentId}")] 
+        public ActionResult DeleteStudentToOffer(int offerId, int studentId) 
+        { 
+            try 
+            { 
+                _studentOfferRepository.DeleteStudentToOffer(offerId, studentId); 
+                return Ok(); 
+            } 
+            catch (Exception ex) { return BadRequest(ex.Message); }
+        }
+
+        [Authorize]
         [HttpGet("{studentId}/Offers")]
         public ActionResult GetStudentToOffers(int studentId)
         {

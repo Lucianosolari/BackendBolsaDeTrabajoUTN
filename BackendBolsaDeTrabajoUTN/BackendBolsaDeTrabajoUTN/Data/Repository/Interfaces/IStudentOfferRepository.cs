@@ -6,8 +6,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
     public interface IStudentOfferRepository
     {
         void AddStudentToOffer(int offerId, int studentId);
-
-
+        void DeleteStudentToOffer(int offerId, int studentId);
         List<Offer> GetStudentToOffers(int studentId);
     }
 }
