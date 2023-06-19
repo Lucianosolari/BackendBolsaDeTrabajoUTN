@@ -178,7 +178,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             OfferId = 1,
                             CompanyId = 2,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OfferDescription = "Conocimientos avanzados en SQL",
                             OfferIsActive = true,
                             OfferSpecialty = "SQL",
@@ -188,7 +188,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             OfferId = 2,
                             CompanyId = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2023, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OfferDescription = "Conocimientos avanzados en entorno .NET",
                             OfferIsActive = true,
                             OfferSpecialty = ".NET",
@@ -382,15 +382,15 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("CompanyPersonalPhone")
-                        .HasColumnType("int");
+                    b.Property<long>("CompanyPersonalPhone")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CompanyPersonalSurname")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("CompanyPhone")
-                        .HasColumnType("int");
+                    b.Property<long>("CompanyPhone")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("CompanyPostalCode")
                         .IsRequired()
@@ -422,9 +422,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CompanyPendingConfirmation = true,
                             CompanyPersonalJob = "Gerente",
                             CompanyPersonalName = "Juan Carlos",
-                            CompanyPersonalPhone = 22,
+                            CompanyPersonalPhone = 22L,
                             CompanyPersonalSurname = "Peralta",
-                            CompanyPhone = 341367898,
+                            CompanyPhone = 341367898L,
                             CompanyPostalCode = "2000",
                             CompanyRelationContact = "Vacio",
                             CompanyWebPage = "web"
@@ -444,9 +444,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CompanyPendingConfirmation = true,
                             CompanyPersonalJob = "Gerente",
                             CompanyPersonalName = "Juan Esteban",
-                            CompanyPersonalPhone = 25,
+                            CompanyPersonalPhone = 25L,
                             CompanyPersonalSurname = "Peralta",
-                            CompanyPhone = 341334455,
+                            CompanyPhone = 341334455L,
                             CompanyPostalCode = "2000",
                             CompanyRelationContact = "Vacio",
                             CompanyWebPage = "web2"

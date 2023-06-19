@@ -89,6 +89,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 OfferDescription = "Conocimientos avanzados en SQL",
                 OfferSpecialty = "SQL",
                 CompanyId = 2,
+                CreatedDate = new DateTime(2023, 01, 10),
 
                 OfferIsActive = true
             };
@@ -100,6 +101,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 OfferDescription = "Conocimientos avanzados en entorno .NET",
                 OfferSpecialty = ".NET",
                 CompanyId = 1,
+                CreatedDate = new DateTime(2023, 05, 10),
 
                 OfferIsActive = true
             };

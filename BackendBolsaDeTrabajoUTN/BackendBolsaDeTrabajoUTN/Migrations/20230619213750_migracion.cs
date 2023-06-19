@@ -84,7 +84,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CompanyPostalCode = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CompanyPhone = table.Column<int>(type: "int", nullable: true),
+                    CompanyPhone = table.Column<long>(type: "bigint", nullable: true),
                     CompanyWebPage = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CompanyPersonalName = table.Column<string>(type: "longtext", nullable: true)
@@ -93,7 +93,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CompanyPersonalJob = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CompanyPersonalPhone = table.Column<int>(type: "int", nullable: true),
+                    CompanyPersonalPhone = table.Column<long>(type: "bigint", nullable: true),
                     CompanyRelationContact = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CompanyPendingConfirmation = table.Column<bool>(type: "tinyint(1)", nullable: true),
@@ -321,8 +321,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: new[] { "UserId", "CompanyAddress", "CompanyCUIT", "CompanyLine", "CompanyLocation", "CompanyName", "CompanyPendingConfirmation", "CompanyPersonalJob", "CompanyPersonalName", "CompanyPersonalPhone", "CompanyPersonalSurname", "CompanyPhone", "CompanyPostalCode", "CompanyRelationContact", "CompanyWebPage", "Password", "UserEmail", "UserIsActive", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { 1, "D 15", 20447575751L, "Textil", "Rosario", "Microsoft", true, "Gerente", "Juan Carlos", 22, "Peralta", 341367898, "2000", "Vacio", "web", "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", "mail1@gmai.com", true, "Company 1", "Company" },
-                    { 2, "E 18", 20445556661L, "Textil", "Rosario", "Apple", true, "Gerente", "Juan Esteban", 25, "Peralta", 341334455, "2000", "Vacio", "web2", "7e2feac95dcd7d1df803345e197369af4b156e4e7a95fcb2955bdbbb3a11afd8bb9d35931bf15511370b18143e38b01b903f55c5ecbded4af99934602fcdf38c", "mail2@gmai.com", true, "Company 2", "Company" }
+                    { 1, "D 15", 20447575751L, "Textil", "Rosario", "Microsoft", true, "Gerente", "Juan Carlos", 22L, "Peralta", 341367898L, "2000", "Vacio", "web", "d404559f602eab6fd602ac7680dacbfaadd13630335e951f097af3900e9de176b6db28512f2e000b9d04fba5133e8b1c6e8df59db3a8ab9d60be4b97cc9e81db", "mail1@gmai.com", true, "Company 1", "Company" },
+                    { 2, "E 18", 20445556661L, "Textil", "Rosario", "Apple", true, "Gerente", "Juan Esteban", 25L, "Peralta", 341334455L, "2000", "Vacio", "web2", "7e2feac95dcd7d1df803345e197369af4b156e4e7a95fcb2955bdbbb3a11afd8bb9d35931bf15511370b18143e38b01b903f55c5ecbded4af99934602fcdf38c", "mail2@gmai.com", true, "Company 2", "Company" }
                 });
 
             migrationBuilder.InsertData(
@@ -345,8 +345,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: new[] { "OfferId", "CompanyId", "CreatedDate", "OfferDescription", "OfferIsActive", "OfferSpecialty", "OfferTitle" },
                 values: new object[,]
                 {
-                    { 1, 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Conocimientos avanzados en SQL", true, "SQL", "Analista de datos" },
-                    { 2, 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Conocimientos avanzados en entorno .NET", true, ".NET", "Desarrollador Backend" }
+                    { 1, 2, new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Conocimientos avanzados en SQL", true, "SQL", "Analista de datos" },
+                    { 2, 1, new DateTime(2023, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Conocimientos avanzados en entorno .NET", true, ".NET", "Desarrollador Backend" }
                 });
 
             migrationBuilder.InsertData(
