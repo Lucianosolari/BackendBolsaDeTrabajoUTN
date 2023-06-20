@@ -13,10 +13,12 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
     public class AdminController : ControllerBase
     {
         private readonly IAdminRepository _adminRepository;
+        private readonly IKnowledgeRepository _knowledgeRepository;
 
-        public AdminController(IAdminRepository adminRepository)
+        public AdminController(IAdminRepository adminRepository, IKnowledgeRepository knowledgeRepository)
         {
             _adminRepository = adminRepository;
+            _knowledgeRepository = knowledgeRepository;
         }
 
         [Authorize]
@@ -61,28 +63,46 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Authorize]
         [HttpPost]
         [Route("createKnowledge")]
-        public IActionResult CreateKnowledge(AddKnowledgeRequest request) 
+        public IActionResult CreateKnowledge(AddKnowledgeRequest request)
         {
             var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
             if (userType == "Admin")
             {
                 try
-            {
-                Knowledge newKnowledge = new()
                 {
+                    List<Knowledge> knowledge = _knowledgeRepository.GetAllKnowledge();
+                    ValidateKnowledgeType(knowledge, request.Type);
+                    Knowledge newKnowledge = new()
+                    {
 
-                    Type = request.Type,
-                    Level = request.Level,
-                    KnowledgeIsActive = true
-                };
-                
-                _adminRepository.CreateKnowledge(newKnowledge);
-                return Ok("Conocimiento creado");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+                        Type = request.Type,
+                        Level = "Bajo",
+                        KnowledgeIsActive = true
+                    };
+
+                    Knowledge newKnowledge1 = new()
+                    {
+
+                        Type = request.Type,
+                        Level = "Medio",
+                        KnowledgeIsActive = true
+                    };
+
+                    Knowledge newKnowledge2 = new()
+                    {
+
+                        Type = request.Type,
+                        Level = "Alto",
+                        KnowledgeIsActive = true
+                    };
+
+                    _adminRepository.CreateKnowledge(newKnowledge, newKnowledge1, newKnowledge2);
+                    return Ok("Conocimiento creado");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
             }
             else
             {
@@ -235,6 +255,23 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             else
             {
                     return BadRequest("El usuario no esta autorizado para modificar estado de empresas");
+            }
+        }
+
+        [NonAction]
+        public void ValidateKnowledgeType(List<Knowledge> knowledge, string knowledgeType)
+        {
+            try
+            {
+                var knowledgeTypeInUse = knowledge.FirstOrDefault(k => k.Type.ToLower() == knowledgeType.ToLower() && k.KnowledgeIsActive == true);
+                if (knowledgeTypeInUse != null)
+                {
+                    throw new Exception("Este conocimiento ya existe");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception (ex.Message);
             }
         }
     }

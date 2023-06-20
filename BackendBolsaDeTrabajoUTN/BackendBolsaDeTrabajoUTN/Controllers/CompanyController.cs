@@ -229,30 +229,37 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [NonAction]
         public void ValidatePhoneNumbers(List<Company> companies, long companyPhone, long companyPersonalPhone)
         {
-            if (companyPhone.ToString().Length != 10)
+            try
             {
-                throw new Exception("Teléfono de empresa no válido, debe tener 10 dígitos");
-            }
-            if (companyPersonalPhone.ToString().Length != 10)
-            {
-                throw new Exception("Teléfono personal no válido, debe tener 10 dígitos");
-            }
+                if (companyPhone.ToString().Length != 10)
+                {
+                    throw new Exception("Teléfono de empresa no válido, debe tener 10 dígitos");
+                }
+                if (companyPersonalPhone.ToString().Length != 10)
+                {
+                    throw new Exception("Teléfono personal no válido, debe tener 10 dígitos");
+                }
 
-            if(companyPhone == companyPersonalPhone)
-            {
-                throw new Exception("El teléfono de empresa y el personal deben ser diferentes");
-            }
+                if (companyPhone == companyPersonalPhone)
+                {
+                    throw new Exception("El teléfono de empresa y el personal deben ser diferentes");
+                }
 
-            var companyPhoneInUse = companies.FirstOrDefault(c => c.CompanyPhone== companyPhone);
-            var companyPersonalPhoneInUse = companies.FirstOrDefault(c => c.CompanyPersonalPhone == companyPersonalPhone);
+                var companyPhoneInUse = companies.FirstOrDefault(c => c.CompanyPhone == companyPhone);
+                var companyPersonalPhoneInUse = companies.FirstOrDefault(c => c.CompanyPersonalPhone == companyPersonalPhone);
 
-            if (companyPhoneInUse != null)
-            {
-                throw new Exception("El teléfono de empresa introducido ya está en uso");
+                if (companyPhoneInUse != null)
+                {
+                    throw new Exception("El teléfono de empresa introducido ya está en uso");
+                }
+                if (companyPersonalPhoneInUse != null)
+                {
+                    throw new Exception("El teléfono personal introducido ya está en uso");
+                }
             }
-            if (companyPersonalPhoneInUse != null)
+            catch (Exception ex)
             {
-                throw new Exception("El teléfono personal introducido ya está en uso");
+                throw new Exception(ex.Message);
             }
         }
     }
