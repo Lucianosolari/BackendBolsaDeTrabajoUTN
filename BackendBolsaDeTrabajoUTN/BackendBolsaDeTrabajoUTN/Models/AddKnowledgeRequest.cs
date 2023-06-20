@@ -3,6 +3,5 @@
     public class AddKnowledgeRequest
     {
         public string Type { get; set; }
-        public string Level { get; set; }
     }
 }

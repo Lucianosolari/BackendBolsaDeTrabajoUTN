@@ -28,11 +28,13 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
         }
 
-        public void CreateKnowledge(Knowledge newKnowledge)
+        public void CreateKnowledge(Knowledge newKnowledge, Knowledge newKnowledge1, Knowledge newKnowledge2)
         {
             try
             {
                 _context.Knowledges.Add(newKnowledge);
+                _context.Knowledges.Add(newKnowledge1);
+                _context.Knowledges.Add(newKnowledge2);
                 _context.SaveChanges();
             }
             catch (Exception ex)
