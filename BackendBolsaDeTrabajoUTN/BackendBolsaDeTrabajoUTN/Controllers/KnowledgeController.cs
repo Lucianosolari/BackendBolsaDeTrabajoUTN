@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using BackendBolsaDeTrabajoUTN.Data.Repository;
 using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 using BackendBolsaDeTrabajoUTN.Entities;
-using BackendBolsaDeTrabajoUTN.Models;
-using System.Security.Claims;
-using BackendBolsaDeTrabajoUTN.DBContexts;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -22,14 +18,26 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
         [Authorize]
         [HttpGet("knowledge/GetAllKnowledge")]
-        public IActionResult GetAllKnowledge()
+        public List<Knowledge> GetAllKnowledge()
         {
             var knowledge = _knowledgeRepository.GetAllKnowledge();
-            if (knowledge == null)
+
+            return knowledge;
+        }
+
+        [Authorize]
+        [HttpDelete("knowledge/deleteKnowledge/{knowldgeId}")]
+        public IActionResult DeleteKnowledge(int knowledgeId)
+        {
+            try
             {
-                return NotFound();
+                _knowledgeRepository.DeleteKnowledge(knowledgeId);
+                return Ok("Conocimiento borrado");
             }
-            return Ok(knowledge);
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
     }
 }
