@@ -78,10 +78,5 @@ namespace BackendBolsaDeTrabajoUTN.Entities
 
         public ICollection<StudentKnowledge> StudentKnowledges { get; set; }
         public ICollection<StudentOffer> StudentOffers { get; set; }
-
-
-        //[ForeignKey("UserId")]
-        //public User User { get; set; }
-        //public int UserId { get; set; }
     }
 }

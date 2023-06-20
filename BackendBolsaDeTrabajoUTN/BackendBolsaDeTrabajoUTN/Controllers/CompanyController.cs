@@ -38,6 +38,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                     ValidateUserName(users, request.UserName);
                     ValidateCUIT(companies, students, request.CompanyCUIT);
                     ValidateCompanyName(companies, request.CompanyName);
+                    ValidatePhoneNumbers(companies, request.CompanyPhone, request.CompanyPersonalPhone);
                     ValidateEmail(users, students, request.UserEmail);
 
                     Company newCompany = new()
@@ -188,7 +189,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             {
                 if (email.EndsWith("@frro.utn.edu.ar"))
                 {
-                    throw new Exception("Correo electrónico no válido, es para alumnos");
+                    throw new Exception("Correo electrónico no válido, está introduciendo uno institucional");
                 }
                 if (!IsValidEmail(email))
                 {
@@ -222,6 +223,36 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             catch
             {
                 return false;
+            }
+        }
+
+        [NonAction]
+        public void ValidatePhoneNumbers(List<Company> companies, long companyPhone, long companyPersonalPhone)
+        {
+            if (companyPhone.ToString().Length != 10)
+            {
+                throw new Exception("Teléfono de empresa no válido, debe tener 10 dígitos");
+            }
+            if (companyPersonalPhone.ToString().Length != 10)
+            {
+                throw new Exception("Teléfono personal no válido, debe tener 10 dígitos");
+            }
+
+            if(companyPhone == companyPersonalPhone)
+            {
+                throw new Exception("El teléfono de empresa y el personal deben ser diferentes");
+            }
+
+            var companyPhoneInUse = companies.FirstOrDefault(c => c.CompanyPhone== companyPhone);
+            var companyPersonalPhoneInUse = companies.FirstOrDefault(c => c.CompanyPersonalPhone == companyPersonalPhone);
+
+            if (companyPhoneInUse != null)
+            {
+                throw new Exception("El teléfono de empresa introducido ya está en uso");
+            }
+            if (companyPersonalPhoneInUse != null)
+            {
+                throw new Exception("El teléfono personal introducido ya está en uso");
             }
         }
     }
