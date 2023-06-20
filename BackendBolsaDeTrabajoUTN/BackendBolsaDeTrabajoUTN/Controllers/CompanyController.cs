@@ -36,6 +36,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                     List<Student> students = _studentRepository.GetStudents();
                     List<Company> companies = _companyRepository.GetCompanies();
                     ValidateUserName(users, request.UserName);
+                    ValidatePassword(request.Password, request.ConfirmPassword, request.UserName);
                     ValidateCUIT(companies, students, request.CompanyCUIT);
                     ValidateCompanyName(companies, request.CompanyName);
                     ValidatePhoneNumbers(companies, request.CompanyPhone, request.CompanyPersonalPhone);
@@ -255,6 +256,42 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 if (companyPersonalPhoneInUse != null)
                 {
                     throw new Exception("El teléfono personal introducido ya está en uso");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [NonAction]
+        public void ValidatePassword(string password, string confirmPassword, string userName)
+        {
+            try
+            {
+                if (password.Length < 8)
+                {
+                    throw new Exception("Contraseña insegura, debe tener al menos 8 caracteres");
+                }
+
+                bool hasUpperCase = password.Any(char.IsUpper);
+                bool hasLowerCase = password.Any(char.IsLower);
+                bool hasDigit = password.Any(char.IsDigit);
+                bool hasSpecialChar = password.Any(c => !char.IsLetterOrDigit(c));
+
+                if (!hasUpperCase || !hasLowerCase || !hasDigit || !hasSpecialChar)
+                {
+                    throw new Exception("Contraseña insegura, debe contener al menos una letra mayúscula, una minúscula, un número y un caracter especial");
+                }
+
+                if (password == userName)
+                {
+                    throw new Exception("Contraseña insegura, no puede ser igual al nombre de usuario");
+                }
+
+                if (password != confirmPassword)
+                {
+                    throw new Exception("Los campos introducidos de contraseña no coinciden");
                 }
             }
             catch (Exception ex)
