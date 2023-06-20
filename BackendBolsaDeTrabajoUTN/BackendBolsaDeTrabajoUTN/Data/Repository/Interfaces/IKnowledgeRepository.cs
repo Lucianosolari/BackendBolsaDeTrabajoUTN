@@ -5,6 +5,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
 {
     public interface IKnowledgeRepository
     {
-        public ActionResult<IEnumerable<Knowledge>> GetAllKnowledge();
+        public List<Knowledge> GetAllKnowledge();
+        public void DeleteKnowledge(int knowledgeId);
     }
 }

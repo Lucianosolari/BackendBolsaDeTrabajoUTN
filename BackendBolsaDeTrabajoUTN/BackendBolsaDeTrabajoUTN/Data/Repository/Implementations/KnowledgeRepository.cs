@@ -13,15 +13,33 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             _context = context;
         }
 
-        public ActionResult<IEnumerable<Knowledge>> GetAllKnowledge()
+        public List<Knowledge> GetAllKnowledge()
         {
             try
             {
-                return _context.Knowledges.Where(k => k.KnowledgeIsActive==true).ToList();
+                return _context.Knowledges.Where(k => k.KnowledgeIsActive == true).ToList();
             }
             catch
             {
                 throw new Exception("No se encontraron conocimientos");
+            }
+        }
+
+        public void DeleteKnowledge(int knowledgeId)
+        {
+            try
+            {
+                var knowledge = _context.Knowledges.FirstOrDefault(k => k.KnowledgeId == knowledgeId);
+                if (knowledge == null)
+                {
+                    throw new Exception("No existe el conocimiento");
+                }
+                knowledge.KnowledgeIsActive=false;
+                _context.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error, no se pudo borrar el conocimiento" + ": " + ex.Message);
             }
         }
     }
