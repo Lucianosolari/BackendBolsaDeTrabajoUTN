@@ -6,6 +6,7 @@ using BackendBolsaDeTrabajoUTN.Entities;
 using BackendBolsaDeTrabajoUTN.Models;
 using System.Security.Claims;
 using BackendBolsaDeTrabajoUTN.DBContexts;
+using BackendBolsaDeTrabajoUTN.Data.Repository.Implementations;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -46,5 +47,22 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
             return Ok(offers);
         }
+
+        [Authorize]
+        [HttpDelete] 
+        [Route("deleteOffer/{offerId}")]
+        public IActionResult DeleteOffert(int offerId)
+        {
+            try
+            {
+                _offerRepository.DeleteOffer(offerId);
+                return Ok("Oferta borrada del sistema.");
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message);
+            }
+        }
+
     }
 }

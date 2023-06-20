@@ -17,11 +17,12 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
             _context = context;
         }
 
-        public ActionResult<IEnumerable<Offer>> GetOffersByCompany(int companyId)
+        public List<Offer> GetOffersByCompany(int companyId)
         {
             try
             {
-                return _context.Offers.Where(o => o.CompanyId == companyId).ToList();
+                var offers = _context.Offers.Where(o => o.CompanyId == companyId && o.OfferIsActive == true).ToList();
+                return offers;
             }
             catch
             {
@@ -29,12 +30,26 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
             }
         }
 
+        public void DeleteOffer(int offerId)
+        {
+            var offer = _context.Offers.FirstOrDefault(o => o.OfferId == offerId);
+            if (offer == null )
+            {
+                throw new Exception("No existe la oferta o el estudiante");
+            }
+            offer.OfferIsActive = false;
+            _context.SaveChanges();
+        }
+
 
         public ActionResult<IEnumerable<Offer>> GetOffers()
         {
             try
             {
-                return _context.Offers.Include(o => o.Company).ToList();
+                return _context.Offers
+                .Where(o => o.OfferIsActive == true)
+                .Include(o => o.Company)
+                .ToList();
             }
             catch
             {

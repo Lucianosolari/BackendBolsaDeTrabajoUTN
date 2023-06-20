@@ -18,7 +18,8 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
         //public List<Meet> GetSingleMeet(int id);
 
         
-        public ActionResult<IEnumerable<Offer>> GetOffersByCompany(int companyId);
+        public List<Offer> GetOffersByCompany(int companyId);
+        public void DeleteOffer(int offerId);
         public ActionResult<IEnumerable<Offer>> GetOffers();
     }
 }
