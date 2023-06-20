@@ -40,12 +40,13 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 {
                     List<User> users = _studentRepository.GetUsers();
                     List<Student> students = _studentRepository.GetStudents();
-                    ValidateDNI(students, request.DocumentNumber);
-                    ValidateCUIL_CUIT(students, request.CUIL_CUIT);
-                    ValidateFile(students, request.File);
                     ValidateUserName(users, request.UserName);
+                    ValidatePassword(request.Password, request.ConfirmPassword, request.UserName);
+                    ValidateFile(students, request.File);
                     ValidateUserEmail(students, users, request.UserEmail);
                     ValidateAltEmail(users, students, request.AltEmail);
+                    ValidateDocumentNumber(students, request.DocumentNumber);
+                    ValidateCUIL_CUIT(students, request.CUIL_CUIT);
 
                     Student newStudent = new()
                     {
@@ -240,23 +241,23 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [NonAction]
-        public void ValidateDNI(List<Student> students, int DNI)
+        public void ValidateDocumentNumber(List<Student> students, int documentNumber)
         {
             try
             {
-                if (DNI.ToString().Length != 8)
+                if (documentNumber.ToString().Length != 8)
                 {
-                    throw new Exception("DNI no válido, debe tener una longitud de 8 dígitos.");
+                    throw new Exception("Número de documento no válido, debe tener una longitud de 8 dígitos.");
                 }
-                var inUse = students.FirstOrDefault(s => s.DocumentNumber == DNI);
+                var inUse = students.FirstOrDefault(s => s.DocumentNumber == documentNumber);
                 if (inUse != null)
                 {
-                    throw new Exception("DNI ya registrado");
+                    throw new Exception("Número de documento ya registrado");
                 }
             }
             catch (FormatException) //No lo está tomando. => "$.documentNumber": "'p' is an invalid start of a value. Path: $.documentNumber | LineNumber: 9 | BytePositionInLine: 20."]
             {
-                throw new Exception("El DNI debe ser un número entero.");
+                throw new Exception("El documento debe ser un número entero.");
             }
         }
 
@@ -380,6 +381,42 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             catch
             {
                 return false;
+            }
+        }
+
+        [NonAction]
+        public void ValidatePassword(string password, string confirmPassword, string userName)
+        {
+            try
+            {
+                if (password.Length < 8)
+                {
+                    throw new Exception("Contraseña insegura, debe tener al menos 8 caracteres");
+                }
+
+                bool hasUpperCase = password.Any(char.IsUpper);
+                bool hasLowerCase = password.Any(char.IsLower);
+                bool hasDigit = password.Any(char.IsDigit);
+                bool hasSpecialChar = password.Any(c => !char.IsLetterOrDigit(c));
+
+                if (!hasUpperCase || !hasLowerCase || !hasDigit || !hasSpecialChar)
+                {
+                    throw new Exception("Contraseña insegura, debe contener al menos una letra mayúscula, una minúscula, un número y un caracter especial");
+                }
+
+                if (password == userName)
+                {
+                    throw new Exception("Contraseña insegura, no puede ser igual al nombre de usuario");
+                }
+
+                if (password != confirmPassword)
+                {
+                    throw new Exception("Los campos introducidos de contraseña no coinciden");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }

@@ -7,6 +7,7 @@ namespace BackendBolsaDeTrabajoUTN.Models
         // datos de la empresa
         public string UserName { get; set; }
         public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
         public string CompanyName { get; set; } //razón social
         public long CompanyCUIT { get; set; }
         public string CompanyLine { get; set; } //rubro
