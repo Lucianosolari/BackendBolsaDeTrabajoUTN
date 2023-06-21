@@ -28,6 +28,11 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
         }
 
+        public List<Career> GetCareers()
+        {
+            return _context.Careers.ToList();
+        }
+
         public void CreateKnowledge(Knowledge newKnowledge, Knowledge newKnowledge1, Knowledge newKnowledge2)
         {
             try

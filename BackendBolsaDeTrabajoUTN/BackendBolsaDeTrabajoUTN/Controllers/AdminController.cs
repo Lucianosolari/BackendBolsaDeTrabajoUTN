@@ -5,6 +5,7 @@ using BackendBolsaDeTrabajoUTN.Entities;
 using BackendBolsaDeTrabajoUTN.Models;
 using System.Security.AccessControl;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -30,29 +31,32 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             if (userType == "Admin")
             { 
                 try
-            {
-                Career newCareer = new()
                 {
-                    CareerName = request.CareerName,
-                    CareerAbbreviation = request.CareerAbbreviation,
-                    CareerType = request.CareerType,
-                    CareerTotalSubjects = request.CareerTotalSubjects,
-                    CareerIsActive = true
-                };
-                CareerResponse response = new()
+                    List<Career> careers = _adminRepository.GetCareers();
+                    ValidateCareerName(careers, request.CareerName);
+                    ValidateCareerTotalSubjects(request.CareerTotalSubjects);
+                    Career newCareer = new()
+                    {
+                        CareerName = request.CareerName,
+                        CareerAbbreviation = request.CareerAbbreviation,
+                        CareerType = request.CareerType,
+                        CareerTotalSubjects = request.CareerTotalSubjects,
+                        CareerIsActive = true
+                    };
+                    CareerResponse response = new()
+                    {
+                        CareerName = newCareer.CareerName,
+                        CareerAbbreviation = newCareer.CareerAbbreviation,
+                        CareerType = newCareer.CareerType,
+                        CareerTotalSubjects = newCareer.CareerTotalSubjects
+                    };
+                    _adminRepository.CreateCareer(newCareer);
+                    return Created("Carrera creada", response);
+                }
+                catch (Exception ex)
                 {
-                    CareerName = newCareer.CareerName,
-                    CareerAbbreviation = newCareer.CareerAbbreviation,
-                    CareerType = newCareer.CareerType,
-                    CareerTotalSubjects = newCareer.CareerTotalSubjects
-                };
-                _adminRepository.CreateCareer(newCareer);
-                return Created("Carrera creada", response);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+                    return BadRequest(ex.Message);
+                }
             }
             else
             {
@@ -162,7 +166,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
         //[Authorize]
         [HttpDelete]
-        [Route("deleteUser")] //Cambiar a put (modifica UserIsActive de True a False)
+        [Route("deleteUser")]
         public IActionResult DeleteUser(int id)
         {
             //var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
@@ -255,6 +259,39 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             else
             {
                     return BadRequest("El usuario no esta autorizado para modificar estado de empresas");
+            }
+        }
+
+        [NonAction]
+        public void ValidateCareerName(List<Career> careers, string careerName)
+        {
+            try
+            {
+                var careerNameInUse = careers.FirstOrDefault(c => c.CareerName.ToLower() == careerName.ToLower() && c.CareerIsActive == true);
+                if (careerNameInUse != null)
+                {
+                    throw new Exception("Esta carrera ya existe");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [NonAction]
+        public void ValidateCareerTotalSubjects(int totalSubjects) //Manejar que no introduzca un caracter no numérico en front
+        {
+            try
+            {
+                if (totalSubjects <= 0)
+                {
+                    throw new Exception("Cantidad de materias no válida, debe ser mayor que 0");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
