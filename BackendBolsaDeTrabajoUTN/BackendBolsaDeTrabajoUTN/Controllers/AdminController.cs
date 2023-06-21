@@ -286,7 +286,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             {
                 if (totalSubjects <= 0)
                 {
-                    throw new Exception("Cantidad de materias no válida, debe ser mayor que 0");
+                    throw new Exception("Total de materias no válido, debe ser mayor que 0");
                 }
             }
             catch (Exception ex)
