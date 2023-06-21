@@ -47,6 +47,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                     ValidateAltEmail(users, students, request.AltEmail);
                     ValidateDocumentNumber(students, request.DocumentNumber);
                     ValidateCUIL_CUIT(students, request.CUIL_CUIT);
+                    ValidateBirth(request.Birth);
 
                     Student newStudent = new()
                     {
@@ -412,6 +413,24 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 if (password != confirmPassword)
                 {
                     throw new Exception("Los campos introducidos de contraseña no coinciden");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [NonAction]
+        public void ValidateBirth(DateTime birth)
+        {
+            try
+            {
+                DateTime eighteenYearsAgo = DateTime.Now.AddYears(-18);
+
+                if (birth > eighteenYearsAgo)
+                {
+                    throw new Exception("Fecha de nacimiento no válida, debes tener al menos 18 años para registrarte.");
                 }
             }
             catch (Exception ex)
