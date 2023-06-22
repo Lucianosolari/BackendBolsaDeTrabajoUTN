@@ -11,5 +11,6 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
         public void CreateOffer(Offer newOffer);
         public List<User> GetUsers();
         public List<Company> GetCompanies();
+        public List<Student> GetStudentsInOffer(int offerId);
     }
 }

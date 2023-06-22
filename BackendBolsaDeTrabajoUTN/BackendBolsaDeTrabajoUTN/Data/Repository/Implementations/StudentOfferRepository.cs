@@ -102,7 +102,20 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             return offers;
         }
 
-
+        public List<Student> GetStudentsInOffers(int offerId)
+        {
+            var students = _context.StudentOffers
+                .Where(so => so.OfferId == offerId && so.StudentOfferIsActive == true)
+                .Select(so => new Student
+                {
+                    UserId = so.Student.UserId,
+                    UserName = so.Student.UserName,
+                    Name = so.Student.Name,
+                    Surname = so.Student.Surname,
+                })
+                .ToList();
+            return students;
+        }
 
     }
 }
