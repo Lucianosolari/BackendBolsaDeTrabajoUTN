@@ -65,5 +65,10 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
         {
             return _context.Companies.ToList();
         }
+
+        public List<Student> GetStudentsInOffer(int offerId)
+        {
+            return _context.Offers.FirstOrDefault(o => o.OfferId == offerId && o.OfferIsActive == true).Students.ToList();
+        }
     }
 }

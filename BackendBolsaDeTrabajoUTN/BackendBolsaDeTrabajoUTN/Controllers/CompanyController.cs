@@ -16,11 +16,12 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
     {
         private readonly ICompanyRepository _companyRepository;
         private readonly IStudentRepository _studentRepository;
-        
-        public CompanyController(ICompanyRepository companyRepository, IStudentRepository studentRepository)
+        private readonly IStudentOfferRepository _studentOfferRepository;
+        public CompanyController(ICompanyRepository companyRepository, IStudentRepository studentRepository, IStudentOfferRepository studentOfferRepository)
         {
             _companyRepository = companyRepository;
             _studentRepository = studentRepository;
+            _studentOfferRepository = studentOfferRepository;
         }
 
         [HttpPost]
@@ -138,6 +139,29 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             else
             {
                 return BadRequest("El usuario no esta autorizado para crear ofertas");
+            }
+        }
+
+        [HttpGet]
+        [Route("company/{offerId}/getStudents")]
+        public ActionResult GetStudentsInOffer(int offerId)
+        {
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Company")
+            {
+                try
+                {
+                    var studentsInOffer = _studentOfferRepository.GetStudentsInOffers(offerId);
+                    return Ok(studentsInOffer);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+            else
+            {
+                return BadRequest("No autorizado");
             }
         }
 
