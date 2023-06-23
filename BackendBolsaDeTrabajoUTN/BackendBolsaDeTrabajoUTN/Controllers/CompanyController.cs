@@ -165,6 +165,23 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("/CVFiles/{studentFile}/getStudentCV")]
+        public ActionResult GetStudentCV(int studentFile)
+        {
+            try
+            {
+                var student = _studentRepository.GetStudentByFile(studentFile);
+                var cv = _companyRepository.GetStudentCv(student.UserId);
+                return File(cv.File, "application/octet-stream", cv.Name);
+            }
+            catch
+            {
+                return BadRequest("CV o usuario no encontrado");
+            }
+
+        }
+
         [NonAction]
         public void ValidateUserName(List<User> users, string userName)
         {

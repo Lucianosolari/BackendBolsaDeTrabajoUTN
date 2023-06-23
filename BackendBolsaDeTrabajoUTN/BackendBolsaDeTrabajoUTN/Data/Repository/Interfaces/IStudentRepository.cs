@@ -13,5 +13,6 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
         public void RemoveStudent(int id);
         public List<User> GetUsers();
         public List<Student> GetStudents();
+        public Student GetStudentByFile(int file);
     }
 }
