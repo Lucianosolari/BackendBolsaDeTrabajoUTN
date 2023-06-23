@@ -138,5 +138,17 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
         {
             return _context.Students.ToList();
         }
+
+        public Student GetStudentByFile(int file)
+        {
+            try
+            {
+                return _context.Students.FirstOrDefault(s => s.File == file && s.UserIsActive == true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception (ex.Message);
+            }
+        }
     }
 }

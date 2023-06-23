@@ -12,5 +12,6 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
         public List<User> GetUsers();
         public List<Company> GetCompanies();
         public List<Student> GetStudentsInOffer(int offerId);
+        public CVFile GetStudentCv(int studentId);
     }
 }

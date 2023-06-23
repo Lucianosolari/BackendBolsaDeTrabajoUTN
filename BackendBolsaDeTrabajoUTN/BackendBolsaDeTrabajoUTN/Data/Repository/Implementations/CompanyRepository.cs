@@ -70,5 +70,11 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
         {
             return _context.Offers.FirstOrDefault(o => o.OfferId == offerId && o.OfferIsActive == true).Students.ToList();
         }
+
+        public CVFile GetStudentCv(int studentId)
+        {
+            CVFile cVFile = _context.CVFiles.FirstOrDefault(c => c.StudentId == studentId);
+            return cVFile;
+        }
     }
 }
