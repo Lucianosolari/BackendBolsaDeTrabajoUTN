@@ -76,6 +76,7 @@ builder.Services.AddScoped<IOfferRepository, OfferRepository>();
 builder.Services.AddScoped<IKnowledgeRepository, KnowledgeRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IStudentOfferRepository, StudentOfferRepository>();
+builder.Services.AddScoped<IStudentKnowledgeRepository, StudentKnowledgeRepository>();
 builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 #endregion
 

@@ -18,14 +18,18 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
     {
 
         private readonly IStudentOfferRepository _studentOfferRepository;
+
+        private readonly IStudentKnowledgeRepository _studentKnowledgeRepository;
         
         private readonly IStudentRepository _studentRepository;
 
         private readonly TPContext _context;
 
-        public StudentController(IStudentOfferRepository studentOfferRepository, IStudentRepository studentRepository, TPContext context)
+        public StudentController(IStudentOfferRepository studentOfferRepository, IStudentRepository studentRepository, IStudentKnowledgeRepository studentKnowledgeRepository, TPContext context)
         {
             _studentOfferRepository = studentOfferRepository;
+
+            _studentKnowledgeRepository = studentKnowledgeRepository;
             
             _studentRepository = studentRepository;
 
@@ -113,6 +117,23 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             catch (Exception ex)
             {
                 return Problem(ex.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpPut]
+        [Route("Knowledge/{knowledgeId}/AddKnowledge")]
+        public IActionResult AddStudentKnowledge(int knowledgeId)
+        {
+            try
+            {
+                int studentId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                _studentKnowledgeRepository.AddStudentKnowledge(knowledgeId, studentId);
+                return Ok(new { message = "Nuevo conocimiento agregado" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 
