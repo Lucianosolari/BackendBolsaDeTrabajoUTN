@@ -170,12 +170,12 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [HttpGet]
-        [Route("/CVFiles/{studentFile}/getStudentCV")]
-        public ActionResult GetStudentCV(int studentFile)
+        [Route("CVFiles/{userId}/getStudentCV")]
+        public ActionResult GetStudentCV(int userId)
         {
             try
             {
-                var student = _studentRepository.GetStudentByFile(studentFile);
+                var student = _studentRepository.GetStudentById(userId);
                 var cv = _companyRepository.GetStudentCv(student.UserId);
                 return File(cv.File, "application/octet-stream", cv.Name);
             }
