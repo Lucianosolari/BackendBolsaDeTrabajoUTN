@@ -143,7 +143,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [HttpGet]
-        [Route("company/{offerId}/getStudents")]
+        [Route("{offerId}/getStudentsInOffer")]
         public ActionResult GetStudentsInOffer(int offerId)
         {
             var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
@@ -152,7 +152,11 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 try
                 {
                     var studentsInOffer = _studentOfferRepository.GetStudentsInOffers(offerId);
-                    return Ok(studentsInOffer);
+                    if (studentsInOffer.Any())
+                    {
+                        return Ok(studentsInOffer);
+                    }
+                        return BadRequest("No hay estudiantes en esta oferta");
                 }
                 catch (Exception ex)
                 {

@@ -142,7 +142,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
         [Authorize]
         [HttpDelete] //Cambiar a put (modifica KnowledgeIsActive de True a False)
-        [Route("deleteKnowledge")]
+        [Route("deleteKnowledge/{id}")]
         public IActionResult DeleteKnowledge(int id)
         {
             var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;

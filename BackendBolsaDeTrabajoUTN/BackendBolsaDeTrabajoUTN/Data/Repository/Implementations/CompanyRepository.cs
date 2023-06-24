@@ -68,7 +68,24 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
 
         public List<Student> GetStudentsInOffer(int offerId)
         {
-            return _context.Offers.FirstOrDefault(o => o.OfferId == offerId && o.OfferIsActive == true).Students.ToList();
+            try
+            {
+                var studentsInOffer = _context.Offers.FirstOrDefault(o => o.OfferId == offerId && o.OfferIsActive == true).Students.ToList();
+                List<Student> studentsToReturn = new List<Student>();
+                foreach (var student in studentsInOffer)
+                {
+                    var studentOffer = _context.StudentOffers.First(so => so.StudentId == student.UserId && so.OfferId == offerId);
+                    if (studentOffer != null)
+                    {
+                        studentsToReturn.Add(student);
+                    }
+                }
+                return studentsToReturn;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public CVFile GetStudentCv(int studentId)
