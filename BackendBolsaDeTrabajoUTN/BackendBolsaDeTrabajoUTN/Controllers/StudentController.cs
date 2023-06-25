@@ -138,6 +138,48 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [Authorize]
+        [HttpDelete]
+        [Route("Knowledge/{knowledgeId}/DeleteKnowledge")]
+        public IActionResult DeleteStudentKnowledge(int knowledgeId)
+        {
+            try
+            {
+                int studentId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                _studentKnowledgeRepository.DeleteStudentKnowledg(knowledgeId, studentId);
+                return Ok(new { message = "Conocimiento borrado del estudiante" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        [Route("Knowledge/GetKnowledgesToStudent")]
+        public IActionResult GetAllKnowledgeToStudent()
+        {
+            try
+            {
+                int studentId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                List<Knowledge> knowledgesToStudent = _studentKnowledgeRepository.GetAllKnowledgeToStudent(studentId);
+                return Ok(knowledgesToStudent);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
+
+
+
+
+
+        [Authorize]
         [HttpPost("{offerId}/Students/{studentId}")]
         public ActionResult AddStudentToOffer(int offerId, int studentId)
         {

@@ -63,5 +63,28 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
                 throw new Exception(ex.Message);
             }
         }
+
+        public void DeleteStudentKnowledg(int knowledgeId,  int studentId)
+        {
+            _context.StudentKnowledge.First(sk => sk.UserId == studentId && sk.KnowledgeId == knowledgeId).StudentKnowledgeIsActive = false;
+            _context.SaveChanges();
+        }
+
+        public List<Knowledge> GetAllKnowledgeToStudent(int studentId)
+        {
+            try
+            {
+                return _context.StudentKnowledge
+                    .Where(sk => sk.UserId == studentId  && sk.StudentKnowledgeIsActive == true)
+                    .Select(sk => sk.Knowledge)
+                    .ToList();
+            }
+            catch
+            {
+                throw new Exception("No se encontraron conocimientos");
+            }
+        }
+
+
     }
 }
