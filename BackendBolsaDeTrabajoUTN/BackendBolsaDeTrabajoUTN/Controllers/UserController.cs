@@ -65,9 +65,9 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
         private void SendEmail(string destinatario, string asunto, string contenido)
         {
-            Env.Load(); // Cargar variables de entorno desde el archivo .env
+            // Env.Load(); // Cargar variables de entorno desde el archivo .env
 
-            string apiKey = Env.GetString("API_KEY");
+            string apiKey = "API_KEY"; //Env.GetString("API_KEY");
 
             var client = new SendGridClient(apiKey);
 
