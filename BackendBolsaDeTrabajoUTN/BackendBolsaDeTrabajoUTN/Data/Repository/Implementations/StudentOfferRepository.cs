@@ -82,7 +82,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
         public List<Offer> GetStudentToOffers(int studentId)
         {
             var offers = _context.StudentOffers
-                .Where(so => so.StudentId == studentId && so.StudentOfferIsActive == true)
+                .Where(so => so.StudentId == studentId && so.StudentOfferIsActive == true && so.Offer.OfferIsActive == true)
                 .Select(so => new Offer
                 {
                     OfferId = so.Offer.OfferId,

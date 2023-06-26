@@ -31,14 +31,14 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             {
                 UserId = 1,
                 UserName = "Company 1",
-                UserEmail = "mail1@gmai.com",
+                UserEmail = "mail1@gmail.com",
                 CompanyName = "Microsoft",
                 CompanyCUIT = 20447575751,
                 CompanyLine = "Textil",
                 CompanyAddress = "D 15",
                 CompanyLocation = "Rosario",
                 CompanyPostalCode = "2000",
-                Password = "1234",
+                Password = "String1!",
                 CompanyPhone = 341367898,
                 CompanyWebPage = "web",
 
@@ -56,14 +56,14 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             {
                 UserId = 2,
                 UserName = "Company 2",
-                UserEmail = "mail2@gmai.com",
+                UserEmail = "mail2@gmail.com",
                 CompanyName = "Apple",
                 CompanyCUIT = 20445556661,
                 CompanyLine = "Textil",
                 CompanyAddress = "E 18",
                 CompanyLocation = "Rosario",
                 CompanyPostalCode = "2000",
-                Password = "4321",
+                Password = "String1!",
                 CompanyPhone = 341334455,
                 CompanyWebPage = "web2",
 
@@ -166,7 +166,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
 
             Admin admin1 = new Admin()
             {
-                Password = "1234",
+                Password = "StringAdmin1!",
                 UserId = 6,
                 UserName = "admin",
                 NameAdmin = "AdminPepe",
@@ -183,17 +183,17 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 UserId = 3,
                 Name = "Manuel",
                 Surname = "Ibarbia",
-                UserEmail = "manuel@gmail.com",
-                Password = "string",
-                UserName = "string",
+                UserEmail = "manuel@frro.utn.edu.ar",
+                Password = "String1!",
+                UserName = "manuelI",
                 DocumentType = "DNI",
                 DocumentNumber = 44555666,
                 File = 12345,
-                AltEmail = "manuelAlt@gmail.com",
+                AltEmail = "manuelalt@gmail.com",
                 CUIL_CUIT = 20445556661,
-                Birth = new DateTime(1995, 5, 12),
+                Birth = new DateTime(2002, 12, 17),
                 Sex = "Masculino",
-                CivilStatus = "Casado",
+                CivilStatus = "Soltero",
 
                 FamilyStreet = "Calle Principal",
                 FamilyStreetNumber = 123,
@@ -220,16 +220,16 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 //// Datos universitarios
                 Specialty = "Sistemas",
                 ApprovedSubjectsQuantity = 10,
-                SpecialtyPlan = 2002,
+                SpecialtyPlan = 2021,
                 CurrentStudyYear = 2,
                 StudyTurn = "Tarde",
-                AverageMarksWithPostponement=6,
-                AverageMarksWithoutPostponement=7,
+                AverageMarksWithPostponement=8,
+                AverageMarksWithoutPostponement=8,
                 CollegeDegree="Sistemas",
 
                 //// Otros datos
                 SecondaryDegree = "Completo",
-                Observations = "Fanatico de linux",
+                Observations = "Fanático de linux",
 
                 UserIsActive = true
     };
@@ -239,15 +239,15 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 UserId = 4,
                 Name = "Luciano",
                 Surname = "Solari",
-                UserEmail = "luciano@gmail.com",
-                Password = "123456",
+                UserEmail = "luciano@frro.utn.edu.ar",
+                Password = "String1!",
                 UserName = "lucianoS",
                 DocumentType = "DNI",
                 DocumentNumber = 33444555,
                 File = 12346,
-                AltEmail = "lucianoAlt@gmail.com",
+                AltEmail = "lucianoalt@gmail.com",
                 CUIL_CUIT = 203334445551,
-                Birth = new DateTime(1800, 5, 12),
+                Birth = new DateTime(1998, 5, 12),
                 Sex = "Masculino",
                 CivilStatus = "Soltero",
 
@@ -276,7 +276,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 //// Datos universitarios
                 Specialty = "Sistemas",
                 ApprovedSubjectsQuantity = 10,
-                SpecialtyPlan = 2002,
+                SpecialtyPlan = 2021,
                 CurrentStudyYear = 2,
                 StudyTurn = "Tarde",
                 AverageMarksWithPostponement = 6,
@@ -286,7 +286,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 //// Otros datos
                 SecondaryDegree = "Completo",
                
-                Observations = "Fanatico de linux",
+                Observations = "Fanático de linux",
 
                 UserIsActive = true
             };
@@ -296,15 +296,15 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 UserId = 5,
                 Name = "Santiago",
                 Surname = "Caso",
-                UserEmail = "santiago@gmail.com",
-                Password = "123456",
+                UserEmail = "santiago@frro.utn.edu.ar",
+                Password = "String1!",
                 UserName = "santiagoC",
                 DocumentNumber = 55666777,
                 DocumentType = "DNI",
                 File = 12347,
-                AltEmail = "santiagoAlt@gmail.com",
+                AltEmail = "santiagoalt@gmail.com",
                 CUIL_CUIT = 20556667771,
-                Birth = new DateTime(2005, 5, 12),
+                Birth = new DateTime(2003, 4, 10),
                 Sex = "Masculino",
                 CivilStatus = "Soltero",
                 FamilyStreet = "Calle asdasd",
@@ -342,7 +342,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 //// Otros datos
                 SecondaryDegree = "Completo",
                 
-                Observations = "Fanatico de linux",
+                Observations = "Fanático de Visual Studio",
 
                 UserIsActive = true
             };
