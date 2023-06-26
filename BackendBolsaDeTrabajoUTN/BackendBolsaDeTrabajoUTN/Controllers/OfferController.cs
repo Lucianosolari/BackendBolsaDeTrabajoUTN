@@ -39,13 +39,20 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [HttpGet("Offers")]
         public IActionResult GetOffers()
         {
-            var offers = _offerRepository.GetOffers();
-            if (offers == null)
+            try
             {
-                return NotFound();
-            }
+                var offers = _offerRepository.GetOffers();
+                if (offers == null)
+                {
+                    return NotFound();
+                }
 
-            return Ok(offers);
+                return Ok(offers);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
         }
 
         [Authorize]
