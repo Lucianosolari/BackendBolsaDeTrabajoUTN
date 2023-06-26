@@ -179,9 +179,9 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 var cv = _companyRepository.GetStudentCv(student.UserId);
                 return File(cv.File, "application/octet-stream", cv.Name);
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest("CV o usuario no encontrado");
+                return BadRequest(ex.Message);
             }
 
         }

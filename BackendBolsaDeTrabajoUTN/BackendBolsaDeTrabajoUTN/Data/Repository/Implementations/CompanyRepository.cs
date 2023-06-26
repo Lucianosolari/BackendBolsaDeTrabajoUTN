@@ -90,8 +90,19 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
 
         public CVFile GetStudentCv(int studentId)
         {
-            CVFile cVFile = _context.CVFiles.FirstOrDefault(c => c.StudentId == studentId);
-            return cVFile;
+            try
+            {
+                CVFile cVFile = _context.CVFiles.FirstOrDefault(c => c.StudentId == studentId && c.CVIsActive == true);
+                if (cVFile == null)
+                {
+                    throw new Exception("No se encontró el CV del estudiante");
+                }
+                return cVFile;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
