@@ -1,13 +1,12 @@
 ﻿using BackendBolsaDeTrabajoUTN.Entities;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace BackendBolsaDeTrabajoUTN.DBContexts
 {
     public class TPContext : DbContext
     {
-        public DbSet<Student> Students { get; set; } //lo que hagamos con LINQ sobre estos DbSets lo va a transformar en consultas SQL
-        public DbSet<Company> Companies { get; set; } //Los warnings los podemos obviar porque DbContext se encarga de eso.
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Company> Companies { get; set; }
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Career> Careers { get; set; }
@@ -16,38 +15,35 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
         public DbSet<StudentKnowledge> StudentKnowledge { get; set; }
         public DbSet<StudentOffer> StudentOffers { get; set; }
         public DbSet<CVFile> CVFiles { get; set; }
-      
 
-        // PROBANDO COMMIT
-        public TPContext(DbContextOptions<TPContext> options) : base(options) //Acá estamos llamando al constructor de DbContext que es el que acepta las opciones
+        public TPContext(DbContextOptions<TPContext> options) : base(options)
         {
 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-
         {
             Company company1 = new Company()
             {
                 UserId = 1,
-                UserName = "Company 1",
-                UserEmail = "mail1@gmail.com",
+                UserName = "MicrosoftUser",
+                UserEmail = "microsoftcontact@gmail.com",
                 CompanyName = "Microsoft",
                 CompanyCUIT = 20447575751,
-                CompanyLine = "Textil",
+                CompanyLine = "Computación",
                 CompanyAddress = "D 15",
                 CompanyLocation = "Rosario",
                 CompanyPostalCode = "2000",
                 Password = "String1!",
                 CompanyPhone = 341367898,
-                CompanyWebPage = "web",
+                CompanyWebPage = "microsoft.com",
 
                 CompanyPersonalName = "Juan Carlos",
                 CompanyPersonalSurname = "Peralta",
                 CompanyPersonalJob = "Gerente",
                 CompanyPersonalPhone = 22,
                 CompanyRelationContact = "Vacio",
-                CompanyPendingConfirmation = true,
+                CompanyPendingConfirmation = false,
 
                 UserIsActive = true
             };
@@ -55,8 +51,8 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             Company company2 = new Company()
             {
                 UserId = 2,
-                UserName = "Company 2",
-                UserEmail = "mail2@gmail.com",
+                UserName = "AppleUser",
+                UserEmail = "applecontact@gmail.com",
                 CompanyName = "Apple",
                 CompanyCUIT = 20445556661,
                 CompanyLine = "Textil",
@@ -65,14 +61,14 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 CompanyPostalCode = "2000",
                 Password = "String1!",
                 CompanyPhone = 341334455,
-                CompanyWebPage = "web2",
+                CompanyWebPage = "apple.com",
 
                 CompanyPersonalName = "Juan Esteban",
                 CompanyPersonalSurname = "Peralta",
                 CompanyPersonalJob = "Gerente",
                 CompanyPersonalPhone = 25,
                 CompanyRelationContact = "Vacio",
-                CompanyPendingConfirmation = true,
+                CompanyPendingConfirmation = false,
 
                 UserIsActive = true
             };
@@ -93,7 +89,6 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
 
                 OfferIsActive = true
             };
-
             Offer offer2 = new Offer()
             {
                 OfferId = 2,
@@ -109,8 +104,6 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             modelBuilder.Entity<Offer>().HasData(
                 offer1, offer2);
 
-
-
             Career career1 = new Career()
             {
                 CareerId = 1,
@@ -121,7 +114,6 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
 
                 CareerIsActive = true
             };
-
             Career career2 = new Career()
             {
                 CareerId = 2,
@@ -132,7 +124,6 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
 
                 CareerIsActive= true
             };
-
 
             modelBuilder.Entity<Career>().HasData(
                 career1, career2);
@@ -217,7 +208,6 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 PersonalPersonalPhone = 987654321,
                 PersonalOtherPhone = 123456789,
 
-                //// Datos universitarios
                 Specialty = "Sistemas",
                 ApprovedSubjectsQuantity = 10,
                 SpecialtyPlan = 2021,
@@ -227,13 +217,11 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 AverageMarksWithoutPostponement=8,
                 CollegeDegree="Sistemas",
 
-                //// Otros datos
                 SecondaryDegree = "Completo",
                 Observations = "Fanático de linux",
 
                 UserIsActive = true
-    };
-
+            };
             Student student2 = new Student()
             {
                 UserId = 4,
@@ -273,7 +261,6 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 PersonalPersonalPhone = 987654321,
                 PersonalOtherPhone = 123456789,
 
-                //// Datos universitarios
                 Specialty = "Sistemas",
                 ApprovedSubjectsQuantity = 10,
                 SpecialtyPlan = 2021,
@@ -283,14 +270,12 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 AverageMarksWithoutPostponement = 7,
                 CollegeDegree = "Sistemas",
 
-                //// Otros datos
                 SecondaryDegree = "Completo",
                
                 Observations = "Fanático de linux",
 
                 UserIsActive = true
             };
-
             Student student3 = new Student()
             {
                 UserId = 5,
@@ -329,7 +314,6 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 PersonalPersonalPhone = 987654321,
                 PersonalOtherPhone = 123456789,
 
-                //// Datos universitarios
                 Specialty = "Sistemas",
                 ApprovedSubjectsQuantity = 10,
                 SpecialtyPlan = 2002,
@@ -339,14 +323,12 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 AverageMarksWithoutPostponement = 7,
                 CollegeDegree = "Sistemas",
 
-                //// Otros datos
                 SecondaryDegree = "Completo",
                 
                 Observations = "Fanático de Visual Studio",
 
                 UserIsActive = true
             };
-
 
             modelBuilder.Entity<Student>().HasData(
                 student1, student2, student3);
@@ -380,8 +362,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                 }
             );
 
-
-            modelBuilder.Entity<Student>() // ESTUDIANTE_CARRERA
+            modelBuilder.Entity<Student>()
                 .HasMany(s => s.Careers)
                 .WithMany(c => c.Students)
                 .UsingEntity<StudentCareer>(
@@ -426,7 +407,6 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
                             new StudentOffer { OfferId = 2, StudentId = 5, StudentOfferIsActive= true }
                         );
                     });
-
 
             base.OnModelCreating(modelBuilder);
         }

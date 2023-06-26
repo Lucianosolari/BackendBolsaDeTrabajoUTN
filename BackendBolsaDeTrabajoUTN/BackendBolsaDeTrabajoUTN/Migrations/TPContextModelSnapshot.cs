@@ -411,15 +411,15 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             UserId = 1,
                             Password = "579019246127c66d28bf72438ea616ee6013ec447aa6577507e12f3124da9bc70e5a856293a33bf390e436b97099ec2b92825216553d66b356a39229880c0f82",
-                            UserEmail = "mail1@gmail.com",
+                            UserEmail = "microsoftcontact@gmail.com",
                             UserIsActive = true,
-                            UserName = "Company 1",
+                            UserName = "MicrosoftUser",
                             CompanyAddress = "D 15",
                             CompanyCUIT = 20447575751L,
-                            CompanyLine = "Textil",
+                            CompanyLine = "Computación",
                             CompanyLocation = "Rosario",
                             CompanyName = "Microsoft",
-                            CompanyPendingConfirmation = true,
+                            CompanyPendingConfirmation = false,
                             CompanyPersonalJob = "Gerente",
                             CompanyPersonalName = "Juan Carlos",
                             CompanyPersonalPhone = 22L,
@@ -427,21 +427,21 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CompanyPhone = 341367898L,
                             CompanyPostalCode = "2000",
                             CompanyRelationContact = "Vacio",
-                            CompanyWebPage = "web"
+                            CompanyWebPage = "microsoft.com"
                         },
                         new
                         {
                             UserId = 2,
                             Password = "579019246127c66d28bf72438ea616ee6013ec447aa6577507e12f3124da9bc70e5a856293a33bf390e436b97099ec2b92825216553d66b356a39229880c0f82",
-                            UserEmail = "mail2@gmail.com",
+                            UserEmail = "applecontact@gmail.com",
                             UserIsActive = true,
-                            UserName = "Company 2",
+                            UserName = "AppleUser",
                             CompanyAddress = "E 18",
                             CompanyCUIT = 20445556661L,
                             CompanyLine = "Textil",
                             CompanyLocation = "Rosario",
                             CompanyName = "Apple",
-                            CompanyPendingConfirmation = true,
+                            CompanyPendingConfirmation = false,
                             CompanyPersonalJob = "Gerente",
                             CompanyPersonalName = "Juan Esteban",
                             CompanyPersonalPhone = 25L,
@@ -449,7 +449,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CompanyPhone = 341334455L,
                             CompanyPostalCode = "2000",
                             CompanyRelationContact = "Vacio",
-                            CompanyWebPage = "web2"
+                            CompanyWebPage = "apple.com"
                         });
                 });
 
