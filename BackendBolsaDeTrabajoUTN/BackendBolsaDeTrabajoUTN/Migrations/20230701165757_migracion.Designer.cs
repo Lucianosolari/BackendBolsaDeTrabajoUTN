@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20230626195217_migracion")]
+    [Migration("20230701165757_migracion")]
     partial class migracion
     {
         /// <inheritdoc />
@@ -425,9 +425,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CompanyPendingConfirmation = false,
                             CompanyPersonalJob = "Gerente",
                             CompanyPersonalName = "Juan Carlos",
-                            CompanyPersonalPhone = 22L,
+                            CompanyPersonalPhone = 3413678989L,
                             CompanyPersonalSurname = "Peralta",
-                            CompanyPhone = 341367898L,
+                            CompanyPhone = 3413678988L,
                             CompanyPostalCode = "2000",
                             CompanyRelationContact = "Vacio",
                             CompanyWebPage = "microsoft.com"
@@ -447,9 +447,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             CompanyPendingConfirmation = false,
                             CompanyPersonalJob = "Gerente",
                             CompanyPersonalName = "Juan Esteban",
-                            CompanyPersonalPhone = 25L,
+                            CompanyPersonalPhone = 3413344556L,
                             CompanyPersonalSurname = "Peralta",
-                            CompanyPhone = 341334455L,
+                            CompanyPhone = 3413344555L,
                             CompanyPostalCode = "2000",
                             CompanyRelationContact = "Vacio",
                             CompanyWebPage = "apple.com"
@@ -467,11 +467,11 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Property<int>("ApprovedSubjectsQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("AverageMarksWithPostponement")
-                        .HasColumnType("int");
+                    b.Property<decimal>("AverageMarksWithPostponement")
+                        .HasColumnType("decimal(65,30)");
 
-                    b.Property<int>("AverageMarksWithoutPostponement")
-                        .HasColumnType("int");
+                    b.Property<decimal>("AverageMarksWithoutPostponement")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<DateTime>("Birth")
                         .HasColumnType("datetime(6)");
@@ -512,11 +512,11 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("FamilyOtherPhone")
-                        .HasColumnType("int");
+                    b.Property<long>("FamilyOtherPhone")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("FamilyPersonalPhone")
-                        .HasColumnType("int");
+                    b.Property<long>("FamilyPersonalPhone")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("FamilyProvince")
                         .IsRequired()
@@ -559,11 +559,11 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("PersonalOtherPhone")
-                        .HasColumnType("int");
+                    b.Property<long>("PersonalOtherPhone")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("PersonalPersonalPhone")
-                        .HasColumnType("int");
+                    b.Property<long>("PersonalPersonalPhone")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("PersonalProvince")
                         .IsRequired()
@@ -615,8 +615,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserName = "manuelI",
                             AltEmail = "manuelalt@gmail.com",
                             ApprovedSubjectsQuantity = 10,
-                            AverageMarksWithPostponement = 8,
-                            AverageMarksWithoutPostponement = 8,
+                            AverageMarksWithPostponement = 8.5m,
+                            AverageMarksWithoutPostponement = 8.6m,
                             Birth = new DateTime(2002, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CUIL_CUIT = 20445556661L,
                             CivilStatus = "Soltero",
@@ -628,8 +628,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             FamilyDepartment = "4B",
                             FamilyFloor = 2,
                             FamilyLocation = "Ciudad Autónoma de Buenos Aires",
-                            FamilyOtherPhone = 987654321,
-                            FamilyPersonalPhone = 123456789,
+                            FamilyOtherPhone = 3413332245L,
+                            FamilyPersonalPhone = 3413332244L,
                             FamilyProvince = "Buenos Aires",
                             FamilyStreet = "Calle Principal",
                             FamilyStreetLetter = "A",
@@ -641,8 +641,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             PersonalDepartment = "Depto. 2",
                             PersonalFloor = 1,
                             PersonalLocation = "Córdoba Capital",
-                            PersonalOtherPhone = 123456789,
-                            PersonalPersonalPhone = 987654321,
+                            PersonalOtherPhone = 3413332247L,
+                            PersonalPersonalPhone = 3413332246L,
                             PersonalProvince = "Córdoba",
                             PersonalStreet = "Avenida Principal",
                             PersonalStreetLetter = "B",
@@ -663,10 +663,10 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserName = "lucianoS",
                             AltEmail = "lucianoalt@gmail.com",
                             ApprovedSubjectsQuantity = 10,
-                            AverageMarksWithPostponement = 6,
-                            AverageMarksWithoutPostponement = 7,
+                            AverageMarksWithPostponement = 6.2m,
+                            AverageMarksWithoutPostponement = 7.6m,
                             Birth = new DateTime(1998, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CUIL_CUIT = 203334445551L,
+                            CUIL_CUIT = 20334445551L,
                             CivilStatus = "Soltero",
                             CollegeDegree = "Sistemas",
                             CurrentStudyYear = 2,
@@ -676,8 +676,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             FamilyDepartment = "5B",
                             FamilyFloor = 22,
                             FamilyLocation = "Rosario",
-                            FamilyOtherPhone = 987654321,
-                            FamilyPersonalPhone = 123456789,
+                            FamilyOtherPhone = 3418889901L,
+                            FamilyPersonalPhone = 3418889900L,
                             FamilyProvince = "Santa Fe",
                             FamilyStreet = "Calle asdasd",
                             FamilyStreetLetter = "AA",
@@ -689,8 +689,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             PersonalDepartment = "Depto. 2",
                             PersonalFloor = 1,
                             PersonalLocation = "Córdoba Capital",
-                            PersonalOtherPhone = 123456789,
-                            PersonalPersonalPhone = 987654321,
+                            PersonalOtherPhone = 3418889903L,
+                            PersonalPersonalPhone = 3418889902L,
                             PersonalProvince = "Córdoba",
                             PersonalStreet = "Avenida Principal",
                             PersonalStreetLetter = "B",
@@ -711,8 +711,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             UserName = "santiagoC",
                             AltEmail = "santiagoalt@gmail.com",
                             ApprovedSubjectsQuantity = 10,
-                            AverageMarksWithPostponement = 6,
-                            AverageMarksWithoutPostponement = 7,
+                            AverageMarksWithPostponement = 6.3m,
+                            AverageMarksWithoutPostponement = 7.5m,
                             Birth = new DateTime(2003, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CUIL_CUIT = 20556667771L,
                             CivilStatus = "Soltero",
@@ -724,8 +724,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             FamilyDepartment = "5B",
                             FamilyFloor = 22,
                             FamilyLocation = "Rosario",
-                            FamilyOtherPhone = 987654321,
-                            FamilyPersonalPhone = 123456789,
+                            FamilyOtherPhone = 3415556678L,
+                            FamilyPersonalPhone = 3415556677L,
                             FamilyProvince = "Santa Fe",
                             FamilyStreet = "Calle asdasd",
                             FamilyStreetLetter = "AA",
@@ -737,8 +737,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                             PersonalDepartment = "Depto. 2",
                             PersonalFloor = 1,
                             PersonalLocation = "Córdoba Capital",
-                            PersonalOtherPhone = 123456789,
-                            PersonalPersonalPhone = 987654321,
+                            PersonalOtherPhone = 3415556680L,
+                            PersonalPersonalPhone = 3415556679L,
                             PersonalProvince = "Córdoba",
                             PersonalStreet = "Avenida Principal",
                             PersonalStreetLetter = "B",

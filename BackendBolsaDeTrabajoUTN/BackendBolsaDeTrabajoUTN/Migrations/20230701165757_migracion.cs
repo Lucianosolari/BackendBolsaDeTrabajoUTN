@@ -127,8 +127,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     FamilyLocation = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    FamilyPersonalPhone = table.Column<int>(type: "int", nullable: true),
-                    FamilyOtherPhone = table.Column<int>(type: "int", nullable: true),
+                    FamilyPersonalPhone = table.Column<long>(type: "bigint", nullable: true),
+                    FamilyOtherPhone = table.Column<long>(type: "bigint", nullable: true),
                     PersonalStreet = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PersonalStreetNumber = table.Column<int>(type: "int", nullable: true),
@@ -143,8 +143,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PersonalLocation = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    PersonalPersonalPhone = table.Column<int>(type: "int", nullable: true),
-                    PersonalOtherPhone = table.Column<int>(type: "int", nullable: true),
+                    PersonalPersonalPhone = table.Column<long>(type: "bigint", nullable: true),
+                    PersonalOtherPhone = table.Column<long>(type: "bigint", nullable: true),
                     Specialty = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ApprovedSubjectsQuantity = table.Column<int>(type: "int", nullable: true),
@@ -152,8 +152,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     CurrentStudyYear = table.Column<int>(type: "int", nullable: true),
                     StudyTurn = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    AverageMarksWithPostponement = table.Column<int>(type: "int", nullable: true),
-                    AverageMarksWithoutPostponement = table.Column<int>(type: "int", nullable: true),
+                    AverageMarksWithPostponement = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
+                    AverageMarksWithoutPostponement = table.Column<decimal>(type: "decimal(65,30)", nullable: true),
                     CollegeDegree = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     SecondaryDegree = table.Column<string>(type: "longtext", nullable: true)
@@ -321,8 +321,8 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: new[] { "UserId", "CompanyAddress", "CompanyCUIT", "CompanyLine", "CompanyLocation", "CompanyName", "CompanyPendingConfirmation", "CompanyPersonalJob", "CompanyPersonalName", "CompanyPersonalPhone", "CompanyPersonalSurname", "CompanyPhone", "CompanyPostalCode", "CompanyRelationContact", "CompanyWebPage", "Password", "UserEmail", "UserIsActive", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { 1, "D 15", 20447575751L, "Computación", "Rosario", "Microsoft", false, "Gerente", "Juan Carlos", 22L, "Peralta", 341367898L, "2000", "Vacio", "microsoft.com", "579019246127c66d28bf72438ea616ee6013ec447aa6577507e12f3124da9bc70e5a856293a33bf390e436b97099ec2b92825216553d66b356a39229880c0f82", "microsoftcontact@gmail.com", true, "MicrosoftUser", "Company" },
-                    { 2, "E 18", 20445556661L, "Textil", "Rosario", "Apple", false, "Gerente", "Juan Esteban", 25L, "Peralta", 341334455L, "2000", "Vacio", "apple.com", "579019246127c66d28bf72438ea616ee6013ec447aa6577507e12f3124da9bc70e5a856293a33bf390e436b97099ec2b92825216553d66b356a39229880c0f82", "applecontact@gmail.com", true, "AppleUser", "Company" }
+                    { 1, "D 15", 20447575751L, "Computación", "Rosario", "Microsoft", false, "Gerente", "Juan Carlos", 3413678989L, "Peralta", 3413678988L, "2000", "Vacio", "microsoft.com", "579019246127c66d28bf72438ea616ee6013ec447aa6577507e12f3124da9bc70e5a856293a33bf390e436b97099ec2b92825216553d66b356a39229880c0f82", "microsoftcontact@gmail.com", true, "MicrosoftUser", "Company" },
+                    { 2, "E 18", 20445556661L, "Textil", "Rosario", "Apple", false, "Gerente", "Juan Esteban", 3413344556L, "Peralta", 3413344555L, "2000", "Vacio", "apple.com", "579019246127c66d28bf72438ea616ee6013ec447aa6577507e12f3124da9bc70e5a856293a33bf390e436b97099ec2b92825216553d66b356a39229880c0f82", "applecontact@gmail.com", true, "AppleUser", "Company" }
                 });
 
             migrationBuilder.InsertData(
@@ -330,9 +330,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: new[] { "UserId", "AltEmail", "ApprovedSubjectsQuantity", "AverageMarksWithPostponement", "AverageMarksWithoutPostponement", "Birth", "CUIL_CUIT", "CivilStatus", "CollegeDegree", "CurrentStudyYear", "DocumentNumber", "DocumentType", "FamilyCountry", "FamilyDepartment", "FamilyFloor", "FamilyLocation", "FamilyOtherPhone", "FamilyPersonalPhone", "FamilyProvince", "FamilyStreet", "FamilyStreetLetter", "FamilyStreetNumber", "File", "Name", "Observations", "Password", "PersonalCountry", "PersonalDepartment", "PersonalFloor", "PersonalLocation", "PersonalOtherPhone", "PersonalPersonalPhone", "PersonalProvince", "PersonalStreet", "PersonalStreetLetter", "PersonalStreetNumber", "SecondaryDegree", "Sex", "Specialty", "SpecialtyPlan", "StudyTurn", "Surname", "UserEmail", "UserIsActive", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { 3, "manuelalt@gmail.com", 10, 8, 8, new DateTime(2002, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 20445556661L, "Soltero", "Sistemas", 2, 44555666, "DNI", "Argentina", "4B", 2, "Ciudad Autónoma de Buenos Aires", 987654321, 123456789, "Buenos Aires", "Calle Principal", "A", 123, 12345, "Manuel", "Fanático de linux", "579019246127c66d28bf72438ea616ee6013ec447aa6577507e12f3124da9bc70e5a856293a33bf390e436b97099ec2b92825216553d66b356a39229880c0f82", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2021, "Tarde", "Ibarbia", "manuel@frro.utn.edu.ar", true, "manuelI", "Student" },
-                    { 4, "lucianoalt@gmail.com", 10, 6, 7, new DateTime(1998, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 203334445551L, "Soltero", "Sistemas", 2, 33444555, "DNI", "Argentina", "5B", 22, "Rosario", 987654321, 123456789, "Santa Fe", "Calle asdasd", "AA", 12, 12346, "Luciano", "Fanático de linux", "579019246127c66d28bf72438ea616ee6013ec447aa6577507e12f3124da9bc70e5a856293a33bf390e436b97099ec2b92825216553d66b356a39229880c0f82", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2021, "Tarde", "Solari", "luciano@frro.utn.edu.ar", true, "lucianoS", "Student" },
-                    { 5, "santiagoalt@gmail.com", 10, 6, 7, new DateTime(2003, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 20556667771L, "Soltero", "Sistemas", 2, 55666777, "DNI", "Argentina", "5B", 22, "Rosario", 987654321, 123456789, "Santa Fe", "Calle asdasd", "AA", 12, 12347, "Santiago", "Fanático de Visual Studio", "579019246127c66d28bf72438ea616ee6013ec447aa6577507e12f3124da9bc70e5a856293a33bf390e436b97099ec2b92825216553d66b356a39229880c0f82", "Argentina", "Depto. 2", 1, "Córdoba Capital", 123456789, 987654321, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Caso", "santiago@frro.utn.edu.ar", true, "santiagoC", "Student" }
+                    { 3, "manuelalt@gmail.com", 10, 8.5m, 8.6m, new DateTime(2002, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 20445556661L, "Soltero", "Sistemas", 2, 44555666, "DNI", "Argentina", "4B", 2, "Ciudad Autónoma de Buenos Aires", 3413332245L, 3413332244L, "Buenos Aires", "Calle Principal", "A", 123, 12345, "Manuel", "Fanático de linux", "579019246127c66d28bf72438ea616ee6013ec447aa6577507e12f3124da9bc70e5a856293a33bf390e436b97099ec2b92825216553d66b356a39229880c0f82", "Argentina", "Depto. 2", 1, "Córdoba Capital", 3413332247L, 3413332246L, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2021, "Tarde", "Ibarbia", "manuel@frro.utn.edu.ar", true, "manuelI", "Student" },
+                    { 4, "lucianoalt@gmail.com", 10, 6.2m, 7.6m, new DateTime(1998, 5, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 20334445551L, "Soltero", "Sistemas", 2, 33444555, "DNI", "Argentina", "5B", 22, "Rosario", 3418889901L, 3418889900L, "Santa Fe", "Calle asdasd", "AA", 12, 12346, "Luciano", "Fanático de linux", "579019246127c66d28bf72438ea616ee6013ec447aa6577507e12f3124da9bc70e5a856293a33bf390e436b97099ec2b92825216553d66b356a39229880c0f82", "Argentina", "Depto. 2", 1, "Córdoba Capital", 3418889903L, 3418889902L, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2021, "Tarde", "Solari", "luciano@frro.utn.edu.ar", true, "lucianoS", "Student" },
+                    { 5, "santiagoalt@gmail.com", 10, 6.3m, 7.5m, new DateTime(2003, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 20556667771L, "Soltero", "Sistemas", 2, 55666777, "DNI", "Argentina", "5B", 22, "Rosario", 3415556678L, 3415556677L, "Santa Fe", "Calle asdasd", "AA", 12, 12347, "Santiago", "Fanático de Visual Studio", "579019246127c66d28bf72438ea616ee6013ec447aa6577507e12f3124da9bc70e5a856293a33bf390e436b97099ec2b92825216553d66b356a39229880c0f82", "Argentina", "Depto. 2", 1, "Córdoba Capital", 3415556680L, 3415556679L, "Córdoba", "Avenida Principal", "B", 456, "Completo", "Masculino", "Sistemas", 2002, "Tarde", "Caso", "santiago@frro.utn.edu.ar", true, "santiagoC", "Student" }
                 });
 
             migrationBuilder.InsertData(

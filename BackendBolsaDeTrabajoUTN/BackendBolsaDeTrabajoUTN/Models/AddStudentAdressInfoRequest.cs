@@ -12,8 +12,8 @@
         public string FamilyCountry { get; set; }
         public string FamilyProvince { get; set; }
         public string FamilyLocation { get; set; }
-        public int FamilyPersonalPhone { get; set; }
-        public int FamilyOtherPhone { get; set; }
+        public long FamilyPersonalPhone { get; set; }
+        public long FamilyOtherPhone { get; set; }
 
         // Domicilio personal
 
@@ -25,7 +25,7 @@
         public string PersonalCountry { get; set; }
         public string PersonalProvince { get; set; }
         public string PersonalLocation { get; set; }
-        public int PersonalPersonalPhone { get; set; }
-        public int PersonalOtherPhone { get; set; }
+        public long PersonalPersonalPhone { get; set; }
+        public long PersonalOtherPhone { get; set; }
     }
 }
