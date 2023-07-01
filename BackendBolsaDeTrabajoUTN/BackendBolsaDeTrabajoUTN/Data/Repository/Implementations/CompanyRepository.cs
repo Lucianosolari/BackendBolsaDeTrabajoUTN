@@ -1,4 +1,4 @@
-﻿
+﻿using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 using BackendBolsaDeTrabajoUTN.Entities;
 using BackendBolsaDeTrabajoUTN.DBContexts;
 
@@ -34,12 +34,16 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
             try
             {
                 var company = _context.Companies.FirstOrDefault(s => s.UserId == id);
+                if (company == null)
+                {
+                    throw new Exception("Empresa no encontrada");
+                }
                 company.UserIsActive = false;
                 _context.SaveChanges();
             }
             catch
             {
-                throw new Exception("Empresa no encontrada");
+                throw new Exception("Usuario no encontrado");
             }
         }
 
