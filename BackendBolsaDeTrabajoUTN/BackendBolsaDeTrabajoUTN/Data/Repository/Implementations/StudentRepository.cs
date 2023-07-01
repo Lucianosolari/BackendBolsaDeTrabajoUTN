@@ -120,6 +120,10 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             try
             {
                 var student = _context.Students.FirstOrDefault(s => s.UserId == id);
+                if (student == null)
+                {
+                    throw new Exception("Estudiante no encontrado");
+                }
                 student.UserIsActive = false;
                 _context.SaveChanges();
             }

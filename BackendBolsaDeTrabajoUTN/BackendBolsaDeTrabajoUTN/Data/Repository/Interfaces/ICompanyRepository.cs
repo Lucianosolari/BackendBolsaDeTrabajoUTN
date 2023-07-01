@@ -1,7 +1,7 @@
 ﻿using BackendBolsaDeTrabajoUTN.Entities;
 
 
-namespace BackendBolsaDeTrabajoUTN.Data.Repository
+namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
 {
    
     public interface ICompanyRepository

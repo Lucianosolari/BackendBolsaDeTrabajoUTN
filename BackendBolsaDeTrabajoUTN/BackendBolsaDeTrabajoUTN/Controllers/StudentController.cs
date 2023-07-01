@@ -16,22 +16,26 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
     
     public class StudentController : ControllerBase
     {
+        
+        private readonly IStudentRepository _studentRepository;
+
+        private readonly ICompanyRepository _companyRepository;
 
         private readonly IStudentOfferRepository _studentOfferRepository;
 
         private readonly IStudentKnowledgeRepository _studentKnowledgeRepository;
-        
-        private readonly IStudentRepository _studentRepository;
 
         private readonly TPContext _context;
 
-        public StudentController(IStudentOfferRepository studentOfferRepository, IStudentRepository studentRepository, IStudentKnowledgeRepository studentKnowledgeRepository, TPContext context)
-        {
+        public StudentController(IStudentRepository studentRepository, ICompanyRepository companyRepository, IStudentOfferRepository studentOfferRepository, IStudentKnowledgeRepository studentKnowledgeRepository, TPContext context)
+        {   
+            _studentRepository = studentRepository;
+
+            _companyRepository = companyRepository;
+
             _studentOfferRepository = studentOfferRepository;
 
             _studentKnowledgeRepository = studentKnowledgeRepository;
-            
-            _studentRepository = studentRepository;
 
             _context = context;
         }
@@ -89,12 +93,15 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Authorize]
         [HttpPut]
         [Route("addStudentAdressInfo")]
-        public IActionResult AddStudentAdressInfo(AddStudentAdressInfoRequest newStudentAdressInfo)
+        public IActionResult AddStudentAdressInfo(AddStudentAdressInfoRequest request)
         {
             try
             {
+                List<Student> students = _studentRepository.GetStudents();
+                List<Company> companies = _companyRepository.GetCompanies();
+                ValidatePhoneNumbers(students, companies, request.FamilyPersonalPhone, request.FamilyOtherPhone, request.PersonalPersonalPhone, request.PersonalOtherPhone);
                 int id = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-                _studentRepository.AddStudentAdressInfo(id, newStudentAdressInfo);
+                _studentRepository.AddStudentAdressInfo(id, request);
                 return Ok(new { message = "Domicilios modificados" });
             }
             catch (Exception ex)
@@ -253,7 +260,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
                 if (string.IsNullOrEmpty(studentId))
                 {
-                    return BadRequest("No esta logeado como estudiante.");
+                    return BadRequest("No está logeado como estudiante.");
                 }
 
                 CVFile cvFile = new CVFile
@@ -486,6 +493,77 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 if (birth > eighteenYearsAgo)
                 {
                     throw new Exception("Fecha de nacimiento no válida, debes tener al menos 18 años para registrarte.");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [NonAction]
+        public void ValidatePhoneNumbers(List<Student> students, List<Company> companies, long familyPersonalPhone, long familyOtherPhone, long personalPersonalPhone, long personalOtherPhone)
+        {
+            try
+            {
+                if (familyPersonalPhone.ToString().Length != 10)
+                {
+                    throw new Exception("Teléfono de familia no válido, debe tener 10 dígitos");
+                }
+                if (familyOtherPhone.ToString().Length != 10)
+                {
+                    throw new Exception("Teléfono de familia alternativo no válido, debe tener 10 dígitos");
+                }
+                if (personalPersonalPhone.ToString().Length != 10)
+                {
+                    throw new Exception("Teléfono personal no válido, debe tener 10 dígitos");
+                }
+                if (personalOtherPhone.ToString().Length != 10)
+                {
+                    throw new Exception("Teléfono personal alternativo no válido, debe tener 10 dígitos");
+                }
+
+                var phoneNumbers = new List<long>
+                {
+                    familyPersonalPhone,
+                    familyOtherPhone,
+                    personalPersonalPhone,
+                    personalOtherPhone
+                };
+
+                if (phoneNumbers.Distinct().Count() != phoneNumbers.Count)
+                {
+                    throw new Exception("Los números de teléfono no deben coincidir entre sí");
+                }
+
+
+                var familyPersonalPhoneInUseStudent = students.FirstOrDefault(s => s.FamilyPersonalPhone == familyPersonalPhone || s.FamilyOtherPhone == familyPersonalPhone || s.PersonalPersonalPhone == familyPersonalPhone || s.PersonalOtherPhone == familyPersonalPhone);
+                var familyPersonalPhoneInUseCompany = companies.FirstOrDefault(c => c.CompanyPhone == familyPersonalPhone || c.CompanyPersonalPhone == familyPersonalPhone);
+
+                var familyOtherPhoneInUseStudent = students.FirstOrDefault(s => s.FamilyPersonalPhone == familyOtherPhone || s.FamilyOtherPhone == familyOtherPhone || s.PersonalPersonalPhone == familyOtherPhone || s.PersonalOtherPhone == familyOtherPhone);
+                var familyOtherPhoneInUseCompany = companies.FirstOrDefault(c => c.CompanyPhone == familyOtherPhone || c.CompanyPersonalPhone == familyOtherPhone);
+
+                var personalPersonalPhoneInUseStudent = students.FirstOrDefault(s => s.FamilyPersonalPhone == personalPersonalPhone || s.FamilyOtherPhone == personalPersonalPhone || s.PersonalPersonalPhone == personalPersonalPhone || s.PersonalOtherPhone == personalPersonalPhone);
+                var personalPersonalPhoneInUseCompany = companies.FirstOrDefault(c => c.CompanyPhone == personalPersonalPhone || c.CompanyPersonalPhone == personalPersonalPhone);
+
+                var personalOtherPhoneInUseStudent = students.FirstOrDefault(s => s.FamilyPersonalPhone == personalOtherPhone || s.FamilyOtherPhone == personalOtherPhone || s.PersonalPersonalPhone == personalOtherPhone || s.PersonalOtherPhone == personalOtherPhone);
+                var personalOtherPhoneInUseCompany = companies.FirstOrDefault(c => c.CompanyPhone == personalOtherPhone || c.CompanyPersonalPhone == personalOtherPhone);
+
+                if (familyPersonalPhoneInUseStudent != null ||familyPersonalPhoneInUseCompany != null)
+                {
+                    throw new Exception("El teléfono de familia introducido ya está en uso");
+                }
+                if (familyOtherPhoneInUseStudent != null || familyOtherPhoneInUseCompany != null)
+                {
+                    throw new Exception("El teléfono de familia alternativo introducido ya está en uso");
+                }
+                if (personalPersonalPhoneInUseStudent != null || personalPersonalPhoneInUseCompany != null)
+                {
+                    throw new Exception("El teléfono personal introducido ya está en uso");
+                }
+                if (personalOtherPhoneInUseStudent != null || personalOtherPhoneInUseCompany != null)
+                {
+                    throw new Exception("El teléfono personal alternativo introducido ya está en uso");
                 }
             }
             catch (Exception ex)
