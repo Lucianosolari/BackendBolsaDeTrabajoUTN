@@ -37,8 +37,8 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public string FamilyCountry { get; set; }
         public string FamilyProvince { get; set; }
         public string FamilyLocation { get; set; }
-        public int FamilyPersonalPhone { get; set; }
-        public int FamilyOtherPhone { get; set; }
+        public long FamilyPersonalPhone { get; set; }
+        public long FamilyOtherPhone { get; set; }
 
         ////Domicilio Personal  ?
 
@@ -50,8 +50,8 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public string PersonalCountry { get; set; }
         public string PersonalProvince { get; set; }
         public string PersonalLocation { get; set; }
-        public int PersonalPersonalPhone { get; set; }
-        public int PersonalOtherPhone { get; set; }
+        public long PersonalPersonalPhone { get; set; }
+        public long PersonalOtherPhone { get; set; }
 
 
         //// Datos universitarios
@@ -61,8 +61,8 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         public int SpecialtyPlan { get; set; }
         public int CurrentStudyYear { get; set; }
         public string StudyTurn { get; set; }
-        public int AverageMarksWithPostponement { get; set; }
-        public int AverageMarksWithoutPostponement { get; set; }
+        public decimal AverageMarksWithPostponement { get; set; }
+        public decimal AverageMarksWithoutPostponement { get; set; }
         public string CollegeDegree { get; set; }
 
 

@@ -89,7 +89,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Authorize]
         [HttpPut]
         [Route("addStudentAdressInfo")]
-        public IActionResult addStudentAdressInfo(AddStudentAdressInfoRequest newStudentAdressInfo)
+        public IActionResult AddStudentAdressInfo(AddStudentAdressInfoRequest newStudentAdressInfo)
         {
             try
             {
@@ -106,7 +106,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Authorize]
         [HttpPut]
         [Route("updateStudentUniversityInfo")]
-        public IActionResult addStudentUniversityInfo(AddStudentUniversityInfoRequest newStudentUniversityInfo)
+        public IActionResult AddStudentUniversityInfo(AddStudentUniversityInfoRequest newStudentUniversityInfo)
         {
             try
             {
@@ -154,7 +154,6 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
         }
 
-
         [Authorize]
         [HttpGet]
         [Route("Knowledge/GetKnowledgesToStudent")]
@@ -171,13 +170,6 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-
-
-
-
-
-
 
         [Authorize]
         [HttpPost("{offerId}/Students/{studentId}")]
