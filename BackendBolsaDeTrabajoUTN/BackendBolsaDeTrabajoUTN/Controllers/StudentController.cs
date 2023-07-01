@@ -223,11 +223,12 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Authorize]
         [HttpDelete] //Cambiar a put (modifica UserIsActive de True a False)
         [Route("deleteStudent/{id}")]
-        public IActionResult DeleteStudent(int id)
+        public IActionResult DeleteStudent()
         {
             try
             {
-                _studentRepository.RemoveStudent(id);
+                int studentId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                _studentRepository.RemoveStudent(studentId);
                 return Ok("Alumno borrado del sistema.");
             }
             catch (Exception ex)
