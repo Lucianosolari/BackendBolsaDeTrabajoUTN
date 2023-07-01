@@ -6,6 +6,7 @@ using BackendBolsaDeTrabajoUTN.Models;
 using BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces;
 using BackendBolsaDeTrabajoUTN.Data.Repository.Implementations;
 using System.Text.RegularExpressions;
+using System.Security.Claims;
 
 namespace BackendBolsaDeTrabajoUTN.Controllers
 {
@@ -88,11 +89,12 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Authorize]
         [HttpDelete]
         [Route("deleteCompany/{id}")]
-        public IActionResult DeleteCompany(int id)
+        public IActionResult DeleteCompany()
         {
             try
             {
-                _companyRepository.RemoveCompany(id);
+                int companyId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+                _companyRepository.RemoveCompany(companyId);
                 return Ok("Empresa borrada del sistema.");
             }
             catch (Exception ex)
