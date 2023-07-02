@@ -184,13 +184,13 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         {
             try
             {
-                var cv = _studentRepository.GetStudentCv(studentId);
-                if (cv == null)
+                var cvExists = _studentRepository.CheckCVExists(studentId);
+                if (cvExists == false)
                 {
                     throw new Exception("Para postularte a una oferta, primero tenés que cargar tu CV");
                 }
                 _studentOfferRepository.AddStudentToOffer(offerId, studentId);
-                return Ok();
+                return Ok(new { message = "Registro en la oferta exitoso" });
             }
             catch (Exception ex)
             {
@@ -293,27 +293,20 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         {
             try
             {
-                // Obtener el studentId del claim
                 int studentId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
                 if (string.IsNullOrEmpty(studentId.ToString()))
                 {
-                    return BadRequest("No está logeado como estudiante.");
+                    throw new Exception("No está logeado");
                 }
 
-                //CVFile cvFile = _context.CVFiles.FirstOrDefault(c => c.StudentId == int.Parse(studentId));
                 CVFile cvFile = _studentRepository.GetStudentCv(studentId);
-
-                if (cvFile == null)
-                {
-                    return NotFound("No se encontró el archivo.");
-                }
 
                 return File(cvFile.File, "application/octet-stream", cvFile.Name);
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
 

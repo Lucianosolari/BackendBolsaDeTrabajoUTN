@@ -12,6 +12,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
         public void UploadStudentCV(CVFile CV);
         public void RemoveStudent(int id);
         public CVFile GetStudentCv(int studentId);
+        public bool CheckCVExists(int studentId);
         public List<User> GetUsers();
         public List<Student> GetStudents();
         public Student GetStudentById(int file);
