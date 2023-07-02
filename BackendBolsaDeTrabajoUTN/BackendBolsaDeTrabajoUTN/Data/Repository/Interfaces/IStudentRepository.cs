@@ -9,7 +9,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
         public void CreateStudent(Student newStudent);
         public void AddStudentAdressInfo(int id, AddStudentAdressInfoRequest newStudentAdressInfo);
         public void AddStudentUniversityInfo(int id, AddStudentUniversityInfoRequest newStudentUniversityInfo);
-        public void UploadStudentCV(CVFile CV);
+        public void UploadStudentCV(int studentId, IFormFile file);
         public void RemoveStudent(int id);
         public CVFile GetStudentCv(int studentId);
         public bool CheckCVExists(int studentId);

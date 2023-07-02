@@ -101,19 +101,43 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
         }
 
-        public void UploadStudentCV(CVFile CV)
+        public void UploadStudentCV(int studentId, IFormFile file)
         {
             try
             {
-                _context.CVFiles.Add(CV);
+                    byte[] fileBytes;
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        file.CopyTo(memoryStream);
+                        fileBytes = memoryStream.ToArray();
+                    }
+
+                    CVFile newCvFile = new CVFile
+                    {
+                        Name = file.FileName,
+                        File = fileBytes,
+                        StudentId = studentId,
+                        CVIsActive = true,
+                    };
+
+                var existentCvFile = _context.CVFiles.FirstOrDefault(cv => cv.StudentId == newCvFile.StudentId);
+                if (existentCvFile != null)
+                {
+                    existentCvFile.Name = newCvFile.Name;
+                    existentCvFile.File = newCvFile.File;
+                    existentCvFile.CVId = existentCvFile.CVId;
+                }
+                else
+                {
+                    _context.CVFiles.Add(newCvFile);
+                }
                 _context.SaveChanges();
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("Problema al cargar el archivo");
+                throw new Exception(ex.Message);
             }
         }
-
 
         public void RemoveStudent(int id)
         {

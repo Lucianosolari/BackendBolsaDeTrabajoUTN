@@ -249,34 +249,17 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         {
             try
             {
+                string studentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                if (studentId == null)
+                {
+                    throw new Exception("No se encontró al estudiante");
+                }
                 if (file == null || file.Length == 0)
                 {
-                    return BadRequest("No se ha enviado ningún archivo.");
+                    throw new Exception("No se ha enviado ningún archivo.");
                 }
 
-                byte[] fileBytes;
-                using (var memoryStream = new MemoryStream())
-                {
-                    file.CopyTo(memoryStream);
-                    fileBytes = memoryStream.ToArray();
-                }
-
-                // Obtener el studentId del claim
-                string studentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-                if (string.IsNullOrEmpty(studentId))
-                {
-                    return BadRequest("No está logeado como estudiante.");
-                }
-
-                CVFile cvFile = new CVFile
-                {
-                    Name = file.FileName,
-                    File = fileBytes,
-                    StudentId = int.Parse(studentId)
-                };
-
-                _studentRepository.UploadStudentCV(cvFile);
+                _studentRepository.UploadStudentCV(int.Parse(studentId), file);
 
                 return Ok(new { message = "Archivo guardado exitosamente en la base de datos." });
             }
