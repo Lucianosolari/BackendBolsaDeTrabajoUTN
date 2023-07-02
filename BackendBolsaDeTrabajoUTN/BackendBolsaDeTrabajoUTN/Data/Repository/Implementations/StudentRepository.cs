@@ -117,6 +117,8 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
                         Name = file.FileName,
                         File = fileBytes,
                         StudentId = studentId,
+                        Student = _context.Students.FirstOrDefault(s => s.UserId == studentId),
+                        CVPendingConfirmation = true,
                         CVIsActive = true,
                     };
 
@@ -125,6 +127,8 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
                 {
                     existentCvFile.Name = newCvFile.Name;
                     existentCvFile.File = newCvFile.File;
+                    existentCvFile.Student = newCvFile.Student;
+                    existentCvFile.CVPendingConfirmation = true;
                     existentCvFile.CVId = existentCvFile.CVId;
                 }
                 else
@@ -165,6 +169,10 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
                 if (cVFile == null)
                 {
                     throw new Exception("No se encontró el CV del estudiante");
+                }
+                if (cVFile.File != null && cVFile.CVPendingConfirmation == true)
+                {
+                    throw new Exception("El CV está pendiente de confirmación");
                 }
                 return cVFile;
             }

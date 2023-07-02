@@ -28,6 +28,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                     b.Property<bool>("CVIsActive")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<bool>("CVPendingConfirmation")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<byte[]>("File")
                         .IsRequired()
                         .HasColumnType("longblob");
