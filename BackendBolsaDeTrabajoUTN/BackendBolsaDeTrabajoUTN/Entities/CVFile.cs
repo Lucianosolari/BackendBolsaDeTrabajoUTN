@@ -14,7 +14,7 @@ namespace BackendBolsaDeTrabajoUTN.Entities
         [ForeignKey("StudentId")]
         public Student Student { get; set; }
         public int StudentId { get; set; }
-
+        public bool CVPendingConfirmation { get; set; }
         public bool CVIsActive  { get; set; }
     }
 }

@@ -262,6 +262,48 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
         }
 
+        [Authorize]
+        [HttpGet]
+        [Route("getPendingCVFiles")]
+        public IActionResult GetPendingCVFiles()
+        {
+            try
+            {
+                var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+                if (userType != "Admin")
+                {
+                    throw new Exception("El usuario no está autorizado para listar CVs pendientes");
+                }
+                List<CVFile> pendingCvFiles = _adminRepository.GetPendingCVFiles();
+                return Ok(pendingCvFiles);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [Authorize]
+        [HttpPut]
+        [Route("updatePendingCVFile/{CVId}")]
+        public IActionResult UpdatePendingCVFile (int CVId)
+        {
+            try
+            {
+                var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+                if (userType != "Admin")
+                {
+                    throw new Exception("El usuario no está autorizado para confirmar CVs pendientes");
+                }
+                _adminRepository.UpdatePendingCVFile(CVId);
+                return Ok(new { Mesage = "CV confirmado" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [NonAction]
         public void ValidateCareerName(List<Career> careers, string careerName)
         {

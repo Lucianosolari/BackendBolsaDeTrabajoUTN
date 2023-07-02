@@ -177,6 +177,7 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     File = table.Column<byte[]>(type: "longblob", nullable: false),
                     StudentId = table.Column<int>(type: "int", nullable: false),
+                    CVPendingConfirmation = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CVIsActive = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>

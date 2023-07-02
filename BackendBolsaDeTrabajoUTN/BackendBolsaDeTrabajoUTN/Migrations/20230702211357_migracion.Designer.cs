@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20230701165757_migracion")]
+    [Migration("20230702211357_migracion")]
     partial class migracion
     {
         /// <inheritdoc />
@@ -29,6 +29,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("CVIsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("CVPendingConfirmation")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<byte[]>("File")

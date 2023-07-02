@@ -138,5 +138,39 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
         }
 
+        public List<CVFile> GetPendingCVFiles()
+        {
+            try
+            {
+                var pendingCvFiles = _context.CVFiles.Where(cv => cv.CVPendingConfirmation == true && cv.CVIsActive == true).ToList();
+                if (pendingCvFiles.Count == 0)
+                {
+                    throw new Exception("No hay CVs pendientes de confirmar");
+                }
+                return pendingCvFiles;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void UpdatePendingCVFile(int CVId)
+        {
+            try
+            {
+                CVFile cVFile = _context.CVFiles.FirstOrDefault(cv => cv.CVId == CVId);
+                if (cVFile == null)
+                {
+                    throw new Exception("El CV no existe");
+                }
+                cVFile.CVPendingConfirmation = false;
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
