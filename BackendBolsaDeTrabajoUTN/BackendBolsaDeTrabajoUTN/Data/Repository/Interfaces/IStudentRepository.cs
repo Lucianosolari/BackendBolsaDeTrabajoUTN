@@ -11,6 +11,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
         public void AddStudentUniversityInfo(int id, AddStudentUniversityInfoRequest newStudentUniversityInfo);
         public void UploadStudentCV(CVFile CV);
         public void RemoveStudent(int id);
+        public CVFile GetStudentCv(int studentId);
         public List<User> GetUsers();
         public List<Student> GetStudents();
         public Student GetStudentById(int file);

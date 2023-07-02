@@ -184,6 +184,11 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         {
             try
             {
+                var cv = _studentRepository.GetStudentCv(studentId);
+                if (cv == null)
+                {
+                    throw new Exception("Para postularte a una oferta, primero tenés que cargar tu CV");
+                }
                 _studentOfferRepository.AddStudentToOffer(offerId, studentId);
                 return Ok();
             }
@@ -286,22 +291,30 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Route("downloadCV")]
         public IActionResult DownloadCV()
         {
-            // Obtener el studentId del claim
-            string studentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (string.IsNullOrEmpty(studentId))
+            try
             {
-                return BadRequest("No esta logeado como estudiante, o no cargo su CV.");
+                // Obtener el studentId del claim
+                int studentId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+
+                if (string.IsNullOrEmpty(studentId.ToString()))
+                {
+                    return BadRequest("No está logeado como estudiante.");
+                }
+
+                //CVFile cvFile = _context.CVFiles.FirstOrDefault(c => c.StudentId == int.Parse(studentId));
+                CVFile cvFile = _studentRepository.GetStudentCv(studentId);
+
+                if (cvFile == null)
+                {
+                    return NotFound("No se encontró el archivo.");
+                }
+
+                return File(cvFile.File, "application/octet-stream", cvFile.Name);
             }
-
-            CVFile cvFile = _context.CVFiles.FirstOrDefault(c => c.StudentId == int.Parse(studentId));
-
-            if (cvFile == null)
+            catch (Exception ex)
             {
-                return NotFound("No se encontró el archivo.");
+                return BadRequest(ex.Message);
             }
-
-            return File(cvFile.File, "application/octet-stream", cvFile.Name);
         }
 
         [NonAction]
@@ -319,7 +332,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                     throw new Exception("Número de documento ya registrado");
                 }
             }
-            catch (FormatException) //No lo está tomando. => "$.documentNumber": "'p' is an invalid start of a value. Path: $.documentNumber | LineNumber: 9 | BytePositionInLine: 20."]
+            catch (FormatException)
             {
                 throw new Exception("El documento debe ser un número entero.");
             }

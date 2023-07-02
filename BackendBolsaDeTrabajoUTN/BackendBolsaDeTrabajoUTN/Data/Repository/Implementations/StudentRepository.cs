@@ -133,6 +133,23 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
         }
 
+        public CVFile GetStudentCv(int studentId)
+        {
+            try
+            {
+                CVFile cVFile = _context.CVFiles.FirstOrDefault(cv => cv.StudentId == studentId && cv.CVIsActive == true);
+                if (cVFile == null)
+                {
+                    throw new Exception("No se encontró el CV del estudiante");
+                }
+                return cVFile;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public List<User> GetUsers()
         {
             return _context.Users.ToList();
