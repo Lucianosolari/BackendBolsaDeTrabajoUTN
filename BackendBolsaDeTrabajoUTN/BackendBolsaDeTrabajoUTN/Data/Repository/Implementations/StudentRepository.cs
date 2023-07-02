@@ -118,7 +118,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
                         File = fileBytes,
                         StudentId = studentId,
                         Student = _context.Students.FirstOrDefault(s => s.UserId == studentId),
-                        CVPendingConfirmation = true,
+                        CVPendingConfirmation = false,
                         CVIsActive = true,
                     };
 
@@ -128,7 +128,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
                     existentCvFile.Name = newCvFile.Name;
                     existentCvFile.File = newCvFile.File;
                     existentCvFile.Student = newCvFile.Student;
-                    existentCvFile.CVPendingConfirmation = true;
+                    existentCvFile.CVPendingConfirmation = false;
                     existentCvFile.CVId = existentCvFile.CVId;
                 }
                 else
