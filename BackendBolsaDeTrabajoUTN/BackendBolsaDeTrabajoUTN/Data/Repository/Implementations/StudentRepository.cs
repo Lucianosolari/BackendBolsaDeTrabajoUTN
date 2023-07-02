@@ -150,6 +150,16 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
         }
 
+        public bool CheckCVExists(int studentId)
+        {
+            var cvFile = _context.CVFiles.FirstOrDefault(cv => cv.StudentId == studentId && cv.CVIsActive == true);
+            if (cvFile == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public List<User> GetUsers()
         {
             return _context.Users.ToList();
