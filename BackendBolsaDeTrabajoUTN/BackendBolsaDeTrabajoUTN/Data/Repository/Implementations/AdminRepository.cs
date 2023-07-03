@@ -22,15 +22,14 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
             catch (Exception ex)
             {
-
-
-                throw new Exception("el error es" + ex);
+                throw new Exception(ex.Message);
             }
         }
 
         public List<Career> GetCareers()
         {
-            return _context.Careers.ToList();
+            var careers = _context.Careers.ToList();
+            return careers;
         }
 
         public void CreateKnowledge(Knowledge newKnowledge, Knowledge newKnowledge1, Knowledge newKnowledge2)
@@ -44,9 +43,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
             catch (Exception ex)
             {
-
-
-                throw new Exception("el error es" + ex);
+                throw new Exception(ex.Message);
             }
         }
 
@@ -54,27 +51,34 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
         {
             try
             {
-                var career = _context.Careers.FirstOrDefault(x => x.CareerId == id);
+                var career = _context.Careers.FirstOrDefault(c => c.CareerId == id);
+                if (career == null)
+                {
+                    throw new Exception("Carrera no encontrada");
+                }
                 career.CareerIsActive = false;
                 _context.SaveChanges();
-              
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("Carrera no encontrada");
+                throw new Exception(ex.Message);
             }
         }
         public void DeleteKnowledge(int id)
         {
             try
             {
-                var knowledge =_context.Knowledges.FirstOrDefault(x => x.KnowledgeId == id);
+                var knowledge =_context.Knowledges.FirstOrDefault(k => k.KnowledgeId == id);
+                if (knowledge == null)
+                {
+                    throw new Exception("Conocimiento no encontrado");
+                }
                 knowledge.KnowledgeIsActive = false;
                 _context.SaveChanges();
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("Conocimiento no encontrado");
+                throw new Exception(ex.Message);
             }
         }
 
@@ -82,52 +86,54 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
         {
             try
             {
-                var user = _context.Users.FirstOrDefault(x => x.UserId == id);
-
-                if (user != null)
-                {
-                    user.UserIsActive = false;
-                    _context.SaveChanges();
-                }
-                else
+                var user = _context.Users.FirstOrDefault(u => u.UserId == id);
+                if (user == null)
                 {
                     throw new Exception("Usuario no encontrado");
                 }
+                user.UserIsActive = false;
+                _context.SaveChanges();
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("Error al eliminar el usuario");
+                throw new Exception(ex.Message);
             }
         }
-
 
         public void DeleteOffer(int id)
         {
             try
             {
-                var offer = _context.Offers.FirstOrDefault(x => x.OfferId == id);
-                var studentOffers = _context.StudentOffers.Where(x => x.OfferId == id).ToList();
-                foreach (var studentOffer in studentOffers)
+                var offer = _context.Offers.FirstOrDefault(o => o.OfferId == id);
+                if (offer == null)
                 {
-                    studentOffer.StudentOfferIsActive = false;
+                    throw new Exception("Oferta no encontrada");
+                }
+                var studentOffers = _context.StudentOffers.Where(x => x.OfferId == id).ToList();
+                if (studentOffers.Count > 0)
+                {
+                    foreach (var studentOffer in studentOffers)
+                    {
+                        studentOffer.StudentOfferIsActive = false;
+                    }
                 }
                 offer.OfferIsActive = false;
                 _context.SaveChanges();
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("Oferta no encontrado");
+                throw new Exception(ex.Message);
             }
         }
 
-        public List<Company> CompanyPending()
+        public List<Company> GetPendingCompanies()
         {
             return _context.Companies
                 .Where(u => u.UserType == "Company" && u.CompanyPendingConfirmation == true)
                 .ToList();
         }
 
-        public void UpdateCompanyPending(int companyId)
+        public void UpdatePendingCompany(int companyId)
         {
             Company company = _context.Companies.FirstOrDefault(c => c.UserId == companyId);
             if (company != null)

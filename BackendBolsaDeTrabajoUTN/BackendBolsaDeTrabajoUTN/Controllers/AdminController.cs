@@ -60,7 +60,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
             else
             {
-                return BadRequest("El usuario no esta autorizado para crear Carreras");
+                return BadRequest("El usuario no está autorizado para crear Carreras");
             }
         }
 
@@ -114,10 +114,8 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
         }
 
-
-
         [Authorize]
-        [HttpDelete] //Cambiar a put (modifica CareerIsActive de True a False)
+        [HttpDelete]
         [Route("deleteCareer")]
         public IActionResult DeleteCareer(int id)
         {
@@ -125,23 +123,23 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             if (userType == "Admin")
             {
                 try
-            {
-                _adminRepository.DeleteCareer(id);
-                return Ok("Carrera borrada");
-            }
-            catch (Exception ex)
-            {
-                return Problem(ex.Message);
-            }
+                {
+                    _adminRepository.DeleteCareer(id);
+                    return Ok("Carrera borrada");
+                }
+                catch (Exception ex)
+                {
+                    return Problem(ex.Message);
+                }
             }
             else
             {
-                return BadRequest("El usuario no esta autorizado para borrar carreras");
+                return BadRequest("El usuario no está autorizado para borrar carreras");
             }
         }
 
         [Authorize]
-        [HttpDelete] //Cambiar a put (modifica KnowledgeIsActive de True a False)
+        [HttpDelete]
         [Route("deleteKnowledge/{id}")]
         public IActionResult DeleteKnowledge(int id)
         {
@@ -160,18 +158,18 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
             else
             {
-                return BadRequest("El usuario no esta autorizado para borrar conocimientos");
+                return BadRequest("El usuario no está autorizado para borrar conocimientos");
             }
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpDelete]
-        [Route("deleteUser")]
-        public IActionResult DeleteUser(int id)
+        [Route("deleteUser/{userId}")]
+        public IActionResult DeleteUser(int id) //función no usada en front
         {
-            //var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
-            //if (userType == "Admin")
-            //{
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Admin")
+            {
                 try
                 {
                     _adminRepository.DeleteUser(id);
@@ -181,16 +179,16 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 {
                     return Problem(ex.Message);
                 }
-            //}
-            //else
-            //{
-            //    return BadRequest("El usuario no esta autorizado para borrar usuarios");
-            //}
+            }
+            else
+            {
+                return BadRequest("El usuario no está autorizado para borrar otros usuarios");
+            }
         }
 
         [Authorize]
-        [HttpDelete] //Cambiar a put (modifica OfferIsActive de True a False)
-        [Route("deleteOffer")]
+        [HttpDelete] //No implementada en front
+        [Route("deleteOffer/{offerId}")]
         public IActionResult DeleteOffer(int id)
         {
             var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
@@ -199,7 +197,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 try
                 {
                     _adminRepository.DeleteOffer(id);
-                    return Ok("Oferta borrado");
+                    return Ok("Oferta borrada");
                 }
                 catch (Exception ex)
                 {
@@ -208,78 +206,79 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
             else
             {
-                return BadRequest("El usuario no esta autorizado para borrar Ofertas");
+                return BadRequest("El usuario no está autorizado para borrar Ofertas");
             }
         }
 
         [Authorize]
         [HttpGet]
-        [Route("getAllCompanyPending")]
-        public IActionResult GetAllCompanyPending()
+        [Route("getAllPendingCompanies")]
+        public IActionResult GetAllPendingCompanies()
         {
             var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
             if (userType == "Admin")
             {
                 try
-            {
-                List<Company> pendingCompanies = _adminRepository.CompanyPending();
-                return Ok(pendingCompanies);
-            }
-            catch (Exception ex)
-            {
-                
-                return Problem(ex.Message);
-            }
+                {
+                    List<Company> pendingCompanies = _adminRepository.GetPendingCompanies();
+                    return Ok(pendingCompanies);
+                }
+                catch (Exception ex)
+                {
+                    return Problem(ex.Message);
+                }
             }
             else
             {
-                return BadRequest("El usuario no esta autorizado para lista empresas");
+                return BadRequest("El usuario no está autorizado para listar empresas");
             }
         }
 
         [Authorize]
         [HttpPost]
-        [Route("updateCompanyPending/{companyId}")]
-        public IActionResult UpdateCompanyPendingConfirmation(int companyId)
+        [Route("updatePendingCompany/{companyId}")]
+        public IActionResult UpdatePendingCompany(int companyId)
         {
             var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
             if (userType == "Admin")
             {
                     try
                      {
-                        _adminRepository.UpdateCompanyPending(companyId);
+                        _adminRepository.UpdatePendingCompany(companyId);
                         return Ok(new { Message = "Estado cambiado"});
                      }
                     catch (Exception ex)
-                     {
-                        // Manejo de errores
+                    {
                         return Problem(ex.Message);
                     }
             }
             else
             {
-                    return BadRequest("El usuario no esta autorizado para modificar estado de empresas");
+                    return BadRequest("El usuario no está autorizado para modificar estado de empresas");
             }
         }
 
         [Authorize]
         [HttpGet]
         [Route("getPendingCVFiles")]
-        public IActionResult GetPendingCVFiles()
+        public IActionResult GetPendingCVFiles() //No implementado en front
         {
-            try
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Admin")
             {
-                var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
-                if (userType != "Admin")
+                try
                 {
-                    throw new Exception("El usuario no está autorizado para listar CVs pendientes");
+                    List<CVFile> pendingCvFiles = _adminRepository.GetPendingCVFiles();
+                    return Ok(pendingCvFiles);
                 }
-                List<CVFile> pendingCvFiles = _adminRepository.GetPendingCVFiles();
-                return Ok(pendingCvFiles);
+                catch (Exception ex)
+                {
+                    return NotFound(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                return NotFound(ex.Message);
+                return BadRequest("El usuario no está autorizado para listar CVs");
             }
         }
 
@@ -288,20 +287,24 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Route("updatePendingCVFile/{CVId}")]
         public IActionResult UpdatePendingCVFile (int CVId)
         {
-            try
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Admin")
             {
-                var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
-                if (userType != "Admin")
+                try
                 {
-                    throw new Exception("El usuario no está autorizado para confirmar CVs pendientes");
+                    _adminRepository.UpdatePendingCVFile(CVId);
+                    return Ok(new { Mesage = "CV confirmado" });
                 }
-                _adminRepository.UpdatePendingCVFile(CVId);
-                return Ok(new { Mesage = "CV confirmado" });
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                return BadRequest(ex.Message);
+                return BadRequest("El usuario no está autorizado para modificar estado de CVs");
             }
+                
         }
 
         [NonAction]
