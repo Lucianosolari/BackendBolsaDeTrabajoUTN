@@ -92,6 +92,20 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
             }
         }
 
+        public List<Knowledge> GetStudentKnowledge(int studentId)
+        {
+            var knowledge = _context.StudentKnowledge
+                .Where(sk => sk.UserId == studentId && sk.StudentKnowledgeIsActive == true)
+                .Select(sk => new Knowledge
+                {
+                    KnowledgeId = sk.Knowledge.KnowledgeId,
+                    Type = sk.Knowledge.Type,
+                    Level = sk.Knowledge.Level,
+                })
+                .ToList();
+            return knowledge;
+        }
+
         public CVFile GetStudentCv(int studentId)
         {
             try
