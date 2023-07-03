@@ -92,10 +92,10 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
             }
         }
 
-        public List<Knowledge> GetStudentKnowledge(int studentId)
+        public List<Knowledge> GetStudentKnowledge(int userId)
         {
             var knowledge = _context.StudentKnowledge
-                .Where(sk => sk.UserId == studentId && sk.StudentKnowledgeIsActive == true)
+                .Where(sk => sk.UserId == userId && sk.StudentKnowledgeIsActive == true)
                 .Select(sk => new Knowledge
                 {
                     KnowledgeId = sk.Knowledge.KnowledgeId,
