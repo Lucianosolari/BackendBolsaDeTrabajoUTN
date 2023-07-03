@@ -19,7 +19,6 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             return _context.Students.Include(a => a.Offers).Where(a => a.UserId == id).Select(a => a.Offers).FirstOrDefault() ?? new List<Offer>();
         }
 
-
         public void CreateStudent(Student newStudent)
         {
             try
@@ -39,7 +38,6 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
         {
             try
             {
-                // domicilio familiar
                 _context.Students.First(s => s.UserId == id).FamilyStreet = newStudentAdressInfo.FamilyStreet;
                 _context.Students.First(s => s.UserId == id).FamilyStreetNumber = newStudentAdressInfo.FamilyStreetNumber;
                 _context.Students.First(s => s.UserId == id).FamilyStreetLetter = newStudentAdressInfo.FamilyStreetLetter;
@@ -51,7 +49,6 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
                 _context.Students.First(s => s.UserId == id).FamilyPersonalPhone = newStudentAdressInfo.FamilyPersonalPhone;
                 _context.Students.First(s => s.UserId == id).FamilyOtherPhone = newStudentAdressInfo.FamilyOtherPhone;
 
-                // domicilio personal
                 _context.Students.First(s => s.UserId == id).PersonalStreet = newStudentAdressInfo.PersonalStreet;
                 _context.Students.First(s => s.UserId == id).PersonalStreetNumber = newStudentAdressInfo.PersonalStreetNumber;
                 _context.Students.First(s => s.UserId == id).PersonalStreetLetter = newStudentAdressInfo.PersonalStreetLetter;

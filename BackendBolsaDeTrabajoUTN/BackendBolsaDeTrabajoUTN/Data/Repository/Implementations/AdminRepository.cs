@@ -144,7 +144,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
         }
 
-        public List<CVFile> GetPendingCVFiles()
+        public List<CVFile> GetPendingCVFiles() //No implementado en front
         {
             try
             {
@@ -161,7 +161,7 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
             }
         }
 
-        public void UpdatePendingCVFile(int CVId)
+        public void UpdatePendingCVFile(int CVId) //No implementado en front
         {
             try
             {

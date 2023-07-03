@@ -29,9 +29,6 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Route("createCompany")]
         public IActionResult CreateCompany(AddCompanyRequest request)
         {
-            //var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
-            //if (userType == "Admin")
-            //{
                 try
                 {
                     List<User> users = _companyRepository.GetUsers();
@@ -79,11 +76,6 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                 {
                     return BadRequest(ex.Message);
                 }
-            //}
-            //else
-            //{
-            //    return BadRequest("El usuario no esta autorizado para crear ofertas");
-            //}
         }
 
         [Authorize]

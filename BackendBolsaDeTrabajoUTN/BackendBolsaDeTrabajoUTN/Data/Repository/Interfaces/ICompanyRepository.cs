@@ -3,7 +3,6 @@
 
 namespace BackendBolsaDeTrabajoUTN.Data.Repository.Interfaces
 {
-   
     public interface ICompanyRepository
     {
         public void CreateCompany(Company newCompany);
