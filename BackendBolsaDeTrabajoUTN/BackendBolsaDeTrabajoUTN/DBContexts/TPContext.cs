@@ -131,16 +131,16 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             Knowledge knowledge1 = new Knowledge()
             {
                 KnowledgeId = 1,
-                Type = "Programming",
-                Level = "Advanced",
+                Type = "Programación",
+                Level = "Alto",
 
                 KnowledgeIsActive = true
             };
             Knowledge knowledge2 = new Knowledge()
             {
                 KnowledgeId = 2,
-                Type = "Design",
-                Level = "Intermediate",
+                Type = "Diseño",
+                Level = "Medio",
 
                 KnowledgeIsActive = true
             };
@@ -148,7 +148,7 @@ namespace BackendBolsaDeTrabajoUTN.DBContexts
             {
                 KnowledgeId = 3,
                 Type = "Marketing",
-                Level = "Beginner",
+                Level = "Bajo",
 
                 KnowledgeIsActive = true
             };

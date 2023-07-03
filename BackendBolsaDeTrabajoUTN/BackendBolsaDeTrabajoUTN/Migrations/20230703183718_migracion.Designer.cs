@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendBolsaDeTrabajoUTN.Migrations
 {
     [DbContext(typeof(TPContext))]
-    [Migration("20230702211357_migracion")]
+    [Migration("20230703183718_migracion")]
     partial class migracion
     {
         /// <inheritdoc />
@@ -127,21 +127,21 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                         {
                             KnowledgeId = 1,
                             KnowledgeIsActive = true,
-                            Level = "Advanced",
-                            Type = "Programming"
+                            Level = "Alto",
+                            Type = "Programación"
                         },
                         new
                         {
                             KnowledgeId = 2,
                             KnowledgeIsActive = true,
-                            Level = "Intermediate",
-                            Type = "Design"
+                            Level = "Medio",
+                            Type = "Diseño"
                         },
                         new
                         {
                             KnowledgeId = 3,
                             KnowledgeIsActive = true,
-                            Level = "Beginner",
+                            Level = "Bajo",
                             Type = "Marketing"
                         });
                 });
