@@ -312,9 +312,9 @@ namespace BackendBolsaDeTrabajoUTN.Migrations
                 columns: new[] { "KnowledgeId", "KnowledgeIsActive", "Level", "Type" },
                 values: new object[,]
                 {
-                    { 1, true, "Advanced", "Programming" },
-                    { 2, true, "Intermediate", "Design" },
-                    { 3, true, "Beginner", "Marketing" }
+                    { 1, true, "Alto", "Programación" },
+                    { 2, true, "Medio", "Diseño" },
+                    { 3, true, "Bajo", "Marketing" }
                 });
 
             migrationBuilder.InsertData(
