@@ -174,14 +174,14 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         [Authorize]
         [HttpGet]
         [Route("getStudentKnowledge/{userId}")]
-        public IActionResult GetStudentKnowledge(int studentId)
+        public IActionResult GetStudentKnowledge(int userId)
         {
             var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
             if (userType == "Company")
             {
                 try
                 {
-                    List<Knowledge> studentKnowledge = _companyRepository.GetStudentKnowledge(studentId);
+                    List<Knowledge> studentKnowledge = _companyRepository.GetStudentKnowledge(userId);
                     return Ok(studentKnowledge);
                 }
                 catch (Exception ex)
