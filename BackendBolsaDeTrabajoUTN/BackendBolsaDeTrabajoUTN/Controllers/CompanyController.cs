@@ -171,6 +171,30 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
         }
 
+        [Authorize]
+        [HttpGet]
+        [Route("getStudentKnowledge/{userId}")]
+        public IActionResult GetStudentKnowledge(int studentId)
+        {
+            var userType = User.Claims.FirstOrDefault(c => c.Type == "userType")?.Value;
+            if (userType == "Company")
+            {
+                try
+                {
+                    List<Knowledge> studentKnowledge = _companyRepository.GetStudentKnowledge(studentId);
+                    return Ok(studentKnowledge);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
+            }
+            else
+            {
+                return BadRequest("Usuario no autorizado para traer conocimientos de un estudiante");
+            }
+        }
+
         [HttpGet]
         [Route("CVFiles/{userId}/getStudentCV")]
         public ActionResult GetStudentCV(int userId)

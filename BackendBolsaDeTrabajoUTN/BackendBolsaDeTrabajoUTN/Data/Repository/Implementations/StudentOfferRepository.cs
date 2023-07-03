@@ -112,10 +112,10 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository.Implementations
                     UserName = so.Student.UserName,
                     Name = so.Student.Name,
                     Surname = so.Student.Surname,
+                    AltEmail = so.Student.AltEmail,
                 })
                 .ToList();
             return students;
         }
-
     }
 }
