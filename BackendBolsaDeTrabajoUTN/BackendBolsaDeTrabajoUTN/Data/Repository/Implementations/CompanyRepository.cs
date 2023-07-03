@@ -56,8 +56,6 @@ namespace BackendBolsaDeTrabajoUTN.Data.Repository
             }
             catch (Exception ex)
             {
-
-
                 throw new Exception("el error es" + ex);
             }
         }

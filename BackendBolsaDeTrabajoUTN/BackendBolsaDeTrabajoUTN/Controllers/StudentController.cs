@@ -25,9 +25,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
 
         private readonly IStudentKnowledgeRepository _studentKnowledgeRepository;
 
-        private readonly TPContext _context;
-
-        public StudentController(IStudentRepository studentRepository, ICompanyRepository companyRepository, IStudentOfferRepository studentOfferRepository, IStudentKnowledgeRepository studentKnowledgeRepository, TPContext context)
+        public StudentController(IStudentRepository studentRepository, ICompanyRepository companyRepository, IStudentOfferRepository studentOfferRepository, IStudentKnowledgeRepository studentKnowledgeRepository)
         {   
             _studentRepository = studentRepository;
 
@@ -36,8 +34,6 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             _studentOfferRepository = studentOfferRepository;
 
             _studentKnowledgeRepository = studentKnowledgeRepository;
-
-            _context = context;
         }
 
         [HttpPost]
@@ -226,7 +222,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
         }
 
         [Authorize]
-        [HttpDelete] //Cambiar a put (modifica UserIsActive de True a False)
+        [HttpDelete]
         [Route("deleteStudent/{id}")]
         public IActionResult DeleteStudent()
         {
