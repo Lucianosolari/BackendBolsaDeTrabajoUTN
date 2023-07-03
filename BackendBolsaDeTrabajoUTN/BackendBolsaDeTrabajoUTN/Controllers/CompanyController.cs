@@ -118,10 +118,11 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         OfferTitle = request.OfferTitle,
                         OfferSpecialty = request.OfferSpecialty,
                         OfferDescription = request.OfferDescription,
-                        CreatedDate = request.CreatedDate,
+                        CreatedDate = DateTime.Now,
                         CompanyId = request.CompanyId,
                         OfferIsActive = true,
                     };
+
                     OfferResponse response = new()
                     {
                         OfferTitle = newOffer.OfferTitle,
@@ -129,7 +130,8 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
                         OfferDescription = newOffer.OfferDescription,
                         CreatedDate = newOffer.CreatedDate,
                         OfferIsActive = true,
-                };
+                    };
+
                     _companyRepository.CreateOffer(newOffer);
                     return Created("Oferta creada", response);
                 }
@@ -140,7 +142,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
             }
             else
             {
-                return BadRequest("El usuario no esta autorizado para crear ofertas");
+                return BadRequest("El usuario no está autorizado para crear ofertas");
             }
         }
 
