@@ -41,11 +41,22 @@ builder.Services.AddSwaggerGen(setupAction =>
     });
 });
 
-builder.Services.AddDbContext<TPContext>(dbContextOptions =>
-    dbContextOptions.UseMySql(
-        builder.Configuration["ConnectionStrings:BackendBolsaDeTrabajoUTNDBConnectionString"],
-        new MySqlServerVersion(new Version(8, 0, 22)))
-);
+builder.Services.AddDbContext<TPContext>(dbContextOptions => dbContextOptions.UseSqlServer(
+    builder.Configuration["ConnectionStrings:BackendBolsaDeTrabajoUTNDBConnectionString"]));
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.WithOrigins("http://127.0.0.1:5173", "http://bolsatrabajo.somee.com", "https://bolsa-de-trabajo-wroj.vercel.app")
+            .SetIsOriginAllowedToAllowWildcardSubdomains()
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
 
 builder.Services.AddAuthentication("Bearer") //"Bearer" es el tipo de auntenticación que tenemos que elegir después en PostMan para pasarle el token
     .AddJwtBearer(options => //Acá definimos la configuración de la autenticación. le decimos qué cosas queremos comprobar. La fecha de expiración se valida por defecto.
@@ -99,13 +110,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(options =>
-{
-    options.WithOrigins("http://127.0.0.1:5173");
-    options.AllowAnyMethod();
-    options.AllowAnyHeader();
-
-});
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
