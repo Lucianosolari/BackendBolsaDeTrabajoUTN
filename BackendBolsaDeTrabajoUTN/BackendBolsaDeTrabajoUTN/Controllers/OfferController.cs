@@ -13,6 +13,7 @@ namespace BackendBolsaDeTrabajoUTN.Controllers
     [Route("api/[controller]")]
     [ApiController]
    
+
     public class OfferController : ControllerBase
     {
         private readonly IOfferRepository _offerRepository;
